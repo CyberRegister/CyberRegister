@@ -29,6 +29,7 @@ before_script:
 
 script:
   - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+  - yarn run lint
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
