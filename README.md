@@ -2,7 +2,9 @@
 <p align="center">
 <a href="https://travis-ci.org/annejan/cyber-register"><img src="https://travis-ci.org/annejan/cyber-register.svg" alt="Build Status"></a>
 <a href="https://codeclimate.com/github/annejan/cyber-register/maintainability"><img src="https://api.codeclimate.com/v1/badges/0cd3ddb9f5bc622869c8/maintainability" /></a>
-<a href="https://codeclimate.com/github/SHA2017-badge/Hatchery/test_coverage"><img src="https://api.codeclimate.com/v1/badges/d11aea44f07d8945e76e/test_coverage" /></a>
+<a href="https://codeclimate.com/github/annejan/cyber-register/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0cd3ddb9f5bc622869c8/test_coverage" /></a>
+<a class="badge-align" href="https://www.codacy.com/app/annejan/cyber-register?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=annejan/cyber-register&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/00f75cc741ef48969d38866e9789e3f7"/></a>
+<a class="badge-align" href="https://www.codacy.com/app/annejan/cyber-register?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=annejan/cyber-register&amp;utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/00f75cc741ef48969d38866e9789e3f7"/></a>
 </p>
 
 Installation:
