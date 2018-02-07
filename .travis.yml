@@ -20,9 +20,8 @@ before_script:
   - composer install --dev --no-interaction
   - curl -s -o $HOME/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.33.2/nvm.sh
   - source $HOME/.nvm/nvm.sh
-  - nvm install stable
-  - npm install
-  - npm run production
+  - yarn install
+  - yarn run production
   - php artisan key:generate
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -35,4 +34,4 @@ after_success:
   - php vendor/bin/codacycoverage clover build/coverage/xml
 after_script:
   - ./cc-test-reporter after-build --exit-code
-  - php vendor/bin/codacycoverage clover build/logs/clover.xml
+  - php vendor/bin/codacycoverage clover build/coverage/xml
