@@ -5,8 +5,7 @@ php:
 
 env:
   - TRAVIS_NODE_VERSION="9"
-  global:
-    - CC_TEST_REPORTER_ID=cf92e3f93ecc1b0aa86e98a827d21249b99c6ab3ab086d99ab908989409d6597
+
 addons:
   apt:
     sources:
