@@ -29,9 +29,11 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - vendor/bin/phpunit
+  - php vendor/bin/phpunit --coverage-clover build/coverage/xml
   - npm run lint
 
+after_success:
+  - php vendor/bin/codacycoverage clover build/coverage/xml
 after_script:
   - ./cc-test-reporter after-build --exit-code
   - php vendor/bin/codacycoverage clover build/logs/clover.xml

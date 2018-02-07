@@ -13,5 +13,5 @@ npm-debug.log
 yarn-error.log
 .env
 /docs/coverage
-/build/logs/clover.xml
+/build/
 codeclimate.json
