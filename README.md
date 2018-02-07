@@ -1,6 +1,8 @@
 # Cyber Register
 <p align="center">
 <a href="https://travis-ci.org/annejan/cyber-register"><img src="https://travis-ci.org/annejan/cyber-register.svg" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/annejan/cyber-register/maintainability"><img src="https://api.codeclimate.com/v1/badges/0cd3ddb9f5bc622869c8/maintainability" /></a>
+<a href="https://codeclimate.com/github/SHA2017-badge/Hatchery/test_coverage"><img src="https://api.codeclimate.com/v1/badges/d11aea44f07d8945e76e/test_coverage" /></a>
 </p>
 
 Installation:
