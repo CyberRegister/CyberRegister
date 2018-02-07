@@ -9,8 +9,8 @@ composer install
 cp .env.example .env      # Edit config
 php artisan key:generate
 php artisan migrate
-npm install
-npm run prod
+yarn install
+yarn run prod
 ```
 ## License
 
@@ -26,11 +26,11 @@ php artisan serve
 ```
 Frontend development:
 ```bash
-npm run dev
+yarn run dev
 ```
 With live-reload:
 ```bash
-npm run watch
+yarn run watch
 ```
 ## Running tests
  
