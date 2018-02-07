@@ -28,10 +28,8 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - php vendor/bin/phpunit --coverage-clover build/coverage/xml
+  - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-after_success:
-  - php vendor/bin/codacycoverage clover build/coverage/xml
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - php vendor/bin/codacycoverage clover build/coverage/xml
+  - php vendor/bin/codacycoverage clover build/logs/clover.xml
