@@ -55,7 +55,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <div for="cyber_code" class="col-md-6 col-form-label">
+                            <div class="col-md-6 col-form-label">
                                 You 6 character, alphanumeric, public code.
                             </div>
                         </div>

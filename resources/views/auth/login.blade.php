@@ -12,23 +12,26 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
+                            <label for="cyber_code" class="col-sm-4 col-form-label text-md-right">Cyber code</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                            <div class="col-md-2">
+                                <input id="cyber_code" type="text" class="form-control{{ $errors->has('cyber_code') ? ' is-invalid' : '' }}" name="cyber_code" value="{{ old('cyber_code') }}" required autofocus maxlength="6">
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('cyber_code'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('cyber_code') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                            <div class="col-md-6 col-form-label">
+                                You 6 character, alphanumeric, public code.
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))

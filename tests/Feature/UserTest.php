@@ -48,7 +48,7 @@ class UserTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post('/login', [
-                'email' => $user->email,
+                'cyber_code' => $user->cyber_code,
                 'password' => $password,
                 '_token' => 'test'
             ]);
@@ -162,6 +162,7 @@ class UserTest extends TestCase
             ]);
         $response->assertStatus(302)->assertRedirect('/home');
         $this->assertCount(1, User::all());
+        $this->assertEquals($email, User::first()->email);
     }
 
 }
