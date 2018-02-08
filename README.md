@@ -45,7 +45,7 @@ phpunit
  
  Run a test suite (for a list of availabe suites, see `/phpunit.xml`)
 ```bash 
- phpunit --testsuite suite_name>
+ phpunit --testsuite <suite_name>
  ```
  Run a specific test file
  ```bash
