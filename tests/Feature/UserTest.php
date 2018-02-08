@@ -130,8 +130,15 @@ class UserTest extends TestCase
 
         $response = $this
             ->withSession(['_token'=>'test'])
+            ->post('/logout', [
+                '_token' => 'test'
+            ]);
+        $response->assertStatus(302)->assertRedirect('/');
+
+        $response = $this
+            ->withSession(['_token'=>'test'])
             ->post('/login', [
-                'email' => $user->email,
+                'cyber_code' => $user->cyber_code,
                 'password' => $password,
                 '_token' => 'test'
             ]);
