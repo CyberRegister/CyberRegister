@@ -172,4 +172,17 @@ class UserTest extends TestCase
         $this->assertEquals($email, User::first()->email);
     }
 
+    /**
+     * Check the redirect functionality.
+     */
+    public function testRedirectIfAuthenticated()
+    {
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->post('/login');
+        $response->assertStatus(302)
+            ->assertRedirect('/home');
+    }
+
 }

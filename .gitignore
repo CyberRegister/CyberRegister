@@ -18,3 +18,4 @@ yarn-error.log
 /build/
 codeclimate.json
 cc-test-reporter
+deploy_*
