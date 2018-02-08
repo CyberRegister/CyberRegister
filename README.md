@@ -14,7 +14,7 @@ cp .env.example .env      # Edit config
 php artisan key:generate
 php artisan migrate
 yarn install
-yarn run prod
+yarn production
 ```
 ## License
 
@@ -30,34 +30,32 @@ php artisan serve
 ```
 Frontend development:
 ```bash
-yarn run dev
+yarn dev
 ```
 With live-reload:
 ```bash
-yarn run watch
+yarn watch
 ```
 ## Running tests
  
- Run all the tests
+Run all the tests
  ```bash
 phpunit
 ```
- 
- Run a test suite (for a list of availabe suites, see `/phpunit.xml`)
+Run a test suite (for a list of availabe suites, see `/phpunit.xml`)
 ```bash 
  phpunit --testsuite <suite_name>
  ```
- Run a specific test file
+Run a specific test file
  ```bash
  phpunit tests/<optional_folders>/TestFileName
 ```
- 
- Run a specific test case
+Run a specific test case
  ```bash
  phpunit --filter <test_case_name>
  ```
- Generate code coverage
+Generate code coverage
  ```bash
  phpunit --coverage-html docs/coverage
  ```
- This will create the code coverage docs in `docs/coverage/index.html`
+This will create the code coverage docs in `docs/coverage/index.html`

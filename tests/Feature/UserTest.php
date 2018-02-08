@@ -149,8 +149,13 @@ class UserTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post('/register', [
-                'name' => $faker->name,
+                'cyber_code' => $faker->bothify('??##??'),
+                'first_name' => $faker->firstName,
+                'middle_name' => 'de',
+                'last_name' => $faker->lastName,
                 'email' => $email,
+                'date_of_birth' => $faker->date(),
+                'place_of_birth' => $faker->city,
                 'password' => $password,
                 'password_confirmation' => $password,
                 '_token' => 'test'
@@ -158,7 +163,5 @@ class UserTest extends TestCase
         $response->assertStatus(302)->assertRedirect('/home');
         $this->assertCount(1, User::all());
     }
-
-
 
 }
