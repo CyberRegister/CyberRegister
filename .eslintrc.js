@@ -4,7 +4,7 @@ module.exports = {
 		'es6': true,
 		'node': true
 	},
-	'extends': 'plugin:vue/recommended',
+	'extends': 'eslint:recommended',
 	'parserOptions': {
 		'sourceType': 'module'
 	},
