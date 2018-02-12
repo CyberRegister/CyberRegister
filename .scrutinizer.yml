@@ -6,14 +6,11 @@ build:
         variables:
             DB_TEST_USERNAME: root
             DB_USERNAME: root
+            APP_KEY: base64:ApakOSikUFhPmEJK9wnsJideoBf0HMdP08JxrtB7JkE=
     dependencies:
         before:
             - mysql -e 'create database cyber;'
             - mysql -e 'create database cyber_test;'
-    tests:
-        before:
-            - touch .env
-            - php artisan key:generate
 checks:
     php:
         code_rating: true
