@@ -2,5 +2,14 @@ build:
     environment:
         php:
             version: 7.1 
+        mysql: 5.7
+        variables:
+            DB_TEST_USERNAME: root
+    project_setup:
+            before:
+                -
+                    command: mysql -e 'create database cyber_test;'
 checks:
-    php: true
+    php:
+        code_rating: true
+        duplication: true
