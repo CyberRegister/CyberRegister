@@ -5,10 +5,11 @@ build:
         mysql: 5.7
         variables:
             DB_TEST_USERNAME: root
-    project_setup:
+            DB_USERNAME: root
+    dependencies:
             before:
-                -
-                    command: mysql -e 'create database cyber_test;'
+                - mysql -e 'create database cyber;'
+                - mysql -e 'create database cyber_test;'
 checks:
     php:
         code_rating: true
