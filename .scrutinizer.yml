@@ -18,13 +18,12 @@ build:
                 coverage:
                     file: 'clover'
                     format: 'clover'
-    nodes:
-        analysis:
-            project_setup:
-                override: true
-            tests:
-                override:
-                    - php-scrutinizer-run --enable-security-analysis
+    analysis:
+        project_setup:
+            override: true
+        tests:
+            override:
+                - php-scrutinizer-run --enable-security-analysis
 checks:
     php:
         code_rating: true
