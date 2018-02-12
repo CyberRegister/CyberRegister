@@ -7,9 +7,11 @@ build:
             DB_TEST_USERNAME: root
             DB_USERNAME: root
     dependencies:
-            before:
-                - mysql -e 'create database cyber;'
-                - mysql -e 'create database cyber_test;'
+        before:
+            - mysql -e 'create database cyber;'
+            - mysql -e 'create database cyber_test;'
+    project_setup:
+        - php artisan key:generate
 checks:
     php:
         code_rating: true
