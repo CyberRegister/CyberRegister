@@ -1,4 +1,5 @@
 build:
+
     nodes:
         analysis:
             project_setup:
@@ -6,7 +7,7 @@ build:
             tests:
                 override:
                     - php-scrutinizer-run --enable-security-analysis
-        checks:
+        tests:
             environment:
                 php:
                     version: 7.1
@@ -15,18 +16,18 @@ build:
                     DB_TEST_USERNAME: root
                     DB_USERNAME: root
                     APP_KEY: base64:ApakOSikUFhPmEJK9wnsJideoBf0HMdP08JxrtB7JkE=
-                dependencies:
-                    before:
-                        - mysql -e 'create database cyber;'
-                        - mysql -e 'create database cyber_test;'
-                tests:
-                    override:
-                        -
-                            command: 'vendor/bin/phpunit --coverage-clover=clover'
-                            coverage:
-                                file: 'clover'
-                                format: 'clover'
-            checks:
-                php:
-                    code_rating: true
-                    duplication: true
+            dependencies:
+                before:
+                    - mysql -e 'create database cyber;'
+                    - mysql -e 'create database cyber_test;'
+            tests:
+                override:
+                    -
+                        command: 'vendor/bin/phpunit --coverage-clover=clover'
+                        coverage:
+                            file: 'clover'
+                            format: 'clover'
+checks:
+    php:
+        code_rating: true
+        duplication: true
