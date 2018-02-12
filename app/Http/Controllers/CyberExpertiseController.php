@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Expertise;
+use App\CyberExpertise;
 use Illuminate\Http\Request;
 
-class ExpertiseController extends Controller
+class CyberExpertiseController extends Controller
 {
 //    /**
 //     * Create a new controller instance.
@@ -51,10 +51,10 @@ class ExpertiseController extends Controller
 //    /**
 //     * Display the specified resource.
 //     *
-//     * @param  \App\Expertise  $userExpertise
+//     * @param  \App\CyberExpertise  $cyberExpertise
 //     * @return \Illuminate\Http\Response
 //     */
-//    public function show(Expertise $userExpertise)
+//    public function show(CyberExpertise $cyberExpertise)
 //    {
 //        //
 //    }
@@ -62,10 +62,10 @@ class ExpertiseController extends Controller
 //    /**
 //     * Show the form for editing the specified resource.
 //     *
-//     * @param  \App\Expertise  $userExpertise
+//     * @param  \App\CyberExpertise  $cyberExpertise
 //     * @return \Illuminate\Http\Response
 //     */
-//    public function edit(Expertise $userExpertise)
+//    public function edit(CyberExpertise $cyberExpertise)
 //    {
 //        //
 //    }
@@ -74,10 +74,10 @@ class ExpertiseController extends Controller
 //     * Update the specified resource in storage.
 //     *
 //     * @param  \Illuminate\Http\Request  $request
-//     * @param  \App\Expertise  $userExpertise
+//     * @param  \App\CyberExpertise  $cyberExpertise
 //     * @return \Illuminate\Http\Response
 //     */
-//    public function update(Request $request, Expertise $userExpertise)
+//    public function update(Request $request, CyberExpertise $cyberExpertise)
 //    {
 //        //
 //    }
@@ -85,10 +85,10 @@ class ExpertiseController extends Controller
 //    /**
 //     * Remove the specified resource from storage.
 //     *
-//     * @param  \App\Expertise  $userExpertise
+//     * @param  \App\CyberExpertise  $cyberExpertise
 //     * @return \Illuminate\Http\Response
 //     */
-//    public function destroy(Expertise $userExpertise)
+//    public function destroy(CyberExpertise $cyberExpertise)
 //    {
 //        //
 //    }

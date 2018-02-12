@@ -33,16 +33,16 @@ class UserTest extends TestCase
      * Assert user might have a relation with multiple App\Expertise(s)
      */
     public function testUserHasExpertiseRelation() {
-        $userExpertise = new Expertise;
+        $expertise = factory(Expertise::class)->create();
         $user = factory(User::class)->create();
         $this->assertEmpty($user->expertises);
-        $userExpertise->user()->associate($user);
-        $userExpertise->save();
+        $expertise->user()->associate($user);
+        $expertise->save();
         $user = User::find($user->id);
         $this->assertCount(1, $user->expertises);
-        $userExpertise = new Expertise;
-        $userExpertise->user()->associate($user);
-        $userExpertise->save();
+        $expertise = factory(Expertise::class)->create();
+        $expertise->user()->associate($user);
+        $expertise->save();
         $user = User::find($user->id);
         $this->assertCount(2, $user->expertises);
     }

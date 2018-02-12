@@ -2,11 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Category;
-use App\Models\File;
-use App\Models\Project;
-use App\Models\User;
-use App\Models\Version;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;

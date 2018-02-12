@@ -60,7 +60,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the users expertises.
+     * Get the users PCE points.
      */
     public function pcePoints(): HasMany
     {

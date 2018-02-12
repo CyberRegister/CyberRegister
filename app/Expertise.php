@@ -14,4 +14,21 @@ class Expertise extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * Get the actual CyberExpertise for this expertise.
+     */
+    public function cyberExpertise(): BelongsTo
+    {
+        return $this->belongsTo('App\CyberExpertise');
+    }
+
+    /**
+     * The expertise code (3 chars)
+     * @return string
+     */
+    public function getCodeAttribute(): string
+    {
+        return $this->cyberExpertise->expertise_code;
+    }
 }

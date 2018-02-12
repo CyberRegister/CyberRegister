@@ -3,186 +3,277 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Support\Facades\Notification;
+use Faker\Factory;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Faker\Factory;
-use Session;
 
 class UserTest extends TestCase
 {
     use DatabaseTransactions, DatabaseMigrations;
 
     /**
-     * login failed get redirected.
+     * Check redirect to /login when going to the /users page.
      */
-    public function testLoginFail()
+    public function testUserHomeRedirect()
     {
-        $response = $this
-            ->withSession(['_token'=>'test'])
-            ->post('/login', [
-                'email' => 'annejan@noprotocol.nl',
-                'password' => 'badPass',
-                '_token' => 'test'
-            ]);
+        $response = $this->get('/users');
         $response->assertStatus(302)
-            ->assertRedirect('')
-            ->assertSessionHas('errors')
-            ->assertSessionHas('_old_input', [
-                "email" => 'annejan@noprotocol.nl',
-		'_token' => 'test'
-            ]);
+            ->assertRedirect('/login');
     }
 
     /**
-     * Login, go to home
+     * Check JSON request Unauthenticated . .
      */
-    public function testLogin()
+    public function testUserJsonRedirect()
     {
-        $faker = Factory::create();
-        $password = $faker->password;
-        $user = factory(User::class)->create(['password' => bcrypt($password)]);
-        $response = $this
-            ->withSession(['_token'=>'test'])
-            ->post('/login', [
-                'cyber_code' => $user->cyber_code,
-                'password' => $password,
-                '_token' => 'test'
-            ]);
-        $response->assertStatus(302)->assertRedirect('/home');
+        $response = $this->json('GET', '/users');
+        $response->assertStatus(401)
+            ->assertExactJson(['message' => 'Unauthenticated.']);
     }
 
     /**
-     * Check the homepage / dashboard.
+     * Check redirect to /home when going to the /users page.
      */
-    public function testHome()
+    public function testUserIndexRedirect()
     {
         $user = factory(User::class)->create();
         $response = $this
             ->actingAs($user)
-            ->get('/home');
-        $response->assertStatus(200);
+            ->get('/users');
+        $response->assertStatus(302)
+            ->assertRedirect('/home');
     }
 
     /**
-     * Check the logout functionality.
+     * Check redirect to /home when going to the /users page.
      */
-    public function testLogout()
+    public function testUserIndexUserIsController()
+    {
+        $user = factory(User::class)->create();
+        $user->is_controller = true;
+        $response = $this
+            ->actingAs($user)
+            ->get('/users');
+        $response->assertStatus(200)->assertViewHas('users', User::all());
+    }
+
+    /**
+     * Check 200 page.
+     */
+    public function testUserCreate()
     {
         $user = factory(User::class)->create();
         $response = $this
             ->actingAs($user)
-            ->post('/logout');
-        $response->assertStatus(302)
-            ->assertRedirect('');
-    }
-
-    /**
-     * Test a password change and login (full flow).
-     */
-    public function testUserResetPassword()
-    {
-        Notification::fake();
-
-        $user = factory(User::class)->create();
-
-        $response = $this
-            ->withSession(['_token'=>'test'])
-            ->post('password/email', [
-                'email' => $user->email,
-                '_token' => 'test'
-            ]);
-        $response->assertStatus(302)
-            ->assertRedirect('/');
-
-        $token = null;
-
-        Notification::assertSentTo(
-            [$user],
-            ResetPassword::class,
-            function ($notification, $channels) use (&$token) {
-                $token = $notification->token;
-                return true;
-            }
-        );
-
-        $this->assertNotNull($token);
-
-        $response = $this->get('/password/reset/'.$token);
+            ->get('/users/create');
         $response->assertStatus(200);
-
-        $faker = Factory::create();
-        $password = $faker->password;
-
-        $response = $this
-            ->withSession(['_token'=>'test'])
-            ->post('/password/reset', [
-            'email' => $user->email,
-            'token' => $token,
-            'password' => $password,
-            'password_confirmation' => $password,
-            '_token' => 'test'
-        ]);
-        $response->assertStatus(302)->assertRedirect('/home');
-
-        $response = $this
-            ->withSession(['_token'=>'test'])
-            ->post('/logout', [
-                '_token' => 'test'
-            ]);
-        $response->assertStatus(302)->assertRedirect('/');
-
-        $response = $this
-            ->withSession(['_token'=>'test'])
-            ->post('/login', [
-                'cyber_code' => $user->cyber_code,
-                'password' => $password,
-                '_token' => 'test'
-            ]);
-        $response->assertStatus(302)->assertRedirect('/home');
     }
 
     /**
-     * Register, go to /home . .
+     * Check user creation.
      */
-    public function testRegister()
+    public function testUserStore()
     {
         $faker = Factory::create();
+        $user = factory(User::class)->create();
         $password = $faker->password;
-        $email = $faker->email;
         $response = $this
-            ->withSession(['_token'=>'test'])
-            ->post('/register', [
+            ->actingAs($user)
+            ->withSession(['_token' => 'test'])
+            ->post('/users', [
                 'cyber_code' => $faker->bothify('??##??'),
                 'first_name' => $faker->firstName,
                 'middle_name' => 'de',
                 'last_name' => $faker->lastName,
-                'email' => $email,
+                'email' => $faker->email,
                 'date_of_birth' => $faker->date(),
                 'place_of_birth' => $faker->city,
                 'password' => $password,
                 'password_confirmation' => $password,
                 '_token' => 'test'
             ]);
-        $response->assertStatus(302)->assertRedirect('/home');
-        $this->assertCount(1, User::all());
-        $this->assertEquals($email, User::first()->email);
+        $response->assertStatus(302)->assertRedirect('/users');
+        $this->assertCount(2, User::all());
     }
 
     /**
-     * Check the redirect functionality.
+     * Check redirect on attempt to edit user.
      */
-    public function testRedirectIfAuthenticated()
+    public function testUserEditRedirect()
+    {
+        $user = factory(User::class)->create();
+        $userTwo = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->get('/users/'.$userTwo->cyber_code.'/edit');
+        $response->assertStatus(302)->assertRedirect('/home');
+    }
+
+    /**
+     * Check controller can get edit view for user.
+     */
+    public function testUserEditIsController()
+    {
+        $user = factory(User::class)->create();
+        $user->is_controller = true;
+        $userTwo = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->get('/users/'.$userTwo->cyber_code.'/edit');
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Check user can get edit view for own user.
+     */
+    public function testUserEditSelf()
     {
         $user = factory(User::class)->create();
         $response = $this
             ->actingAs($user)
-            ->post('/login');
-        $response->assertStatus(302)
-            ->assertRedirect('/home');
+            ->get('/users/'.$user->cyber_code.'/edit');
+        $response->assertStatus(200);
     }
 
+    /**
+     * Check redirect on attempt to edit user.
+     */
+    public function testUserUpdateRedirect()
+    {
+        $user = factory(User::class)->create();
+        $userTwo = factory(User::class)->create();
+        $faker = Factory::create();
+        $response = $this
+            ->actingAs($user)
+            ->withSession(['_token' => 'test'])
+            ->put('/users/'.$userTwo->cyber_code, [
+                'cyber_code' => $faker->bothify('??##??'),
+                'first_name' => $faker->firstName,
+                'middle_name' => 'de',
+                'last_name' => $faker->lastName,
+                'email' => $faker->email,
+                'date_of_birth' => $faker->date(),
+                'place_of_birth' => $faker->city,
+                '_token' => 'test'
+            ]);
+        $response->assertStatus(302)->assertRedirect('/home');
+    }
+
+    /**
+     * Check controller can edit user.
+     */
+    public function testUserUpdateIsController()
+    {
+        $user = factory(User::class)->create();
+        $user->is_controller = true;
+        $userTwo = factory(User::class)->create();
+        $faker = Factory::create();
+        $response = $this
+            ->actingAs($user)
+            ->withSession(['_token' => 'test'])
+            ->put('/users/'.$userTwo->cyber_code, [
+                'cyber_code' => $faker->bothify('??##??'),
+                'first_name' => $faker->firstName,
+                'middle_name' => 'de',
+                'last_name' => $faker->lastName,
+                'email' => $faker->email,
+                'date_of_birth' => $faker->date(),
+                'place_of_birth' => $faker->city,
+                '_token' => 'test'
+            ]);
+        $response->assertStatus(302)->assertRedirect('/users');
+    }
+
+    /**
+     * Check user can edit own user.
+     */
+    public function testUserUpdateSelf()
+    {
+        $user = factory(User::class)->create();
+        $faker = Factory::create();
+        $response = $this
+            ->actingAs($user)
+            ->withSession(['_token' => 'test'])
+            ->put('/users/'.$user->cyber_code, [
+                'cyber_code' => $faker->bothify('??##??'),
+                'first_name' => $faker->firstName,
+                'middle_name' => 'de',
+                'last_name' => $faker->lastName,
+                'email' => $faker->email,
+                'date_of_birth' => $faker->date(),
+                'place_of_birth' => $faker->city,
+                '_token' => 'test'
+            ]);
+        $response->assertStatus(302)->assertRedirect('/users');
+    }
+
+    /**
+     * Check redirect on attempt to delete user.
+     */
+    public function testUserDestroyRedirect()
+    {
+        $user = factory(User::class)->create();
+        $userTwo = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->delete('/users/'.$userTwo->cyber_code);
+        $response->assertStatus(302)->assertRedirect('/home');
+    }
+
+    /**
+     * Check controller delete user.
+     */
+    public function testUserDestroyIsController()
+    {
+        $user = factory(User::class)->create();
+        $user->is_controller = true;
+        $userTwo = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->delete('/users/'.$userTwo->cyber_code);
+        $response->assertStatus(302)->assertRedirect('/users');
+        $this->assertCount(1, User::all());
+    }
+
+    /**
+     * Check user can delete own user.
+     */
+    public function testUserDestroySelf()
+    {
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->delete('/users/'.$user->cyber_code);
+        $response->assertStatus(302)->assertRedirect('/users');
+        $this->assertEmpty(User::all());
+
+    }
+
+    /**
+     * Check user can view own user.
+     */
+    public function testUserShowSelf()
+    {
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->get('/users/'.$user->cyber_code);
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Check user can view other user.
+     */
+    public function testUserShow()
+    {
+        $user = factory(User::class)->create();
+        $userTwo = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->get('/users/'.$userTwo->cyber_code);
+        $response->assertStatus(200);
+    }
 }
