@@ -10,8 +10,8 @@ build:
         before:
             - mysql -e 'create database cyber;'
             - mysql -e 'create database cyber_test;'
-    project_setup:
-        - php artisan key:generate
+        after:
+            - php artisan key:generate
 checks:
     php:
         code_rating: true
