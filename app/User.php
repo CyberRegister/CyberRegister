@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -33,7 +34,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'cyber_code';
     }
@@ -41,12 +42,28 @@ class User extends Authenticatable
     /**
      * @return string
      */
-    public function getNameAttribute()
+    public function getNameAttribute(): string
     {
         $names = [];
         if ($this->first_name) $names[] = $this->first_name;
         if ($this->middle_name) $names[] = $this->middle_name;
         if ($this->last_name) $names[] = $this->last_name;
         return join(' ', $names);
+    }
+
+    /**
+     * Get the users expertises.
+     */
+    public function expertises(): HasMany
+    {
+        return $this->hasMany('App\Expertise');
+    }
+
+    /**
+     * Get the users expertises.
+     */
+    public function pcePoints(): HasMany
+    {
+        return $this->hasMany('App\PcePoint');
     }
 }

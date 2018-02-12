@@ -9,7 +9,7 @@ class PcePointTest extends TestCase
 {
     use RefreshDatabase;
     /**
-     * Assert the order coupon might have a relation with a single App\Models\Order
+     * Assert the PcePoint might have a relation with a single App\User
      */
     public function testPcePointHasUserRelation() {
         $point = new PcePoint;
