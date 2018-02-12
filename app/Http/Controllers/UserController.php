@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -23,7 +25,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View|RedirectResponse
      */
     public function index()
     {
@@ -48,9 +50,9 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  UserStoreRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserStoreRequest $request)
+    public function store(UserStoreRequest $request): RedirectResponse
     {
         try {
             User::create([
@@ -75,9 +77,9 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function show(User $user)
+    public function show(User $user): View
     {
         return view('users.show', ['user' => $user]);
     }
@@ -86,7 +88,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * @return View|RedirectResponse
      */
     public function edit(User $user)
     {
@@ -102,9 +104,9 @@ class UserController extends Controller
      *
      * @param  UserUpdateRequest  $request
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
         $authUser = Auth::user();
         if (!$authUser->is_controller && $authUser->id !== $user->id) {
@@ -121,7 +123,7 @@ class UserController extends Controller
             $user->save();
         } catch (\Exception $e) {
             return redirect()
-                ->route('users.edit', $user->cyber_code)->withInput()->withErrors([$e->getMessage()]);
+                ->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
         }
 
         // todo notification
@@ -132,9 +134,9 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
         $authUser = Auth::user();
         if (!$authUser->is_controller && $authUser->id !== $user->id) {
@@ -145,7 +147,7 @@ class UserController extends Controller
               $user->delete();
         } catch (\Exception $e) {
             return redirect()
-                ->route('users.edit', $user->cyber_code)->withInput()->withErrors([$e->getMessage()]);
+                ->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
         }
 
         // todo notification
