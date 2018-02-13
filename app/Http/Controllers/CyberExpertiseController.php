@@ -4,29 +4,31 @@ namespace App\Http\Controllers;
 
 use App\CyberExpertise;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class CyberExpertiseController extends Controller
 {
-//    /**
-//     * Create a new controller instance.
-//     *
-//     * @return void
-//     */
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
-//
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
-//
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
+    public function index()
+    {
+        return view('cyber.index', ['cyberExpertises' => CyberExpertise::all()]);
+    }
+
 //    /**
 //     * Show the form for creating a new resource.
 //     *

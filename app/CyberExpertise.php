@@ -8,7 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class CyberExpertise extends Model
 {
     /**
-     * Get the users expertises.
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'expertise_code';
+    }
+
+    /**
+     * Get the actual user expertises for this.
      */
     public function expertises(): HasMany
     {

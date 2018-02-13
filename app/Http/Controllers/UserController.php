@@ -29,10 +29,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        if (!$user->is_controller) {
-            return redirect('/home');
-        }
         return view('users.index', ['users' => User::all()]);
     }
 
@@ -79,7 +75,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return View
      */
-    public function show(User $user): View
+    public function show(User $user)
     {
         return view('users.show', ['user' => $user]);
     }
@@ -87,15 +83,13 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
-     * @return View|RedirectResponse
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(User $user)
     {
-        $authUser = Auth::user();
-        if (!$authUser->is_controller && $authUser->id !== $user->id) {
-            return redirect('/home');
-        }
+        $this->authorize('edit', $user);
         return view('users.edit', ['user' => $user]);
     }
 
@@ -105,13 +99,11 @@ class UserController extends Controller
      * @param  UserUpdateRequest  $request
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
-        $authUser = Auth::user();
-        if (!$authUser->is_controller && $authUser->id !== $user->id) {
-            return redirect('/home');
-        }
+        $this->authorize('update', $user);
         try {
             $user->cyber_code = $request->cyber_code;
             $user->first_name =  $request->first_name;
@@ -135,13 +127,11 @@ class UserController extends Controller
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(User $user): RedirectResponse
     {
-        $authUser = Auth::user();
-        if (!$authUser->is_controller && $authUser->id !== $user->id) {
-            return redirect('/home');
-        }
+        $this->authorize('delete', $user);
         try {
             foreach($user->pcePoints as $pcePoint) {
                 $pcePoint->delete();

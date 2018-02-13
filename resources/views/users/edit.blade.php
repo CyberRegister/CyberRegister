@@ -5,13 +5,22 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Cyber Expert bewerken</div>
+                <div class="card-header">
+                    Cyber Expert bewerken
+                    <span class="float-right">
+                        <form method="POST" action="{{ route('users.destroy', ['cyber_code' => $user->cyber_code]) }}">
+                            <input type="hidden" name="_method" value="delete" />
+                            @csrf
+                            <button class="btn btn-danger btn-xs" name="delete-resource" type="submit" value="delete">delete</button>
+                        </form>
+                    </span>
+                </div>
 
                 {{ implode(' ', $errors->all()) }}
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('users.update', ['cyber_code' => $user->cyber_code]) }}" class="register">
-                    <input type="hidden" name="_method" value="patch" />
+                        <input type="hidden" name="_method" value="patch" />
                         @csrf
                         <div class="form-group row">
                             <label for="first_name" class="col-md-4 col-form-label text-md-right">Name</label>

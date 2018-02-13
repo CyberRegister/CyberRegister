@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Users</div>
+                <div class="card-header">Cyber Expertises</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,16 +15,10 @@
                     @endif
 
                     <ul>
-                    @forelse($users as $user)
-                            <li>
-                                @if(Auth::user()->can('edit', $user))
-                                <a href="{{ route('users.edit', ['cyber_code' => $user->cyber_code]) }}">{{ $user->name }}</a>
-                                @else
-                                {{ $user->name }}
-                                @endif
-                            </li>
+                    @forelse($cyberExpertises as $cyberExpertise)
+                        <li><a href="{{ route('cyber.edit', ['expertise_code' => $cyberExpertise->expertise_code]) }}">{{ $cyberExpertise->description }}</a></li>
                     @empty
-                        <li>Niemand gevonden</li>
+                        <li>Niets gevonden</li>
                     @endforelse
                     </ul>
                 </div>

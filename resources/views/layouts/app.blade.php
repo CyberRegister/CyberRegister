@@ -58,7 +58,19 @@
                 </div>
             </div>
         </nav>
-
+        <div id="confirm-delete" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure you want to delete this?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Delete</button>
+                        <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <main class="py-4">
             @yield('content')
         </main>

@@ -39,23 +39,9 @@ class UserTest extends TestCase
     /**
      * Check redirect to /home when going to the /users page.
      */
-    public function testUserIndexRedirect()
+    public function testUserIndexUser()
     {
         $user = factory(User::class)->create();
-        $response = $this
-            ->actingAs($user)
-            ->get('/users');
-        $response->assertStatus(302)
-            ->assertRedirect('/home');
-    }
-
-    /**
-     * Check redirect to /home when going to the /users page.
-     */
-    public function testUserIndexUserIsController()
-    {
-        $user = factory(User::class)->create();
-        $user->is_controller = true;
         $response = $this
             ->actingAs($user)
             ->get('/users');
@@ -104,14 +90,14 @@ class UserTest extends TestCase
     /**
      * Check redirect on attempt to edit user.
      */
-    public function testUserEditRedirect()
+    public function testUserEditError()
     {
         $user = factory(User::class)->create();
         $userTwo = factory(User::class)->create();
         $response = $this
             ->actingAs($user)
             ->get('/users/'.$userTwo->cyber_code.'/edit');
-        $response->assertStatus(302)->assertRedirect('/home');
+        $response->assertStatus(403);
     }
 
     /**
@@ -143,7 +129,7 @@ class UserTest extends TestCase
     /**
      * Check redirect on attempt to edit user.
      */
-    public function testUserUpdateRedirect()
+    public function testUserUpdateDenied()
     {
         $user = factory(User::class)->create();
         $userTwo = factory(User::class)->create();
@@ -161,7 +147,7 @@ class UserTest extends TestCase
                 'place_of_birth' => $faker->city,
                 '_token' => 'test'
             ]);
-        $response->assertStatus(302)->assertRedirect('/home');
+        $response->assertStatus(403);
     }
 
     /**
@@ -215,14 +201,14 @@ class UserTest extends TestCase
     /**
      * Check redirect on attempt to delete user.
      */
-    public function testUserDestroyRedirect()
+    public function testUserDestroyDenied()
     {
         $user = factory(User::class)->create();
         $userTwo = factory(User::class)->create();
         $response = $this
             ->actingAs($user)
             ->delete('/users/'.$userTwo->cyber_code);
-        $response->assertStatus(302)->assertRedirect('/home');
+        $response->assertStatus(403);
     }
 
     /**

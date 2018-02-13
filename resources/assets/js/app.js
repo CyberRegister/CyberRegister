@@ -6,3 +6,14 @@
  */
 
 require('./bootstrap');
+
+$(document).ready(function () {
+// Delete resource
+    $('button[name="delete-resource"]').on('click', function (e) {
+        e.preventDefault()
+        var $form = $(this).closest('form')
+        $('#confirm-delete').modal({backdrop: 'static', keyboard: false}).one('click', '#delete', function (e) {
+            $form.trigger('submit')
+        })
+    })
+});

@@ -19,7 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('users', 'UserController');
-Route::resource('user/{user}/pce/points', 'PcePointController');
-Route::resource('user/{user}/expertise', 'ExpertiseController');
-Route::resource('cyber/expertise', 'CyberExpertiseController');
+Route::group([ 'middleware' => 'auth'], function () {
+    Route::resource('users', 'UserController');
+    Route::resource('user/{user}/pce-points', 'PcePointController');
+    Route::resource('user/{user}/expertise', 'ExpertiseController');
+    Route::resource('cyber', 'CyberExpertiseController');
+});
