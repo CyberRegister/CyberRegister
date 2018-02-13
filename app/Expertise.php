@@ -12,7 +12,7 @@ class Expertise extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -20,7 +20,7 @@ class Expertise extends Model
      */
     public function cyberExpertise(): BelongsTo
     {
-        return $this->belongsTo('App\CyberExpertise');
+        return $this->belongsTo(CyberExpertise::class);
     }
 
     /**
@@ -30,5 +30,14 @@ class Expertise extends Model
     public function getCodeAttribute(): string
     {
         return $this->cyberExpertise->expertise_code;
+    }
+
+    /**
+     * The expertise description
+     * @return null|string
+     */
+    public function getDescriptionAttribute():? string
+    {
+        return $this->cyberExpertise->description;
     }
 }

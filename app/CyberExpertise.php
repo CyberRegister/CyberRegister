@@ -12,6 +12,6 @@ class CyberExpertise extends Model
      */
     public function expertises(): HasMany
     {
-        return $this->hasMany('App\Expertise');
+        return $this->hasMany(Expertise::class);
     }
 }

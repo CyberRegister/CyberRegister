@@ -16,6 +16,7 @@ use Faker\Generator as Faker;
 $factory->define(App\CyberExpertise::class, function (Faker $faker) {
     return [
         'expertise_code' => str_random(3),
-        'required_points' => $faker->randomDigit(3)
+        'required_points' => $faker->randomDigit(3),
+        'description' => $faker->paragraph
     ];
 });

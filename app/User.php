@@ -56,7 +56,18 @@ class User extends Authenticatable
      */
     public function expertises(): HasMany
     {
-        return $this->hasMany('App\Expertise');
+        return $this->hasMany(Expertise::class);
+    }
+
+    /**
+     * @return array
+     */
+    public function getCodesAttribute() {
+        $codes = [];
+        foreach ($this->expertises as $expertise) {
+            $codes[$expertise->code] = $expertise->description;
+        }
+        return $codes;
     }
 
     /**
@@ -64,6 +75,6 @@ class User extends Authenticatable
      */
     public function pcePoints(): HasMany
     {
-        return $this->hasMany('App\PcePoint');
+        return $this->hasMany(PcePoint::class);
     }
 }

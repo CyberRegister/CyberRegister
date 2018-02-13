@@ -47,4 +47,23 @@ class UserTest extends TestCase
         $this->assertCount(2, $user->expertises);
     }
 
+    /**
+     * Assert user might have a relation with multiple App\CyberExpertise(s)
+     * via the Expertise relation
+     */
+    public function testUserHasCodesViaRelations() {
+        $expertise = factory(Expertise::class)->create();
+        $user = factory(User::class)->create();
+        $this->assertEmpty($user->codes);
+        $expertise->user()->associate($user);
+        $expertise->save();
+        $user = User::find($user->id);
+        $this->assertCount(1, $user->codes);
+        $expertise = factory(Expertise::class)->create();
+        $expertise->user()->associate($user);
+        $expertise->save();
+        $user = User::find($user->id);
+        $this->assertCount(2, $user->codes);
+    }
+
 }
