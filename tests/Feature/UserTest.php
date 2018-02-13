@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Expertise;
+use App\PcePoint;
 use App\User;
 use Faker\Factory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -275,5 +277,28 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->get('/users/'.$userTwo->cyber_code);
         $response->assertStatus(200);
+    }
+
+    /**
+     * Check user delete also removes Expertise(s) and PcePoint(s)
+     */
+    public function testUserDestroyRecursive()
+    {
+        $user = factory(User::class)->create();
+        $expertise = factory(Expertise::class)->create();
+        $expertise->user()->associate($user);
+        $expertise->save();
+        $this->assertCount(1, Expertise::all());
+        $pcePoint = new PcePoint;
+        $pcePoint->user()->associate($user);
+        $pcePoint->points = 1;
+        $pcePoint->save();
+        $this->assertCount(1, PcePoint::all());
+        $response = $this
+            ->actingAs($user)
+            ->delete('/users/'.$user->cyber_code);
+        $response->assertStatus(302)->assertRedirect('/users');
+        $this->assertEmpty(PcePoint::all());
+        $this->assertEmpty(Expertise::all());
     }
 }

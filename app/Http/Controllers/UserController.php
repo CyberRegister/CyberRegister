@@ -143,8 +143,13 @@ class UserController extends Controller
             return redirect('/home');
         }
         try {
-            // TODO make delete recursive
-              $user->delete();
+            foreach($user->pcePoints as $pcePoint) {
+                $pcePoint->delete();
+            }
+            foreach($user->expertises as $expertise) {
+                $expertise->delete();
+            }
+            $user->delete();
         } catch (\Exception $e) {
             return redirect()
                 ->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
