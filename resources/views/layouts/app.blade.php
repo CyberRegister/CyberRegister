@@ -8,19 +8,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Cyber Register') }}</title>
+    <title>{{ config('app.name', 'Cyberregister') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="page">
-        <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }} - {{ App::environment() }}
-                    </a>
+        <div class="header" style="text-align: center;">
+            <img src="/static/logohome.png" width="610">
+        </div>
+        <div id="payoff">Cyberregister</div>
+        <nav class="navbar navbar-light bg-light navbar-expand-md"
+             role="navigation" style="margin-top: 150px; border-top: 0;">
+            <div class="container">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -75,6 +76,8 @@
             <main class="py-4">
                 @yield('content')
             </main>
+        <div class="footer" style="text-align: center;">
+            <img src="/static/footerlogo.png" width="610">
         </div>
     </div>
     <!-- Scripts -->

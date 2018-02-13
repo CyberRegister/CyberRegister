@@ -1,4 +1,4 @@
-# Cyber Register
+# Cyberregister
 [![Build Status](https://travis-ci.org/annejan/cyber-register.svg)](https://travis-ci.org/annejan/cyber-register)
 [![CodeClimate maintainability](https://api.codeclimate.com/v1/badges/0cd3ddb9f5bc622869c8/maintainability)](https://codeclimate.com/github/annejan/cyber-register/maintainability)
 [![CodeClimate test coverage](https://api.codeclimate.com/v1/badges/0cd3ddb9f5bc622869c8/test_coverage)](https://codeclimate.com/github/annejan/cyber-register/test_coverage)
@@ -20,7 +20,7 @@ yarn production
 ```
 ## License
 
-Cyber Register is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Cyberregister is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
