@@ -3,6 +3,8 @@
 /public/mix-manifest.json
 /public/storage
 /public/css
+/public/fonts
+/public/images
 /public/js
 /storage/*.key
 /vendor

@@ -4,92 +4,49 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <title>Cyber Register</title>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
+        <div id="page">
+            <div class="header" style="text-align: center;">
+                <img src="static/logohome.png" width="610" />
+            </div>
+            <div id="payoff">Cyber Register</div>
+            <nav class="navbar navbar-default" role="navigation" style="margin-top: 300px; border-top: 0;">
+                <div class="container">
+                    <div class="navbar-header">
+                        <!--<a class="navbar-brand" href="#">Meldpunt voor cyber</a> -->
+                        <ul class="nav navbar-nav navbar-right">
+                            @if (Route::has('login'))
+                                @auth
+                                    <li><a href="{{ url('/home') }}">Home</a></li>
+                                @else
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                @endauth
+                            @endif
+                        </ul>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        @auth
+                        <li><a href="/users">Cyber Experts</a></li>
+                        @endauth
+                    </ul>
                 </div>
-            @endif
-
+            </nav>
             <div class="content">
-                <div class="title m-b-md">
-                    Cyber Register
+
+                <div class="container">
+                    Iets met inhoud
                 </div>
 
-                {{--<div class="links">--}}
-                    {{--<a href="https://laravel.com/docs">Documentation</a>--}}
-                    {{--<a href="https://laracasts.com">Laracasts</a>--}}
-                    {{--<a href="https://laravel-news.com">News</a>--}}
-                    {{--<a href="https://forge.laravel.com">Forge</a>--}}
-                    {{--<a href="https://github.com/laravel/laravel">GitHub</a>--}}
-                {{--</div>--}}
+
+            <div class="footer" style="text-align: center;">
+                <img src="static/footerlogo.png" width="610" />
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
