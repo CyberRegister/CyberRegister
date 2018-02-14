@@ -25,7 +25,7 @@ class CyberExpertisePolicy
     }
 
     /**
-     * Determine whether the user can create cyberExpertises.
+     * Determine whether the user can create CyberExpertise.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -36,7 +36,7 @@ class CyberExpertisePolicy
     }
 
     /**
-     * Determine whether the user can update the cyberExpertise.
+     * Determine whether the user can update the CyberExpertise.
      *
      * @param  \App\User  $user
      * @param  \App\CyberExpertise  $cyberExpertise
@@ -48,7 +48,19 @@ class CyberExpertisePolicy
     }
 
     /**
-     * Determine whether the user can delete the cyberExpertise.
+     * Determine whether the user can edit the CyberExpertise.
+     *
+     * @param  \App\User  $user
+     * @param  \App\CyberExpertise  $cyberExpertise
+     * @return mixed
+     */
+    public function edit(User $user, CyberExpertise $cyberExpertise)
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can delete the CyberExpertise.
      *
      * @param  \App\User  $user
      * @param  \App\CyberExpertise  $cyberExpertise

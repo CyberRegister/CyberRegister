@@ -23,5 +23,5 @@ Route::group([ 'middleware' => 'auth'], function () {
     Route::resource('users', 'UserController');
     Route::resource('user/{user}/pce-points', 'PcePointController');
     Route::resource('user/{user}/expertise', 'ExpertiseController');
-    Route::resource('cyber', 'CyberExpertiseController');
+    Route::resource('cyberExpertise', 'CyberExpertiseController');
 });

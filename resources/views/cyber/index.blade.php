@@ -16,11 +16,24 @@
 
                     <ul>
                     @forelse($cyberExpertises as $cyberExpertise)
-                        <li><a href="{{ route('cyber.edit', ['expertise_code' => $cyberExpertise->expertise_code]) }}">{{ $cyberExpertise->description }}</a></li>
+                            @if(Auth::user()->can('edit', $cyberExpertise))
+                            <li>
+                                <a href="{{ route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code]) }}">
+                                    {{ $cyberExpertise->description }}
+                                </a>
+                            </li>
+                            @else
+                            <li>
+                                <a href="{{ route('cyberExpertise.show', ['expertise_code' => $cyberExpertise->expertise_code]) }}">
+                                    {{ $cyberExpertise->description }}
+                                </a>
+                            </li>
+                            @endif
                     @empty
                         <li>Niets gevonden</li>
                     @endforelse
                     </ul>
+                    <a href="{{ route('cyberExpertise.create') }}" class="btn btn-primary">Toevoegen</a>
                 </div>
             </div>
         </div>

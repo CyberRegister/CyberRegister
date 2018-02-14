@@ -20,7 +20,7 @@
                             @if(Auth::user()->can('edit', $user))
                             <a href="{{ route('users.edit', ['cyber_code' => $user->cyber_code]) }}">{{ $user->name }}</a>
                             @else
-                            {{ $user->name }}
+                            <a href="{{ route('users.show', ['cyber_code' => $user->cyber_code]) }}">{{ $user->name }}</a>
                             @endif
                         </li>
                     @empty
