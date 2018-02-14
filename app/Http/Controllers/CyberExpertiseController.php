@@ -35,9 +35,11 @@ class CyberExpertiseController extends Controller
      * Show the form for creating a new resource.
      *
      * @return View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('create', CyberExpertise::class);
         return view('cyber.create');
     }
 
@@ -54,8 +56,9 @@ class CyberExpertiseController extends Controller
         try {
             CyberExpertise::create($request->all());
         } catch (\Exception $e) {
+            dd($e);
             return redirect()
-                ->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])->withInput()->withErrors([$e->getMessage()]);
+                ->route('cyberExpertise.create')->withInput()->withErrors([$e->getMessage()]);
         }
 
         // todo notification
