@@ -25,18 +25,6 @@ class CyberExpertisePolicy
     }
 
     /**
-     * Determine whether the user can view the cyberExpertise.
-     *
-     * @param  \App\User  $user
-     * @param  \App\CyberExpertise  $cyberExpertise
-     * @return mixed
-     */
-    public function view(User $user, CyberExpertise $cyberExpertise)
-    {
-        return true;
-    }
-
-    /**
      * Determine whether the user can create cyberExpertises.
      *
      * @param  \App\User  $user

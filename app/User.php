@@ -28,6 +28,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($user) {
+            $user->expertises()->delete();
+            $user->pcePoints()->delete();
+        });
+    }
 
     /**
      * Get the route key for the model.

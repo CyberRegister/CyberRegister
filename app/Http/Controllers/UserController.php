@@ -133,12 +133,6 @@ class UserController extends Controller
     {
         $this->authorize('delete', $user);
         try {
-            foreach($user->pcePoints as $pcePoint) {
-                $pcePoint->delete();
-            }
-            foreach($user->expertises as $expertise) {
-                $expertise->delete();
-            }
             $user->delete();
         } catch (\Exception $e) {
             return redirect()
