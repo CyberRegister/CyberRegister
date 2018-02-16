@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CyberExpertiseUpdateRequest extends FormRequest
+class ExpertiseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,11 @@ class CyberExpertiseUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'expertise_code' => 'required|alpha_num|max:3',
-            'description' => 'required|string',
-            'required_points' => 'numeric|min:0',
+            'certification_code' => 'required|string|max:15',
+            'date_of_certification' => 'required|date',
+            'date_of_expiration' => 'required|date|after:today',
+            'user_id' => 'exists:users,id',
+            'cyber_expertise_id' => 'exists:cyber_expertises,id',
         ];
     }
 }

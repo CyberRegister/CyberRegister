@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Expertise extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'certification_code', 'date_of_certification', 'date_of_expiration', 'user_id', 'cyber_expertise_id'
+    ];
+
+    /**
      * Get the user that owns this expertise.
      */
     public function user(): BelongsTo

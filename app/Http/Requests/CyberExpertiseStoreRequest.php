@@ -27,7 +27,7 @@ class CyberExpertiseStoreRequest extends FormRequest
         return [
             'expertise_code' => 'required|alpha_num|max:3|unique:cyber_expertises',
             'description' => 'required|string',
-            'required_points' => 'min:0',
+            'required_points' => 'numeric|min:0',
         ];
     }
 }
