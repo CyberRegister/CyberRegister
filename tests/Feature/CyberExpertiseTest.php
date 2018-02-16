@@ -77,7 +77,7 @@ class CyberExpertiseTest extends TestCase
     /**
      * Check user creation.
      */
-    public function testCyberExpertiseStoreIs()
+    public function testCyberExpertiseStore()
     {
         $faker = Factory::create();
         $user = factory(User::class)->create();

@@ -105,7 +105,7 @@ class ExpertiseController extends Controller
         }
 
         // todo notification
-        return redirect()->route('pcePoint.index');
+        return redirect()->route('expertise.index');
     }
 
     /**
@@ -117,7 +117,7 @@ class ExpertiseController extends Controller
      */
     public function destroy(Expertise $expertise)
     {
-        $this->authorize('delete', v);
+        $this->authorize('delete', $expertise);
         try {
             $expertise->delete();
         } catch (\Exception $e) {
