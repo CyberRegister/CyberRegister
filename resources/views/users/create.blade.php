@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="cyber_code" class="col-md-4 col-form-label text-md-right">Cyber code</label>
+                            <label for="cyber_code" class="col-md-4 col-form-label text-md-right">Cybercode</label>
 
                             <div class="col-md-2">
                                 <input id="cyber_code" type="texts" class="form-control{{ $errors->has('cyber_code') ? ' is-invalid' : '' }}" name="cyber_code" value="{{ old('cyber_code') }}" required maxlength="6">

@@ -12,10 +12,10 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">Name</label>
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">Naam</label>
 
                             <div class="col-md-3">
-                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" placeholder="Voornaam" autocomplete="given-name" required autofocus>
 
                                 @if ($errors->has('first_name'))
                                     <span class="invalid-feedback">
@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                             <div class="col-md-2">
-                                <input id="middle_name" type="text" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" name="middle_name" value="{{ old('middle_name') }}">
+                                <input id="middle_name" type="text" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" name="middle_name" value="{{ old('middle_name') }}" placeholder="Tussenvoegsel" autocomplete="additional-name">
 
                                 @if ($errors->has('middle_name'))
                                     <span class="invalid-feedback">
@@ -33,7 +33,7 @@
                                 @endif
                             </div>
                             <div class="col-md-3">
-                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required>
+                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" placeholder="Achternaam" autocomplete="family-name" required>
 
                                 @if ($errors->has('last_name'))
                                     <span class="invalid-feedback">
@@ -44,10 +44,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="cyber_code" class="col-md-4 col-form-label text-md-right">Cyber code</label>
+                            <label for="cyber_code" class="col-md-4 col-form-label text-md-right">Cybercode</label>
 
                             <div class="col-md-2">
-                                <input id="cyber_code" type="texts" class="form-control{{ $errors->has('cyber_code') ? ' is-invalid' : '' }}" name="cyber_code" value="{{ old('cyber_code') }}" required maxlength="6">
+                                <input id="cyber_code" type="texts" class="form-control{{ $errors->has('cyber_code') ? ' is-invalid' : '' }}" name="cyber_code" value="{{ old('cyber_code') }}" placeholder="CODE" autocomplete="username" required maxlength="6">
 
                                 @if ($errors->has('cyber_code'))
                                     <span class="invalid-feedback">
@@ -56,15 +56,15 @@
                                 @endif
                             </div>
                             <div class="col-md-6 col-form-label">
-                                You 6 character, alphanumeric, public code.
+                                Maximaal 6 tekens, alphanumeric, publiek ID.
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">Birth details</label>
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">Geboorte details</label>
 
                             <div class="col-md-4">
-                                <input id="date_of_birth" type="date" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth') }}" required>
+                                <input id="date_of_birth" type="date" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth') }}" autocomplete="bday required>
 
                                 @if ($errors->has('date_of_birth'))
                                     <span class="invalid-feedback">
@@ -74,7 +74,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <input id="place_of_birth" type="text" class="form-control{{ $errors->has('place_of_birth') ? ' is-invalid' : '' }}" name="place_of_birth" value="{{ old('place_of_birth') }}" required>
+                                <input id="place_of_birth" type="text" class="form-control{{ $errors->has('place_of_birth') ? ' is-invalid' : '' }}" name="place_of_birth" value="{{ old('place_of_birth') }}" placeholder="Geboorteplaats" required>
 
                                 @if ($errors->has('place_of_birth'))
                                     <span class="invalid-feedback">
@@ -85,10 +85,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Adres</label>
 
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="E-Mail" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -102,7 +102,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                             <div class="col-md-8">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" autocomplete="new-password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -116,7 +116,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
                             <div class="col-md-8">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" required>
                             </div>
                         </div>
 
