@@ -33,7 +33,9 @@
                         <li>Niets of niemand gevonden</li>
                     @endforelse
                     </ul>
+                    @if(Auth::user()->can('create', \App\Expertise::class))
                     <a href="{{ route('expertise.create') }}" class="btn btn-primary">Toevoegen</a>
+                    @endif
                 </div>
             </div>
         </div>

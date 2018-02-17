@@ -27,6 +27,9 @@
                         <li>Niemand gevonden</li>
                     @endforelse
                     </ul>
+                    @if(Auth::user()->can('create', \App\User::class))
+                    <a href="{{ route('users.create') }}" class="btn btn-primary">Toevoegen</a>
+                    @endif
                 </div>
             </div>
         </div>
