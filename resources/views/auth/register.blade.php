@@ -56,15 +56,15 @@
                                 @endif
                             </div>
                             <div class="col-md-6 col-form-label">
-                                Maximaal 6 tekens, alphanumeric, publiek ID.
+                                Maximaal 6 tekens, alphanumeric
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">Geboorte details</label>
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">Geboorte</label>
 
                             <div class="col-md-4">
-                                <input id="date_of_birth" type="date" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth') }}" autocomplete="bday required>
+                                <input id="date_of_birth" type="date" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth') }}" autocomplete="bday" required>
 
                                 @if ($errors->has('date_of_birth'))
                                     <span class="invalid-feedback">
@@ -99,7 +99,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Wachtwoord</label>
 
                             <div class="col-md-8">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" autocomplete="new-password" required>
@@ -113,7 +113,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Bevestiging</label>
 
                             <div class="col-md-8">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" required>
