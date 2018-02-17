@@ -26,4 +26,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Show the logout page for non-js peopel.
+     *
+     * @return View
+     */
+    public function logout()
+    {
+        return view('auth.logout');
+    }
 }

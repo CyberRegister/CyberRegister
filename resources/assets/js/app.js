@@ -16,4 +16,8 @@ $(document).ready(function () {
 			$form.trigger('submit');
 		});
 	});
+	$('#logout').click(function (event) {
+		event.preventDefault();
+		document.getElementById('logout-form').submit();
+	});
 });

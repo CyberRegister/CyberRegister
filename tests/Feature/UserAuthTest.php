@@ -81,6 +81,18 @@ class UserAuthTest extends TestCase
     }
 
     /**
+     * Check the logout fallback functionality.
+     */
+    public function testGetLogout()
+    {
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->get('/logout');
+        $response->assertStatus(200);
+    }
+
+    /**
      * Test a password change and login (full flow).
      */
     public function testUserResetPassword()
