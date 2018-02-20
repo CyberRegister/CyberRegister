@@ -185,6 +185,32 @@ class UserAuthTest extends TestCase
     }
 
     /**
+     * Try to register admin
+     */
+    public function testRegisterReserved()
+    {
+        $faker = Factory::create();
+        $password = $faker->password;
+        $email = $faker->email;
+        $response = $this
+            ->withSession(['_token'=>'test'])
+            ->post('/register', [
+                'cyber_code' => 'admin',
+                'first_name' => $faker->firstName,
+                'middle_name' => 'de',
+                'last_name' => $faker->lastName,
+                'email' => $email,
+                'date_of_birth' => $faker->date(),
+                'place_of_birth' => $faker->city,
+                'password' => $password,
+                'password_confirmation' => $password,
+                '_token' => 'test'
+            ]);
+        $response->assertStatus(302)->assertRedirect('');
+        $this->assertEmpty(User::all());
+    }
+
+    /**
      * Check the redirect functionality.
      */
     public function testRedirectIfAuthenticated()

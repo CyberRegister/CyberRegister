@@ -105,19 +105,10 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
         try {
-            $user->cyber_code = $request->cyber_code;
-            $user->first_name =  $request->first_name;
-            $user->middle_name = $request->middle_name;
-            $user->last_name = $request->last_name;
-            $user->date_of_birth = $request->date_of_birth;
-            $user->place_of_birth = $request->place_of_birth;
-            $user->email = $request->email;
-            $user->save();
+            $user->update($request->all());
         } catch (\Exception $e) {
-            return redirect()
-                ->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
         }
-
         // todo notification
         return redirect()->route('users.index');
     }
@@ -135,10 +126,8 @@ class UserController extends Controller
         try {
             $user->delete();
         } catch (\Exception $e) {
-            return redirect()
-                ->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
         }
-
         // todo notification
         return redirect()->route('users.index');
     }

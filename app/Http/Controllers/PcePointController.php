@@ -53,11 +53,8 @@ class PcePointController extends Controller
         try {
             PcePoint::create($request->all());
         } catch (\Exception $e) {
-            dd($e);
-            return redirect()
-                ->route('pcePoint.create')->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('pcePoint.create')->withInput()->withErrors([$e->getMessage()]);
         }
-
         // todo notification
         return redirect()->route('pcePoint.index');
     }
@@ -100,10 +97,8 @@ class PcePointController extends Controller
         try {
             $pcePoint->update($request->all());
         } catch (\Exception $e) {
-            return redirect()
-                ->route('pcePoint.edit', ['id' => $pcePoint->id])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('pcePoint.edit', ['id' => $pcePoint->id])->withInput()->withErrors([$e->getMessage()]);
         }
-
         // todo notification
         return redirect()->route('pcePoint.index');
     }
@@ -121,10 +116,8 @@ class PcePointController extends Controller
         try {
             $pcePoint->delete();
         } catch (\Exception $e) {
-            return redirect()
-                ->route('pcePoint.edit', ['id' => $pcePoint->id])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('pcePoint.edit', ['id' => $pcePoint->id])->withInput()->withErrors([$e->getMessage()]);
         }
-
         // todo notification
         return redirect()->route('pcePoint.index');
     }

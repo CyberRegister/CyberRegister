@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ReservedUsernames;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,13 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'cyber_code' => 'required|alpha_num|max:6|unique:users',
+            'cyber_code' => [
+                new ReservedUsernames,
+                'required',
+                'alpha_num',
+                'max:6',
+                'unique:users'
+            ],
             'first_name' => 'required|string|max:255',
             'middle_name' => 'max:255',
             'last_name' => 'required|string|max:255',

@@ -56,11 +56,8 @@ class CyberExpertiseController extends Controller
         try {
             CyberExpertise::create($request->all());
         } catch (\Exception $e) {
-            dd($e);
-            return redirect()
-                ->route('cyberExpertise.create')->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('cyberExpertise.create')->withInput()->withErrors([$e->getMessage()]);
         }
-
         // todo notification
         return redirect()->route('cyberExpertise.index');
     }
@@ -101,15 +98,10 @@ class CyberExpertiseController extends Controller
     {
         $this->authorize('update', $cyberExpertise);
         try {
-            $cyberExpertise->expertise_code = $request->expertise_code;
-            $cyberExpertise->description = $request->description;
-            $cyberExpertise->required_points = $request->required_points;
-            $cyberExpertise->save();
+            $cyberExpertise->update($request->all());
         } catch (\Exception $e) {
-            return redirect()
-                ->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])->withInput()->withErrors([$e->getMessage()]);
         }
-
         // todo notification
         return redirect()->route('cyberExpertise.index');
     }
@@ -127,10 +119,8 @@ class CyberExpertiseController extends Controller
         try {
             $cyberExpertise->delete();
         } catch (\Exception $e) {
-            return redirect()
-                ->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])->withInput()->withErrors([$e->getMessage()]);
         }
-
         // todo notification
         return redirect()->route('cyberExpertise.index');
     }

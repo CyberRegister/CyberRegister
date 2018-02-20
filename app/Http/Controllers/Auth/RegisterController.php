@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Rules\ReservedUsernames;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -48,7 +49,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'cyber_code' => 'required|alpha_num|max:6|unique:users',
+            'cyber_code' => [
+                new ReservedUsernames,
+                'required',
+                'alpha_num',
+                'max:6',
+                'unique:users'
+            ],
             'first_name' => 'required|string|max:255',
             'middle_name' => 'max:255',
             'last_name' => 'required|string|max:255',
