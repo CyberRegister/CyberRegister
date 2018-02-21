@@ -25,6 +25,29 @@ class ExpertisePolicy
     }
 
     /**
+     * Determine whether the user can list Expertise(s).
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function index(User $user)
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can see a Expertise.
+     *
+     * @param  \App\User  $user
+     * @param  Expertise $expertise
+     * @return mixed
+     */
+    public function show(User $user, Expertise $expertise)
+    {
+        return $user->id === $expertise->user_id;
+    }
+
+    /**
      * Determine whether the user can create Expertise.
      *
      * @param  \App\User  $user

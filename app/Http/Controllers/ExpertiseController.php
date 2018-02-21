@@ -22,9 +22,11 @@ class ExpertiseController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
+        $this->authorize('index', Expertise::class);
         return view('expertise.index', ['expertises' => Expertise::all()]);
     }
 
@@ -63,11 +65,13 @@ class ExpertiseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Expertise  $expertise
+     * @param  \App\Expertise $expertise
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Expertise $expertise)
     {
+        $this->authorize('show', $expertise);
         return view('expertise.show', ['expertise' => $expertise]);
     }
 

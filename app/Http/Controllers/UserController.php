@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserSearchRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
@@ -29,8 +30,21 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index', ['users' => User::all()]);
+        return view('users.index', ['users' => [], 'q' => '']);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param UserSearchRequest $request
+     * @return View|RedirectResponse
+     */
+    public function search(UserSearchRequest $request)
+    {
+        $users = User::where('cyber_code', 'like', '%'.$request->q.'%')->get();
+        return view('users.index', ['users' => $users, 'q' => $request->q]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

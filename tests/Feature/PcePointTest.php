@@ -39,14 +39,28 @@ class PcePointTest extends TestCase
     /**
      * Check 200
      */
-    public function testPcePointIndexPcePointIsController()
+    public function testPcePointIndex()
     {
         $user = factory(User::class)->create();
         $response = $this
             ->actingAs($user)
             ->get('/pcePoint');
+        $response->assertStatus(403);
+    }
+
+    /**
+     * Check 200
+     */
+    public function testPcePointIndexIsController()
+    {
+        $user = factory(User::class)->create();
+        $user->is_controller = true;
+        $response = $this
+            ->actingAs($user)
+            ->get('/pcePoint');
         $response->assertStatus(200)->assertViewHas('pcePoints', PcePoint::all());
     }
+
     /**
      * Check 403 page.
      */
@@ -214,6 +228,32 @@ class PcePointTest extends TestCase
     public function testPcePointShow()
     {
         $user = factory(User::class)->create();
+        $pcePoint = factory(PcePoint::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->get('/pcePoint/'.$pcePoint->id);
+        $response->assertStatus(403);
+    }
+
+    /**
+     * Check user can view own PcePoint.
+     */
+    public function testExpertiseShowOwn()
+    {
+        $pcePoint = factory(PcePoint::class)->create();
+        $response = $this
+            ->actingAs($pcePoint->user)
+            ->get('/pcePoint/'.$pcePoint->id);
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Check controller can view other PcePoint.
+     */
+    public function testExpertiseShowIsController()
+    {
+        $user = factory(User::class)->create();
+        $user->is_controller = true;
         $pcePoint = factory(PcePoint::class)->create();
         $response = $this
             ->actingAs($user)

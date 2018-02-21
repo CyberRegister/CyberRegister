@@ -41,14 +41,15 @@ class CyberExpertiseTest extends TestCase
     /**
      * Check 200
      */
-    public function testCyberExpertiseIndexCyberExpertiseIsController()
+    public function testCyberExpertiseIndex()
     {
         $user = factory(User::class)->create();
         $response = $this
             ->actingAs($user)
             ->get('/cyberExpertise');
-        $response->assertStatus(200)->assertViewHas('cyberExpertises', CyberExpertise::all());
+        $response->assertStatus(200);
     }
+
     /**
      * Check 403 page.
      */

@@ -29,10 +29,14 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                            <li><a class="nav-link" href="{{ route('cyberExpertise.index') }}">Cyber Expertises</a></li>
                             <li><a class="nav-link" href="{{ route('users.index') }}">Cyber Experts</a></li>
+                            <li><a class="nav-link" href="{{ route('cyberExpertise.index') }}">Cyber Expertises</a></li>
+                            @auth
+                            @if(Auth::user()->is_controller)
                             <li><a class="nav-link" href="{{ route('expertise.index') }}">Expertises</a></li>
                             <li><a class="nav-link" href="{{ route('pcePoint.index') }}">PCE punten</a></li>
+                            @endif
+                            @endauth
                         </ul>
 
                         <!-- Right Side Of Navbar -->

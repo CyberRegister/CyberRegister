@@ -65,7 +65,7 @@ class CyberExpertiseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CyberExpertise  $cyberExpertise
+     * @param  \App\CyberExpertise $cyberExpertise
      * @return \Illuminate\Http\Response
      */
     public function show(CyberExpertise $cyberExpertise)

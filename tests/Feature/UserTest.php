@@ -37,7 +37,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * Check redirect to /home when going to the /users page.
+     * Check the /users page.
      */
     public function testUserIndexUser()
     {
@@ -45,7 +45,49 @@ class UserTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->get('/users');
-        $response->assertStatus(200)->assertViewHas('users', User::all());
+        $response->assertStatus(200)->assertViewHas('users', [])->assertViewHas('q', '');
+    }
+
+    /**
+     * Check the /users/search page.
+     */
+    public function testUserSearch()
+    {
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->post('/users/search');
+        $response->assertStatus(302);
+    }
+
+    /**
+     * Check the /users/search page.
+     */
+    public function testUserSearchQuery()
+    {
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->post('/users/search', [
+                'q' => 'xyz'
+            ]);
+        $response->assertStatus(200)
+            ->assertViewHas('users', User::where('cyber_code', 'like', '%xyz%')->get())->assertViewHas('q', 'xyz');
+    }
+
+    /**
+     * Check the /users/search page.
+     */
+    public function testUserSearchQueryExact()
+    {
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->post('/users/search', [
+                'q' => $user->cyber_code
+            ]);
+        $response->assertStatus(200)
+            ->assertViewHas('users', User::all())->assertViewHas('q', $user->cyber_code);
     }
 
     /**

@@ -25,6 +25,29 @@ class PcePointPolicy
     }
 
     /**
+     * Determine whether the user can list PcePoint(s).
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function index(User $user)
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can see a PcePoint.
+     *
+     * @param  \App\User  $user
+     * @param  PcePoint $pcePoint
+     * @return mixed
+     */
+    public function show(User $user, PcePoint $pcePoint)
+    {
+        return $user->id === $pcePoint->user_id;
+    }
+
+    /**
      * Determine whether the user can create PcePoint.
      *
      * @param  \App\User  $user

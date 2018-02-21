@@ -37,16 +37,30 @@ class ExpertiseTest extends TestCase
     }
 
     /**
-     * Check 200
+     * Check 403
      */
-    public function testExpertiseIndexExpertiseIsController()
+    public function testExpertiseIndex()
     {
         $user = factory(User::class)->create();
         $response = $this
             ->actingAs($user)
             ->get('/expertise');
+        $response->assertStatus(403);
+    }
+
+    /**
+     * Check 200
+     */
+    public function testExpertiseIndexIsController()
+    {
+        $user = factory(User::class)->create();
+        $user->is_controller = true;
+        $response = $this
+            ->actingAs($user)
+            ->get('/expertise');
         $response->assertStatus(200)->assertViewHas('expertises', Expertise::all());
     }
+
     /**
      * Check 403 page.
      */
@@ -222,6 +236,32 @@ class ExpertiseTest extends TestCase
     public function testExpertiseShow()
     {
         $user = factory(User::class)->create();
+        $expertise = factory(Expertise::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->get('/expertise/'.$expertise->id);
+        $response->assertStatus(403);
+    }
+
+    /**
+     * Check user can view own Expertise.
+     */
+    public function testExpertiseShowOwn()
+    {
+        $expertise = factory(Expertise::class)->create();
+        $response = $this
+            ->actingAs($expertise->user)
+            ->get('/expertise/'.$expertise->id);
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Check controller can view other Expertise.
+     */
+    public function testExpertiseShowIsController()
+    {
+        $user = factory(User::class)->create();
+        $user->is_controller = true;
         $expertise = factory(Expertise::class)->create();
         $response = $this
             ->actingAs($user)

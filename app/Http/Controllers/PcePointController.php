@@ -22,9 +22,11 @@ class PcePointController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
+        $this->authorize('index', PcePoint::class);
         return view('pce.index', ['pcePoints' => PcePoint::all()]);
     }
 
@@ -62,11 +64,13 @@ class PcePointController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PcePoint  $pcePoint
+     * @param  \App\PcePoint $pcePoint
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(PcePoint $pcePoint)
     {
+        $this->authorize('show', $pcePoint);
         return view('pce.show', ['pcePoint' => $pcePoint]);
     }
 
