@@ -14,10 +14,9 @@ class CyberExpertisePolicy
      * Controllers may do stuff . .
      *
      * @param User $user
-     * @param $ability
      * @return null|bool
      */
-    public function before(User $user, $ability)
+    public function before(User $user)
     {
         if ($user->is_controller) {
             return true;
@@ -27,10 +26,9 @@ class CyberExpertisePolicy
     /**
      * Determine whether the user can create CyberExpertise.
      *
-     * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
-    public function create(User $user)
+    public function create()
     {
         return false;
     }
@@ -38,11 +36,9 @@ class CyberExpertisePolicy
     /**
      * Determine whether the user can update the CyberExpertise.
      *
-     * @param  \App\User  $user
-     * @param  \App\CyberExpertise  $cyberExpertise
-     * @return mixed
+     * @return bool
      */
-    public function update(User $user, CyberExpertise $cyberExpertise)
+    public function update()
     {
         return false;
     }
@@ -50,11 +46,9 @@ class CyberExpertisePolicy
     /**
      * Determine whether the user can edit the CyberExpertise.
      *
-     * @param  \App\User  $user
-     * @param  \App\CyberExpertise  $cyberExpertise
-     * @return mixed
+     * @return bool
      */
-    public function edit(User $user, CyberExpertise $cyberExpertise)
+    public function edit()
     {
         return false;
     }
@@ -62,11 +56,9 @@ class CyberExpertisePolicy
     /**
      * Determine whether the user can delete the CyberExpertise.
      *
-     * @param  \App\User  $user
-     * @param  \App\CyberExpertise  $cyberExpertise
-     * @return mixed
+     * @return bool
      */
-    public function delete(User $user, CyberExpertise $cyberExpertise)
+    public function delete()
     {
         return false;
     }

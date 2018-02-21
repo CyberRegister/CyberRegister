@@ -14,10 +14,9 @@ class ExpertisePolicy
      * Controllers may do stuff . .
      *
      * @param User $user
-     * @param $ability
      * @return null|bool
      */
-    public function before(User $user, $ability)
+    public function before(User $user)
     {
         if ($user->is_controller) {
             return true;
@@ -27,10 +26,9 @@ class ExpertisePolicy
     /**
      * Determine whether the user can list Expertise(s).
      *
-     * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
-    public function index(User $user)
+    public function index()
     {
         return false;
     }
@@ -40,7 +38,7 @@ class ExpertisePolicy
      *
      * @param  \App\User  $user
      * @param  Expertise $expertise
-     * @return mixed
+     * @return bool
      */
     public function show(User $user, Expertise $expertise)
     {
@@ -50,10 +48,9 @@ class ExpertisePolicy
     /**
      * Determine whether the user can create Expertise.
      *
-     * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
-    public function create(User $user)
+    public function create()
     {
         return false;
     }
@@ -61,11 +58,9 @@ class ExpertisePolicy
     /**
      * Determine whether the user can update the Expertise.
      *
-     * @param  \App\User  $user
-     * @param  \App\Expertise  $expertise
-     * @return mixed
+     * @return bool
      */
-    public function update(User $user, Expertise $expertise)
+    public function update()
     {
         return false;
     }
@@ -73,11 +68,9 @@ class ExpertisePolicy
     /**
      * Determine whether the user can edit the Expertise.
      *
-     * @param  \App\User  $user
-     * @param  \App\Expertise  $expertise
-     * @return mixed
+     * @return bool
      */
-    public function edit(User $user, Expertise $expertise)
+    public function edit()
     {
         return false;
     }
@@ -85,11 +78,9 @@ class ExpertisePolicy
     /**
      * Determine whether the user can delete the Expertise.
      *
-     * @param  \App\User  $user
-     * @param  \App\Expertise  $expertise
-     * @return mixed
+     * @return bool
      */
-    public function delete(User $user, Expertise $expertise)
+    public function delete()
     {
         return false;
     }

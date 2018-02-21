@@ -13,10 +13,9 @@ class UserPolicy
      * Controllers may do stuff . .
      *
      * @param User $user
-     * @param $ability
      * @return null|bool
      */
-    public function before(User $user, $ability)
+    public function before(User $user)
     {
         if ($user->is_controller) {
             return true;
@@ -28,7 +27,7 @@ class UserPolicy
      *
      * @param  \App\User  $user
      * @param  \App\User  $model
-     * @return mixed
+     * @return bool
      */
     public function edit(User $user, User $model)
     {
@@ -40,7 +39,7 @@ class UserPolicy
      *
      * @param  \App\User  $user
      * @param  \App\User  $model
-     * @return mixed
+     * @return bool
      */
     public function update(User $user, User $model)
     {
@@ -52,7 +51,7 @@ class UserPolicy
      *
      * @param  \App\User  $user
      * @param  \App\User  $model
-     * @return mixed
+     * @return bool
      */
     public function delete(User $user, User $model)
     {
