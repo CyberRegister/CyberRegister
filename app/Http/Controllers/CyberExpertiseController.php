@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CyberExpertise;
 use App\Http\Requests\CyberExpertiseStoreRequest;
 use App\Http\Requests\CyberExpertiseUpdateRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -26,7 +27,7 @@ class CyberExpertiseController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|View
      */
-    public function index()
+    public function index(): View
     {
         return view('cyber.index', ['cyberExpertises' => CyberExpertise::all()]);
     }
@@ -37,7 +38,7 @@ class CyberExpertiseController extends Controller
      * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create()
+    public function create(): View
     {
         $this->authorize('create', CyberExpertise::class);
         return view('cyber.create');
@@ -50,7 +51,7 @@ class CyberExpertiseController extends Controller
      * @return $this|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(CyberExpertiseStoreRequest $request)
+    public function store(CyberExpertiseStoreRequest $request): RedirectResponse
     {
         $this->authorize('create', CyberExpertise::class);
         try {
@@ -66,9 +67,9 @@ class CyberExpertiseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\CyberExpertise $cyberExpertise
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function show(CyberExpertise $cyberExpertise)
+    public function show(CyberExpertise $cyberExpertise): View
     {
         return view('cyber.show', ['cyberExpertise' => $cyberExpertise]);
     }
@@ -80,7 +81,7 @@ class CyberExpertiseController extends Controller
      * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(CyberExpertise $cyberExpertise)
+    public function edit(CyberExpertise $cyberExpertise): View
     {
         $this->authorize('edit', $cyberExpertise);
         return view('cyber.edit', ['cyberExpertise' => $cyberExpertise]);
@@ -91,10 +92,10 @@ class CyberExpertiseController extends Controller
      *
      * @param  CyberExpertiseUpdateRequest  $request
      * @param  \App\CyberExpertise  $cyberExpertise
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(CyberExpertiseUpdateRequest $request, CyberExpertise $cyberExpertise)
+    public function update(CyberExpertiseUpdateRequest $request, CyberExpertise $cyberExpertise): RedirectResponse
     {
         $this->authorize('update', $cyberExpertise);
         try {
@@ -110,10 +111,10 @@ class CyberExpertiseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\CyberExpertise $cyberExpertise
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(CyberExpertise $cyberExpertise)
+    public function destroy(CyberExpertise $cyberExpertise): RedirectResponse
     {
         $this->authorize('delete', $cyberExpertise);
         try {

@@ -26,9 +26,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return View|RedirectResponse
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('users.index', ['users' => [], 'q' => '']);
     }
@@ -37,9 +37,9 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @param UserSearchRequest $request
-     * @return View|RedirectResponse
+     * @return View
      */
-    public function search(UserSearchRequest $request)
+    public function search(UserSearchRequest $request): View
     {
         $users = User::where('cyber_code', 'like', '%'.$request->q.'%')->get();
         return view('users.index', ['users' => $users, 'q' => $request->q]);
@@ -51,7 +51,7 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('users.create');
     }
@@ -89,7 +89,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return View
      */
-    public function show(User $user)
+    public function show(User $user): View
     {
         return view('users.show', ['user' => $user]);
     }
@@ -101,7 +101,7 @@ class UserController extends Controller
      * @return \Illuminate\Contracts\View\Factory|View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(User $user)
+    public function edit(User $user): View
     {
         $this->authorize('edit', $user);
         return view('users.edit', ['user' => $user]);

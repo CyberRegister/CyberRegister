@@ -160,6 +160,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
     ],
 
     /*
@@ -209,7 +210,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
-
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PcePointRequest;
 use App\PcePoint;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PcePointController extends Controller
 {
@@ -21,10 +23,10 @@ class PcePointController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(): View
     {
         $this->authorize('index', PcePoint::class);
         return view('pce.index', ['pcePoints' => PcePoint::all()]);
@@ -33,10 +35,10 @@ class PcePointController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create()
+    public function create(): View
     {
         $this->authorize('create', PcePoint::class);
         return view('pce.create');
@@ -46,10 +48,10 @@ class PcePointController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  PcePointRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(PcePointRequest $request)
+    public function store(PcePointRequest $request): RedirectResponse
     {
         $this->authorize('create', PcePoint::class);
         try {
@@ -65,10 +67,10 @@ class PcePointController extends Controller
      * Display the specified resource.
      *
      * @param  \App\PcePoint $pcePoint
-     * @return \Illuminate\Http\Response
+     * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(PcePoint $pcePoint)
+    public function show(PcePoint $pcePoint): View
     {
         $this->authorize('show', $pcePoint);
         return view('pce.show', ['pcePoint' => $pcePoint]);
@@ -78,10 +80,10 @@ class PcePointController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\PcePoint $pcePoint
-     * @return \Illuminate\Http\Response
+     * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(PcePoint $pcePoint)
+    public function edit(PcePoint $pcePoint): View
     {
         $this->authorize('edit', $pcePoint);
         return view('pce.edit', ['pcePoint' => $pcePoint]);
@@ -92,10 +94,10 @@ class PcePointController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\PcePoint $pcePoint
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, PcePoint $pcePoint)
+    public function update(Request $request, PcePoint $pcePoint): RedirectResponse
     {
         $this->authorize('update', $pcePoint);
         try {
@@ -111,10 +113,10 @@ class PcePointController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\PcePoint $pcePoint
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(PcePoint $pcePoint)
+    public function destroy(PcePoint $pcePoint): RedirectResponse
     {
         $this->authorize('delete', $pcePoint);
         try {

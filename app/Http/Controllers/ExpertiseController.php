@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Expertise;
 use App\Http\Requests\ExpertiseRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ExpertiseController extends Controller
 {
@@ -21,10 +23,10 @@ class ExpertiseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(): View
     {
         $this->authorize('index', Expertise::class);
         return view('expertise.index', ['expertises' => Expertise::all()]);
@@ -33,10 +35,10 @@ class ExpertiseController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create()
+    public function create(): View
     {
         $this->authorize('create', Expertise::class);
         return view('expertise.create');
@@ -46,10 +48,10 @@ class ExpertiseController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  ExpertiseRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(ExpertiseRequest $request)
+    public function store(ExpertiseRequest $request): RedirectResponse
     {
         $this->authorize('create', Expertise::class);
         try {
@@ -66,10 +68,10 @@ class ExpertiseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Expertise $expertise
-     * @return \Illuminate\Http\Response
+     * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Expertise $expertise)
+    public function show(Expertise $expertise): View
     {
         $this->authorize('show', $expertise);
         return view('expertise.show', ['expertise' => $expertise]);
@@ -79,10 +81,10 @@ class ExpertiseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Expertise $expertise
-     * @return \Illuminate\Http\Response
+     * @return View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Expertise $expertise)
+    public function edit(Expertise $expertise): View
     {
         $this->authorize('edit', $expertise);
         return view('expertise.edit', ['expertise' => $expertise]);
@@ -93,10 +95,10 @@ class ExpertiseController extends Controller
      *
      * @param  ExpertiseRequest $request
      * @param  \App\Expertise $expertise
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(ExpertiseRequest $request, Expertise $expertise)
+    public function update(ExpertiseRequest $request, Expertise $expertise): RedirectResponse
     {
         $this->authorize('update', $expertise);
         try {
@@ -112,10 +114,10 @@ class ExpertiseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Expertise $expertise
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Expertise $expertise)
+    public function destroy(Expertise $expertise): RedirectResponse
     {
         $this->authorize('delete', $expertise);
         try {

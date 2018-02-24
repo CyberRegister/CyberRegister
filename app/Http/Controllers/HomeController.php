@@ -22,7 +22,7 @@ class HomeController extends Controller
      *
      * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('home');
     }
@@ -32,7 +32,7 @@ class HomeController extends Controller
      *
      * @return View
      */
-    public function logout()
+    public function logout(): View
     {
         return view('auth.logout');
     }
