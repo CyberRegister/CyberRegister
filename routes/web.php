@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'HomeController@logout')->name('logout');
 
-Route::group([ 'middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::post('users/search', 'UserController@search')->name('users.search');
     Route::resource('users', 'UserController');
     Route::resource('pcePoint', 'PcePointController');
