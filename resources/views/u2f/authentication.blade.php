@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="margin-top:30px">
+    <div class="container">
         <div class="col-lg-12">
             <div class="login-panel card">
                 <div class="card-header">
                     <h1 class="card-title">{{ trans('u2f::messages.auth.title') }}</h1>
                 </div>
-                <div class="card-body" style="padding: 5px">
-                    <div class="alert alert-danger" role="alert" id="error" style="display: none"></div>
-                    <div class="alert alert-success" role="alert" id="success" style="display: none">{{ trans('u2f::messages.success') }}</div>
+                <div class="card-body">
+                    <div class="alert alert-danger" role="alert" id="error"></div>
+                    <div class="alert alert-success" role="alert" id="success">{{ trans('u2f::messages.success') }}</div>
                     <div align="center">
-                        <img src="https://ssl.gstatic.com/accounts/strongauth/Challenge_2SV-Gnubby_graphic.png"
+                        <img src="{{ asset('static/Challenge_2SV-Gnubby_graphic.png') }}"
                              alt="">
                     </div>
                     <h3>
