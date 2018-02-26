@@ -20,12 +20,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'HomeController@logout')->name('logout');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['u2f', 'auth']], function () {
     Route::post('users/search', 'UserController@search')->name('users.search');
     Route::resource('users', 'UserController');
     Route::resource('pcePoint', 'PcePointController');
     Route::resource('expertise', 'ExpertiseController');
     Route::resource('cyberExpertise', 'CyberExpertiseController');
+});
+
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@registerData')->name('u2f.register.data');
     Route::post('/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@register')->name('u2f.register');
     Route::get('/u2f/auth', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@authData')->name('u2f.auth.data');
