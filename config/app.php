@@ -162,6 +162,7 @@ return [
         PragmaRX\Google2FALaravel\ServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Lahaxearnaud\U2f\U2fServiceProvider::class,
+        Spatie\Csp\CspServiceProvider::class,
     ],
 
     /*
