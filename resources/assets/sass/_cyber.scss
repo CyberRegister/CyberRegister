@@ -97,8 +97,10 @@ html {overflow-y: scroll;}
 body {color: #111; font-size: 14px; line-height: 1.7; background: #f3f5f6; font-family: "RijksoverheidSansText-Regular";}
 #page {background: white; margin: 13px auto; width: 1000px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);}
 .container {width: 100%;}
-#payoff {width: 700px; padding: 50px 30px; line-height: 1.2em; position: absolute;
-  font-family: "RijksoverheidSerif-Regular"; font-size: 40px; color: #111;}
+#payoff {width: 700px; padding: 0px 30px; line-height: 1.2em; position: absolute;
+  font-family: "RijksoverheidSerif-Regular"; font-size: 40px; color: #111;
+  top: 60px;
+}
 
 
 

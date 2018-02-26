@@ -54,10 +54,12 @@
                                         <a class="dropdown-item" href="{{ route('logout') }}" id="logout">
                                             Logout
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                             @csrf
                                         </form>
+                                        @if(is_null(Auth::user()->u2fKey))
+                                        <a class="dropdown-item" href="{{ route('u2f.register') }}" id="u2f-register">U2F toevoegen</a>
+                                        @endif
                                     </div>
                                 </li>
                             @endguest
