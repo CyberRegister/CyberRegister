@@ -185,6 +185,32 @@ class UserAuthTest extends TestCase
     }
 
     /**
+     * Register, go to /home . .
+     */
+    public function testRegisterDateFormat()
+    {
+        $faker = Factory::create();
+        $password = $faker->password;
+        $email = $faker->email;
+        $response = $this
+            ->withSession(['_token'=>'test'])
+            ->post('/register', [
+                'cyber_code' => $faker->bothify('??##??'),
+                'first_name' => $faker->firstName,
+                'last_name' => $faker->lastName,
+                'email' => $email,
+                'date_of_birth' => $faker->date('d-m-Y'),
+                'place_of_birth' => $faker->city,
+                'password' => $password,
+                'password_confirmation' => $password,
+                '_token' => 'test'
+            ]);
+        $response->assertStatus(302)->assertRedirect('/home');
+        $this->assertCount(1, User::all());
+        $this->assertEquals($email, User::first()->email);
+    }
+
+    /**
      * Try to register admin
      */
     public function testRegisterReserved()

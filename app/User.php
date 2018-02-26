@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -67,6 +68,8 @@ class User extends Authenticatable
 
     /**
      * Get the users expertises.
+     *
+     * @return HasMany
      */
     public function expertises(): HasMany
     {
@@ -86,6 +89,8 @@ class User extends Authenticatable
 
     /**
      * Get the users PCE points.
+     *
+     * @return HasMany
      */
     public function pcePoints(): HasMany
     {
@@ -96,7 +101,6 @@ class User extends Authenticatable
      * Ecrypt the user's google_2fa secret.
      *
      * @param  string  $value
-     * @return string
      */
     public function setGoogle2faSecretAttribute($value)
     {
@@ -112,5 +116,18 @@ class User extends Authenticatable
     public function getGoogle2faSecretAttribute($value)
     {
         return decrypt($value);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setDateOfBirthAttribute($value)
+    {
+        try {
+            $date = Carbon::createFromFormat('Y-m-d', $value);
+        } catch (\InvalidArgumentException $exception) {
+            $date = Carbon::createFromFormat('d-m-Y', $value);
+        }
+        $this->attributes['date_of_birth'] = $date;
     }
 }
