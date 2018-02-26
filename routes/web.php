@@ -26,8 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('pcePoint', 'PcePointController');
     Route::resource('expertise', 'ExpertiseController');
     Route::resource('cyberExpertise', 'CyberExpertiseController');
-    Route::get('/auth/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@registerData')->name('u2f.register.data');
-    Route::post('/auth/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@register')->name('u2f.register');
-    Route::get('/auth/u2f', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@authData')->name('u2f.auth.data');
-    Route::post('/auth/u2f', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@auth')->name('u2f.auth');
+    Route::get('/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@registerData')->name('u2f.register.data');
+    Route::post('/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@register')->name('u2f.register');
+    Route::get('/u2f/auth', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@authData')->name('u2f.auth.data');
+    Route::post('/u2f/auth', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@auth')->name('u2f.auth');
 });
