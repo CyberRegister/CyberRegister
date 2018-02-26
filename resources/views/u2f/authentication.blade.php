@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-<form method="POST" action="{{ route('u2f.auth') }}" id="from">
+<form method="POST" action="{{ route('u2f.auth') }}" id="form">
     @csrf
     <input type="hidden" name="authentication" id="authentication" value="" />
 </form>
