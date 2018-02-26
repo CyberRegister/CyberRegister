@@ -1,13 +1,13 @@
 # Cyberregister
-[![Build Status](https://travis-ci.org/annejan/cyber-register.svg)](https://travis-ci.org/annejan/cyber-register)
-[![CodeClimate maintainability](https://api.codeclimate.com/v1/badges/0cd3ddb9f5bc622869c8/maintainability)](https://codeclimate.com/github/annejan/cyber-register/maintainability)
-[![CodeClimate test coverage](https://api.codeclimate.com/v1/badges/0cd3ddb9f5bc622869c8/test_coverage)](https://codeclimate.com/github/annejan/cyber-register/test_coverage)
-[![Codacy grade](https://api.codacy.com/project/badge/Grade/00f75cc741ef48969d38866e9789e3f7)](https://www.codacy.com/app/annejan/cyber-register?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=annejan/cyber-register&amp;utm_campaign=Badge_Grade)
-[![Codacy coverage](https://api.codacy.com/project/badge/Coverage/00f75cc741ef48969d38866e9789e3f7)](https://www.codacy.com/app/annejan/cyber-register?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=annejan/cyber-register&amp;utm_campaign=Badge_Coverage)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/annejan/cyber-register/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/annejan/cyber-register/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/annejan/cyber-register/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/annejan/cyber-register/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/annejan/cyber-register/badges/build.png?b=master)](https://scrutinizer-ci.com/g/annejan/cyber-register/build-status/master)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/annejan/cyber-register/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Build Status](https://travis-ci.org/CyberRegister/CyberRegister.svg)](https://travis-ci.org/CyberRegister/CyberRegister)
+[![CodeClimate maintainability](https://api.codeclimate.com/v1/badges/d06b9ceaf76db20fd066/maintainability)](https://codeclimate.com/github/CyberRegister/CyberRegister/maintainability)
+[![CodeClimate test coverage](https://api.codeclimate.com/v1/badges/d06b9ceaf76db20fd066/test_coverage)](https://codeclimate.com/github/CyberRegister/CyberRegister/test_coverage)
+[![Codacy grade](https://api.codacy.com/project/badge/Grade/372524fda06445b7a6197030f6eda63c)](https://www.codacy.com/app/CyberRegister/CyberRegister?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CyberRegister/CyberRegister&amp;utm_campaign=Badge_Grade)
+[![Codacy coverage](https://api.codacy.com/project/badge/Coverage/372524fda06445b7a6197030f6eda63c)](https://www.codacy.com/app/CyberRegister/CyberRegister?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CyberRegister/CyberRegister&amp;utm_campaign=Badge_Coverage)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/build.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 Installation:
 ```bash
