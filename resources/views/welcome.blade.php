@@ -11,12 +11,11 @@
 
 <body>
 <div id="page">
-    <div class="header" style="text-align: center;">
+    <div class="header">
         <img src="static/logohome.png" width="610">
     </div>
     <div id="payoff">Cyberregister</div>
-    <nav class="navbar navbar-light bg-light navbar-expand-md"
-         role="navigation" style="margin-top: 150px; border-top: 0;">
+    <nav class="navbar navbar-light bg-light navbar-expand-md" role="navigation">
         <div class="container">
             <ul class="nav navbar-nav ml-auto">
                 @if (Route::has('login'))
@@ -33,7 +32,7 @@
     </nav>
     <div class="content">
         <div class="container">Iets met inhoud . .</div>
-        <div class="footer" style="text-align: center;">
+        <div class="footer">
             <img src="static/footerlogo.png" width="610">
         </div>
     </div>

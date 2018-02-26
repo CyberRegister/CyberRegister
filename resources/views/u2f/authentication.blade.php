@@ -1,36 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" style="margin-top:30px">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="login-panel panel panel-default">
-            <div class="panel-heading">
-                <h1 class="panel-title">{{ trans('u2f::messages.auth.title') }}</h1>
-            </div>
-            <div class="panel-body" style="padding: 5px">
-
-                <div class="alert alert-danger" role="alert" id="error" style="display: none"></div>
-                <div class="alert alert-success" role="alert" id="success" style="display: none">
-                    {{ trans('u2f::messages.success') }}
+    <div class="container" style="margin-top:30px">
+        <div class="col-lg-12">
+            <div class="login-panel card">
+                <div class="card-header">
+                    <h1 class="card-title">{{ trans('u2f::messages.auth.title') }}</h1>
                 </div>
+                <div class="card-body" style="padding: 5px">
+                    <div class="alert alert-danger" role="alert" id="error" style="display: none"></div>
+                    <div class="alert alert-success" role="alert" id="success" style="display: none">{{ trans('u2f::messages.success') }}</div>
+                    <div align="center">
+                        <img src="https://ssl.gstatic.com/accounts/strongauth/Challenge_2SV-Gnubby_graphic.png"
+                             alt="">
+                    </div>
+                    <h3>
 
-                <div align="center">
-                    <img src="https://ssl.gstatic.com/accounts/strongauth/Challenge_2SV-Gnubby_graphic.png" alt=""/>
+                        {{ trans('u2f::messages.insertKey') }}
+
+                    </h3>
+                    <p>{{ trans('u2f::messages.buttonAdvise') }}
+                        <br>{{ trans('u2f::messages.noButtonAdvise') }}</p>
                 </div>
-
-                <h3>
-                    {{ trans('u2f::messages.insertKey') }}
-                </h3>
-
-                <p>
-                    {{ trans('u2f::messages.buttonAdvise') }}
-                    <br>
-                    {{ trans('u2f::messages.noButtonAdvise') }}
-                </p>
             </div>
         </div>
     </div>
-</div>
 <form method="POST" action="{{ route('u2f.auth') }}" id="from">
     @csrf
     <input type="hidden" name="authentication" id="authentication" value="" />
@@ -38,7 +32,7 @@
 @endsection
 
 @section('script')
-<script type="text/javascript">
+<script type="text/javascript" nonce="{{ cspNonce() }}">
         var req = {!! json_encode($authenticationData) !!};
 
         var errors = {

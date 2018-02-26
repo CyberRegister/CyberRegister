@@ -15,12 +15,12 @@
 </head>
 <body>
     <div id="page">
-        <div class="header" style="text-align: center;">
+        <div class="header">
             <img src="/static/logohome.png" width="610">
         </div>
         <div id="payoff">Cyberregister</div>
         <nav class="navbar navbar-light bg-light navbar-expand-md"
-             role="navigation" style="margin-top: 150px; border-top: 0;">
+             role="navigation">
             <div class="container">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -55,7 +55,7 @@
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                             @csrf
                                         </form>
                                     </div>
@@ -81,7 +81,7 @@
             <main class="py-4">
                 @yield('content')
             </main>
-        <div class="footer" style="text-align: center;">
+        <div class="footer">
             <img src="/static/footerlogo.png" width="610">
         </div>
     </div>
