@@ -27,7 +27,7 @@ let u2f = require('./u2f').default;
 /**
  * Based on code by arnaud 21/05/15.
  */
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 u2fClient = {
 	login: function (request, errors) {
 		setTimeout(function () {
@@ -78,4 +78,4 @@ u2fClient = {
 		}, 1000);
 	}
 };
-/* eslint-enable no-unused-vars */
+/* eslint-enable no-undef */
