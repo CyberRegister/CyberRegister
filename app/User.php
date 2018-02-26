@@ -4,8 +4,10 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Lahaxearnaud\U2f\Models\U2fKey;
 
 class User extends Authenticatable
 {
@@ -129,5 +131,13 @@ class User extends Authenticatable
             $date = Carbon::createFromFormat('d-m-Y', $value);
         }
         $this->attributes['date_of_birth'] = $date;
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function u2fKey(): HasOne
+    {
+        return $this->hasOne(U2fKey::class);
     }
 }
