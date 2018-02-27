@@ -7,9 +7,8 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -120,6 +119,10 @@ class UserController extends Controller
         $this->authorize('update', $user);
         try {
             $user->update($request->all());
+            if ($request->hasFile('file') && $request->file('file')->isValid()) {
+                $user->photo = Image::make($request->file('file')->getRealPath())->encode('data-url');
+                $user->save();
+            }
         } catch (\Exception $e) {
             return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
         }

@@ -7,6 +7,29 @@
 
 require('./bootstrap');
 
+window.Dropzone = require('dropzone');
+window.Dropzone.prototype.defaultOptions.maxFiles = 1;
+window.Dropzone.prototype.defaultOptions.acceptedFiles = '.png,.jpg,.gif,.bmp,.jpeg';
+window.Dropzone.prototype.defaultOptions.autoProcessQueue = false;
+window.Dropzone.prototype.defaultOptions.uploadMultiple = false;
+window.Dropzone.prototype.defaultOptions.previewsContainer = '.dz-default';
+window.Dropzone.prototype.defaultOptions.init = function() {
+	var myDropzone = this;
+	// First change the button to actually tell Dropzone to process the queue.
+	this.element.querySelector('button[type=submit]').addEventListener('click', function (e) {
+		// Make sure that the form isn't actually being sent.
+		e.preventDefault();
+		e.stopPropagation();
+		myDropzone.processQueue();
+	});
+	this.on('success', function(){
+		window.location = '/users';	// nasty hack
+	});
+	this.on('maxfilesexceeded', function(file){
+		this.removeFile(file);
+	});
+};
+
 $(document).ready(function () {
 	// Delete resource
 	$('button[name="delete-resource"]').on('click', function (e) {

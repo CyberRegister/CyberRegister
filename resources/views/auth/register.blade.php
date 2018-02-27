@@ -88,7 +88,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Adres</label>
 
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="E-Mail" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="E-Mail" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
