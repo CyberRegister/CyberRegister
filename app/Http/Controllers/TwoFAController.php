@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Disable2FaRequest;
+use App\Http\Requests\Enable2FaRequest;
 use App\TwoFAKey;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TwoFAController extends Controller {
 
     /**
-     * @param Request $request
      * @return $this
      */
-    public function show2faForm(Request $request){
+    public function show2faForm(){
         $user = Auth::user();
 
         $google2fa_url = "";
@@ -33,10 +35,9 @@ class TwoFAController extends Controller {
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function generate2faSecret(Request $request){
+    public function generate2faSecret(){
         $user = Auth::user();
         // Initialise the 2FA class
         $google2fa = app('pragmarx.google2fa');
@@ -52,10 +53,10 @@ class TwoFAController extends Controller {
     }
 
     /**
-     * @param Request $request
+     * @param Enable2FaRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function enable2fa(Request $request){
+    public function enable2fa(Enable2FaRequest $request){
         $user = Auth::user();
         $google2fa = app('pragmarx.google2fa');
         $secret = $request->input('verify-code');
@@ -63,25 +64,21 @@ class TwoFAController extends Controller {
         if($valid){
             $user->twoFAKey->google2fa_enable = true;
             $user->twoFAKey->save();
-            return redirect('2fa')->with('success',"2FA is Enabled Successfully.");
+            return redirect('/2fa')->with('success',"2FA is Enabled Successfully.");
         }else{
-            return redirect('2fa')->with('error',"Invalid Verification Code, Please try again.");
+            return redirect('/2fa')->with('error',"Invalid Verification Code, Please try again.");
         }
     }
 
     /**
-     * @param Request $request
+     * @param Disable2FaRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function disable2fa(Request $request){
+    public function disable2fa(Disable2FaRequest $request){
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
             return redirect()->back()->with("error","Your  password does not matches with your account password. Please try again.");
         }
-
-        $validatedData = $request->validate([
-            'current-password' => 'required',
-        ]);
         $user = Auth::user();
         $user->twoFAKey->google2fa_enable = false;
         $user->twoFAKey->save();
