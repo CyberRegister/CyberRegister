@@ -60,6 +60,11 @@
                                         @if(is_null(Auth::user()->u2fKey))
                                         <a class="dropdown-item" href="{{ route('u2f.register') }}" id="u2f-register">U2F toevoegen</a>
                                         @endif
+                                        @if(is_null(Auth::user()->twoFAKey))
+                                        <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-register">2FA toevoegen</a>
+                                        @else
+                                        <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-edit">2FA aanpassen</a>
+                                        @endif
                                     </div>
                                 </li>
                             @endguest

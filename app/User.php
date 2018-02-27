@@ -100,27 +100,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Ecrypt the user's google_2fa secret.
-     *
-     * @param  string  $value
-     */
-    public function setGoogle2faSecretAttribute($value)
-    {
-        $this->attributes['google2fa_secret'] = encrypt($value);
-    }
-
-    /**
-     * Decrypt the user's google_2fa secret.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getGoogle2faSecretAttribute($value)
-    {
-        return decrypt($value);
-    }
-
-    /**
      * @param $value
      */
     public function setDateOfBirthAttribute($value)
@@ -139,5 +118,13 @@ class User extends Authenticatable
     public function u2fKey(): HasOne
     {
         return $this->hasOne(U2fKey::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function twoFAKey(): HasOne
+    {
+        return $this->hasOne(TwoFAKey::class);
     }
 }

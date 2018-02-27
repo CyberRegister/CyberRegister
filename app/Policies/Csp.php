@@ -13,6 +13,7 @@ class Csp extends Basic
     {
         parent::configure();
         $this
+            ->addDirective(Directive::IMG, 'data:')
             ->addDirective(Directive::STYLE, 'https:')
             ->addDirective(Directive::FONT, 'self')
             ->addDirective(Directive::FONT, 'https:');
