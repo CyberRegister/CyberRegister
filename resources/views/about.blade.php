@@ -53,7 +53,7 @@
                         <a href="https://sentry.io/">Sentry</a> monitoring.
                     </li>
                     <li>
-                        <a href="https://scrutinizer-ci.com/"> kwaliteitscontrole.</a>
+                        <a href="https://scrutinizer-ci.com/">Scrutinizer</a> kwaliteitscontrole.
                     </li>
                 </ul>
             </p>
