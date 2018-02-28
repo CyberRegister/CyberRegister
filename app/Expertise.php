@@ -13,7 +13,7 @@ class Expertise extends Model
      * @var array
      */
     protected $fillable = [
-        'certification_code', 'date_of_certification', 'date_of_expiration', 'user_id', 'cyber_expertise_id'
+        'certification_code', 'date_of_certification', 'date_of_expiration', 'user_id', 'cyber_expertise_id',
     ];
 
     /**
@@ -33,7 +33,8 @@ class Expertise extends Model
     }
 
     /**
-     * The expertise code (3 chars)
+     * The expertise code (3 chars).
+     *
      * @return string
      */
     public function getCodeAttribute(): string
@@ -42,7 +43,8 @@ class Expertise extends Model
     }
 
     /**
-     * The expertise description
+     * The expertise description.
+     *
      * @return null|string
      */
     public function getDescriptionAttribute():? string

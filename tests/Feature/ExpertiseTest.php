@@ -6,11 +6,9 @@ use App\CyberExpertise;
 use App\Expertise;
 use App\User;
 use Faker\Factory;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class ExpertiseTest extends TestCase
 {
@@ -37,7 +35,7 @@ class ExpertiseTest extends TestCase
     }
 
     /**
-     * Check 403
+     * Check 403.
      */
     public function testExpertiseIndex()
     {
@@ -49,7 +47,7 @@ class ExpertiseTest extends TestCase
     }
 
     /**
-     * Check 200
+     * Check 200.
      */
     public function testExpertiseIndexIsController()
     {
@@ -97,12 +95,12 @@ class ExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post('/expertise', [
-                'certification_code' => $faker->bothify('??##??'),
+                'certification_code'    => $faker->bothify('??##??'),
                 'date_of_certification' => $faker->date(),
-                'date_of_expiration' => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
-                'user_id' => $user->id,
-                'cyber_expertise_id' => factory(CyberExpertise::class)->create()->id,
-                '_token' => 'test'
+                'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
+                'user_id'               => $user->id,
+                'cyber_expertise_id'    => factory(CyberExpertise::class)->create()->id,
+                '_token'                => 'test',
             ]);
         $response->assertStatus(403);
     }
@@ -119,12 +117,12 @@ class ExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post('/expertise', [
-                'certification_code' => $faker->bothify('??##??'),
+                'certification_code'    => $faker->bothify('??##??'),
                 'date_of_certification' => $faker->date(),
-                'date_of_expiration' => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
-                'user_id' => $user->id,
-                'cyber_expertise_id' => factory(CyberExpertise::class)->create()->id,
-                '_token' => 'test'
+                'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
+                'user_id'               => $user->id,
+                'cyber_expertise_id'    => factory(CyberExpertise::class)->create()->id,
+                '_token'                => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/expertise');
         $this->assertCount(1, Expertise::all());
@@ -169,12 +167,12 @@ class ExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/expertise/'.$expertise->id, [
-                'certification_code' => $faker->bothify('??##??'),
+                'certification_code'    => $faker->bothify('??##??'),
                 'date_of_certification' => $faker->date(),
-                'date_of_expiration' => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
-                'user_id' => $user->id,
-                'cyber_expertise_id' => factory(CyberExpertise::class)->create()->id,
-                '_token' => 'test'
+                'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
+                'user_id'               => $user->id,
+                'cyber_expertise_id'    => factory(CyberExpertise::class)->create()->id,
+                '_token'                => 'test',
             ]);
         $response->assertStatus(403);
     }
@@ -192,12 +190,12 @@ class ExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/expertise/'.$expertise->id, [
-                'certification_code' => $faker->bothify('??##??'),
+                'certification_code'    => $faker->bothify('??##??'),
                 'date_of_certification' => $faker->date(),
-                'date_of_expiration' => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
-                'user_id' => $user->id,
-                'cyber_expertise_id' => factory(CyberExpertise::class)->create()->id,
-                '_token' => 'test'
+                'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
+                'user_id'               => $user->id,
+                'cyber_expertise_id'    => factory(CyberExpertise::class)->create()->id,
+                '_token'                => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/expertise');
     }

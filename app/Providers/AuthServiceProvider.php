@@ -10,8 +10,8 @@ use App\Policies\ExpertisePolicy;
 use App\Policies\PcePointPolicy;
 use App\Policies\UserPolicy;
 use App\User;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -22,9 +22,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         CyberExpertise::class => CyberExpertisePolicy::class,
-        User::class => UserPolicy::class,
-        Expertise::class => ExpertisePolicy::class,
-        PcePoint::class => PcePointPolicy::class
+        User::class           => UserPolicy::class,
+        Expertise::class      => ExpertisePolicy::class,
+        PcePoint::class       => PcePointPolicy::class,
     ];
 
     /**

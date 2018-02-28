@@ -26,8 +26,8 @@ class PcePointRequest extends FormRequest
     {
         return [
             'location_code' => 'required|alpha_num|max:6',
-            'user_id' => 'exists:users,id',
-            'points' => 'numeric|min:0',
+            'user_id'       => 'exists:users,id',
+            'points'        => 'numeric|min:0',
         ];
     }
 }

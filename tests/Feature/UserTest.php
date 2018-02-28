@@ -6,13 +6,11 @@ use App\Expertise;
 use App\PcePoint;
 use App\User;
 use Faker\Factory;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
@@ -71,7 +69,7 @@ class UserTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->post('/users/search', [
-                'q' => 'xyz'
+                'q' => 'xyz',
             ]);
         $response->assertStatus(200)
             ->assertViewHas('users', User::where('cyber_code', 'like', '%xyz%')->get())->assertViewHas('q', 'xyz');
@@ -86,7 +84,7 @@ class UserTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->post('/users/search', [
-                'q' => $user->cyber_code
+                'q' => $user->cyber_code,
             ]);
         $response->assertStatus(200)
             ->assertViewHas('users', User::all())->assertViewHas('q', $user->cyber_code);
@@ -116,16 +114,16 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post('/users', [
-                'cyber_code' => $faker->bothify('??##??'),
-                'first_name' => $faker->firstName,
-                'middle_name' => 'de',
-                'last_name' => $faker->lastName,
-                'email' => $faker->email,
-                'date_of_birth' => $faker->date(),
-                'place_of_birth' => $faker->city,
-                'password' => $password,
+                'cyber_code'            => $faker->bothify('??##??'),
+                'first_name'            => $faker->firstName,
+                'middle_name'           => 'de',
+                'last_name'             => $faker->lastName,
+                'email'                 => $faker->email,
+                'date_of_birth'         => $faker->date(),
+                'place_of_birth'        => $faker->city,
+                'password'              => $password,
                 'password_confirmation' => $password,
-                '_token' => 'test'
+                '_token'                => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/users');
         $this->assertCount(2, User::all());
@@ -182,14 +180,14 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/users/'.$userTwo->cyber_code, [
-                'cyber_code' => $faker->bothify('??##??'),
-                'first_name' => $faker->firstName,
-                'middle_name' => 'de',
-                'last_name' => $faker->lastName,
-                'email' => $faker->email,
-                'date_of_birth' => $faker->date(),
+                'cyber_code'     => $faker->bothify('??##??'),
+                'first_name'     => $faker->firstName,
+                'middle_name'    => 'de',
+                'last_name'      => $faker->lastName,
+                'email'          => $faker->email,
+                'date_of_birth'  => $faker->date(),
                 'place_of_birth' => $faker->city,
-                '_token' => 'test'
+                '_token'         => 'test',
             ]);
         $response->assertStatus(403);
     }
@@ -207,14 +205,14 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/users/'.$userTwo->cyber_code, [
-                'cyber_code' => $faker->bothify('??##??'),
-                'first_name' => $faker->firstName,
-                'middle_name' => 'de',
-                'last_name' => $faker->lastName,
-                'email' => $faker->email,
-                'date_of_birth' => $faker->date(),
+                'cyber_code'     => $faker->bothify('??##??'),
+                'first_name'     => $faker->firstName,
+                'middle_name'    => 'de',
+                'last_name'      => $faker->lastName,
+                'email'          => $faker->email,
+                'date_of_birth'  => $faker->date(),
                 'place_of_birth' => $faker->city,
-                '_token' => 'test'
+                '_token'         => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/users');
     }
@@ -230,14 +228,14 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/users/'.$user->cyber_code, [
-                'cyber_code' => $faker->bothify('??##??'),
-                'first_name' => $faker->firstName,
-                'middle_name' => 'de',
-                'last_name' => $faker->lastName,
-                'email' => $faker->email,
-                'date_of_birth' => $faker->date(),
+                'cyber_code'     => $faker->bothify('??##??'),
+                'first_name'     => $faker->firstName,
+                'middle_name'    => 'de',
+                'last_name'      => $faker->lastName,
+                'email'          => $faker->email,
+                'date_of_birth'  => $faker->date(),
                 'place_of_birth' => $faker->city,
-                '_token' => 'test'
+                '_token'         => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/users');
     }
@@ -259,15 +257,15 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/users/'.$user->cyber_code, [
-                'cyber_code' => $faker->bothify('??##??'),
-                'first_name' => $faker->firstName,
-                'middle_name' => 'de',
-                'last_name' => $faker->lastName,
-                'email' => $faker->email,
-                'date_of_birth' => $faker->date(),
+                'cyber_code'     => $faker->bothify('??##??'),
+                'first_name'     => $faker->firstName,
+                'middle_name'    => 'de',
+                'last_name'      => $faker->lastName,
+                'email'          => $faker->email,
+                'date_of_birth'  => $faker->date(),
                 'place_of_birth' => $faker->city,
-                'file' => $file,
-                '_token' => 'test'
+                'file'           => $file,
+                '_token'         => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/users');
         $user = User::find($user->id);
@@ -291,15 +289,15 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/users/'.$user->cyber_code, [
-                'cyber_code' => $user->cyber_code,
-                'first_name' => $faker->firstName,
-                'middle_name' => 'de',
-                'last_name' => $faker->lastName,
-                'email' => $faker->email,
-                'date_of_birth' => $faker->date(),
+                'cyber_code'     => $user->cyber_code,
+                'first_name'     => $faker->firstName,
+                'middle_name'    => 'de',
+                'last_name'      => $faker->lastName,
+                'email'          => $faker->email,
+                'date_of_birth'  => $faker->date(),
                 'place_of_birth' => $faker->city,
-                'file' => $file,
-                '_token' => 'test'
+                'file'           => $file,
+                '_token'         => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/users/'.$user->cyber_code.'/edit');
         $user = User::find($user->id);
@@ -345,7 +343,6 @@ class UserTest extends TestCase
             ->delete('/users/'.$user->cyber_code);
         $response->assertStatus(302)->assertRedirect('/users');
         $this->assertEmpty(User::all());
-
     }
 
     /**
@@ -374,7 +371,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * Check user delete also removes Expertise(s) and PcePoint(s)
+     * Check user delete also removes Expertise(s) and PcePoint(s).
      */
     public function testUserDestroyRecursive()
     {
@@ -383,7 +380,7 @@ class UserTest extends TestCase
         $expertise->user()->associate($user);
         $expertise->save();
         $this->assertCount(1, Expertise::all());
-        $pcePoint = new PcePoint;
+        $pcePoint = new PcePoint();
         $pcePoint->user()->associate($user);
         $pcePoint->points = 1;
         $pcePoint->save();

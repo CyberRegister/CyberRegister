@@ -1,19 +1,21 @@
 <?php
+
 namespace Tests\Unit;
+
 use App\CyberExpertise;
-use App\User;
 use App\Expertise;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CyberExpertiseTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Assert CyberExpertise might have a relation with multiple App\Expertise(s)
+     * Assert CyberExpertise might have a relation with multiple App\Expertise(s).
      */
-    public function testCyberExpertiseHasExpertiseRelation() {
+    public function testCyberExpertiseHasExpertiseRelation()
+    {
         $expertise = factory(Expertise::class)->create();
         $expertise->cyberExpertise->save();
         $expertise->save();

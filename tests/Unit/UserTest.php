@@ -1,19 +1,23 @@
 <?php
+
 namespace Tests\Unit;
+
+use App\Expertise;
 use App\PcePoint;
 use App\User;
-use App\Expertise;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
-     * Assert user might have a relation with multiple App\PcePoint(s)
+     * Assert user might have a relation with multiple App\PcePoint(s).
      */
-    public function testUserHasPcePointHasRelation() {
-        $pcePoint = new PcePoint;
+    public function testUserHasPcePointHasRelation()
+    {
+        $pcePoint = new PcePoint();
         $user = factory(User::class)->create();
         $this->assertEmpty($user->pcePoints);
         $pcePoint->user()->associate($user);
@@ -21,7 +25,7 @@ class UserTest extends TestCase
         $pcePoint->save();
         $user = User::find($user->id);
         $this->assertCount(1, $user->pcePoints);
-        $pcePoint = new PcePoint;
+        $pcePoint = new PcePoint();
         $pcePoint->user()->associate($user);
         $pcePoint->points = 1;
         $pcePoint->save();
@@ -30,9 +34,10 @@ class UserTest extends TestCase
     }
 
     /**
-     * Assert user might have a relation with multiple App\Expertise(s)
+     * Assert user might have a relation with multiple App\Expertise(s).
      */
-    public function testUserHasExpertiseRelation() {
+    public function testUserHasExpertiseRelation()
+    {
         $expertise = factory(Expertise::class)->create();
         $user = factory(User::class)->create();
         $this->assertEmpty($user->expertises);
@@ -49,9 +54,10 @@ class UserTest extends TestCase
 
     /**
      * Assert user might have a relation with multiple App\CyberExpertise(s)
-     * via the Expertise relation
+     * via the Expertise relation.
      */
-    public function testUserHasCodesViaRelations() {
+    public function testUserHasCodesViaRelations()
+    {
         $expertise = factory(Expertise::class)->create();
         $user = factory(User::class)->create();
         $this->assertEmpty($user->codes);
@@ -65,5 +71,4 @@ class UserTest extends TestCase
         $user = User::find($user->id);
         $this->assertCount(2, $user->codes);
     }
-
 }

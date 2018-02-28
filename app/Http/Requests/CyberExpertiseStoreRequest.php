@@ -25,8 +25,8 @@ class CyberExpertiseStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'expertise_code' => 'required|alpha_num|max:3|unique:cyber_expertises',
-            'description' => 'required|string',
+            'expertise_code'  => 'required|alpha_num|max:3|unique:cyber_expertises',
+            'description'     => 'required|string',
             'required_points' => 'numeric|min:0',
         ];
     }

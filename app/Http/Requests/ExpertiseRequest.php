@@ -25,11 +25,11 @@ class ExpertiseRequest extends FormRequest
     public function rules()
     {
         return [
-            'certification_code' => 'required|string|max:15',
+            'certification_code'    => 'required|string|max:15',
             'date_of_certification' => 'required|date',
-            'date_of_expiration' => 'required|date|after:today',
-            'user_id' => 'exists:users,id',
-            'cyber_expertise_id' => 'exists:cyber_expertises,id',
+            'date_of_expiration'    => 'required|date|after:today',
+            'user_id'               => 'exists:users,id',
+            'cyber_expertise_id'    => 'exists:cyber_expertises,id',
         ];
     }
 }

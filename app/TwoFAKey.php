@@ -25,7 +25,7 @@ class TwoFAKey extends Model
     /**
      * Ecrypt the user's google_2fa secret.
      *
-     * @param  string  $value
+     * @param string $value
      */
     public function setGoogle2faSecretAttribute($value)
     {
@@ -35,7 +35,8 @@ class TwoFAKey extends Model
     /**
      * Decrypt the user's google_2fa secret.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public function getGoogle2faSecretAttribute($value)

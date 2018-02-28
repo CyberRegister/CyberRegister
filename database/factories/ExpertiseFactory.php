@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Expertise::class, function (Faker $faker) {
     return [
-        'user_id' => factory(\App\User::class)->create()->id,
+        'user_id'            => factory(\App\User::class)->create()->id,
         'cyber_expertise_id' => factory(\App\CyberExpertise::class)->create()->id,
     ];
 });

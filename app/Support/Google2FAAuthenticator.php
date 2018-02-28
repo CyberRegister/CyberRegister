@@ -12,9 +12,10 @@ class Google2FAAuthenticator extends Authenticator
      */
     protected function canPassWithoutCheckingOTP(): bool
     {
-        if(is_null($this->getUser()->twoFAKey)) {
+        if (is_null($this->getUser()->twoFAKey)) {
             return true;
         }
+
         return
             !$this->getUser()->twoFAKey->google2fa_enable ||
             !$this->isEnabled() ||
@@ -23,8 +24,9 @@ class Google2FAAuthenticator extends Authenticator
     }
 
     /**
-     * @return string
      * @throws InvalidSecretKey
+     *
+     * @return string
      */
     protected function getGoogle2FASecretKey(): string
     {
@@ -36,6 +38,4 @@ class Google2FAAuthenticator extends Authenticator
 
         return $secret;
     }
-
-
 }

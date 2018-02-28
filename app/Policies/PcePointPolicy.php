@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\PcePoint;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PcePointPolicy
@@ -14,6 +14,7 @@ class PcePointPolicy
      * Controllers may do stuff . .
      *
      * @param User $user
+     *
      * @return null|bool
      */
     public function before(User $user)
@@ -36,8 +37,9 @@ class PcePointPolicy
     /**
      * Determine whether the user can see a PcePoint.
      *
-     * @param  \App\User  $user
-     * @param  PcePoint $pcePoint
+     * @param \App\User $user
+     * @param PcePoint  $pcePoint
+     *
      * @return bool
      */
     public function show(User $user, PcePoint $pcePoint)
