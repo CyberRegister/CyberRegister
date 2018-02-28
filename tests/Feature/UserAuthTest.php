@@ -33,8 +33,8 @@ class UserAuthTest extends TestCase
             ->assertSessionHas('errors')
             ->assertSessionHas(
                 '_old_input', [
-                'email' => 'annejan@noprotocol.nl',
-                '_token'        => 'test',
+                'email'  => 'annejan@noprotocol.nl',
+                '_token' => 'test',
                 ]
             );
     }
