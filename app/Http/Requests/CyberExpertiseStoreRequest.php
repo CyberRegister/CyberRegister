@@ -6,9 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class CyberExpertiseStoreRequest
- *
- * @package App\Http\Requests
+ * Class CyberExpertiseStoreRequest.
  */
 class CyberExpertiseStoreRequest extends FormRequest
 {

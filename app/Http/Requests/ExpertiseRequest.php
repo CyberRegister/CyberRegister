@@ -6,9 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class ExpertiseRequest
- *
- * @package App\Http\Requests
+ * Class ExpertiseRequest.
  */
 class ExpertiseRequest extends FormRequest
 {

@@ -7,9 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class UserUpdateRequest
- *
- * @package App\Http\Requests
+ * Class UserUpdateRequest.
  */
 class UserUpdateRequest extends FormRequest
 {

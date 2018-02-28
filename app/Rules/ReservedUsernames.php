@@ -5,9 +5,7 @@ namespace App\Rules;
 use Illuminate\Contracts\Validation\Rule;
 
 /**
- * Class ReservedUsernames
- *
- * @package App\Rules
+ * Class ReservedUsernames.
  */
 class ReservedUsernames implements Rule
 {

@@ -6,9 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class Enable2FaRequest
- *
- * @package App\Http\Requests
+ * Class Enable2FaRequest.
  */
 class Enable2FaRequest extends FormRequest
 {

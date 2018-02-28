@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class CyberExpertise
- *
- * @package App
+ * Class CyberExpertise.
  */
 class CyberExpertise extends Model
 {

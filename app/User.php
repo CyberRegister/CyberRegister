@@ -10,9 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Lahaxearnaud\U2f\Models\U2fKey;
 
 /**
- * Class User
- *
- * @package App
+ * Class User.
  */
 class User extends Authenticatable
 {

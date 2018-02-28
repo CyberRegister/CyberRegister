@@ -6,9 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class PcePointRequest
- *
- * @package App\Http\Requests
+ * Class PcePointRequest.
  */
 class PcePointRequest extends FormRequest
 {

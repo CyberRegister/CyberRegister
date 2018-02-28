@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class Expertise
- *
- * @package App
+ * Class Expertise.
  */
 class Expertise extends Model
 {

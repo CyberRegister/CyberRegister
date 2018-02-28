@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class PcePoint
- *
- * @package App
+ * Class PcePoint.
  */
 class PcePoint extends Model
 {

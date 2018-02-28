@@ -6,9 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class UserSearchRequest
- * 
- * @package App\Http\Requests
+ * Class UserSearchRequest.
  */
 class UserSearchRequest extends FormRequest
 {

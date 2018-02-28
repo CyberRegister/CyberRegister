@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class TwoFAKey
- *
- * @package App
+ * Class TwoFAKey.
  */
 class TwoFAKey extends Model
 {
