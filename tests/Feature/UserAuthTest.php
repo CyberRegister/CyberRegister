@@ -21,18 +21,22 @@ class UserAuthTest extends TestCase
     {
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('/login', [
+            ->post(
+                '/login', [
                 'email'    => 'annejan@noprotocol.nl',
                 'password' => 'badPass',
                 '_token'   => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)
             ->assertRedirect('')
             ->assertSessionHas('errors')
-            ->assertSessionHas('_old_input', [
+            ->assertSessionHas(
+                '_old_input', [
                 'email' => 'annejan@noprotocol.nl',
-        '_token'        => 'test',
-            ]);
+                '_token'        => 'test',
+                ]
+            );
     }
 
     /**
@@ -45,11 +49,13 @@ class UserAuthTest extends TestCase
         $user = factory(User::class)->create(['password' => bcrypt($password)]);
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('/login', [
+            ->post(
+                '/login', [
                 'cyber_code' => $user->cyber_code,
                 'password'   => $password,
                 '_token'     => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/home');
     }
 
@@ -101,10 +107,12 @@ class UserAuthTest extends TestCase
 
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('password/email', [
+            ->post(
+                'password/email', [
                 'email'  => $user->email,
                 '_token' => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)
             ->assertRedirect('/');
 
@@ -130,29 +138,35 @@ class UserAuthTest extends TestCase
 
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('/password/reset', [
-            'email'                 => $user->email,
-            'token'                 => $token,
-            'password'              => $password,
-            'password_confirmation' => $password,
-            '_token'                => 'test',
-        ]);
+            ->post(
+                '/password/reset', [
+                'email'                 => $user->email,
+                'token'                 => $token,
+                'password'              => $password,
+                'password_confirmation' => $password,
+                '_token'                => 'test',
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/home');
 
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('/logout', [
+            ->post(
+                '/logout', [
                 '_token' => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/');
 
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('/login', [
+            ->post(
+                '/login', [
                 'cyber_code' => $user->cyber_code,
                 'password'   => $password,
                 '_token'     => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/home');
     }
 
@@ -166,7 +180,8 @@ class UserAuthTest extends TestCase
         $email = $faker->email;
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('/register', [
+            ->post(
+                '/register', [
                 'cyber_code'            => $faker->bothify('??##??'),
                 'first_name'            => $faker->firstName,
                 'middle_name'           => 'de',
@@ -177,7 +192,8 @@ class UserAuthTest extends TestCase
                 'password'              => $password,
                 'password_confirmation' => $password,
                 '_token'                => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/home');
         $this->assertCount(1, User::all());
         $this->assertEquals($email, User::first()->email);
@@ -193,7 +209,8 @@ class UserAuthTest extends TestCase
         $email = $faker->email;
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('/register', [
+            ->post(
+                '/register', [
                 'cyber_code'            => $faker->bothify('??##??'),
                 'first_name'            => $faker->firstName,
                 'last_name'             => $faker->lastName,
@@ -203,7 +220,8 @@ class UserAuthTest extends TestCase
                 'password'              => $password,
                 'password_confirmation' => $password,
                 '_token'                => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/home');
         $this->assertCount(1, User::all());
         $this->assertEquals($email, User::first()->email);
@@ -219,7 +237,8 @@ class UserAuthTest extends TestCase
         $email = $faker->email;
         $response = $this
             ->withSession(['_token'=>'test'])
-            ->post('/register', [
+            ->post(
+                '/register', [
                 'cyber_code'            => 'admin',
                 'first_name'            => $faker->firstName,
                 'middle_name'           => 'de',
@@ -230,7 +249,8 @@ class UserAuthTest extends TestCase
                 'password'              => $password,
                 'password_confirmation' => $password,
                 '_token'                => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('');
         $this->assertEmpty(User::all());
     }

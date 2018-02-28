@@ -13,13 +13,15 @@ class CreateCyberExpertisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cyber_expertises', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('expertise_code', 3)->nullable();
-            $table->text('description')->nullable();
-            $table->integer('required_points')->unsigned();
-            $table->timestamps();
-        });
+        Schema::create(
+            'cyber_expertises', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('expertise_code', 3)->nullable();
+                $table->text('description')->nullable();
+                $table->integer('required_points')->unsigned();
+                $table->timestamps();
+            }
+        );
     }
 
     /**
