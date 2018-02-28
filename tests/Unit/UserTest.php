@@ -73,7 +73,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * Assert the user->name magic works ;)
+     * Assert the user->name magic works ;).
      */
     public function testUserNameMagic()
     {

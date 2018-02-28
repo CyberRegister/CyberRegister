@@ -29,9 +29,10 @@ class TwoFAKeyTest extends TestCase
     }
 
     /**
-     * Test decryption of google2fa_secret
+     * Test decryption of google2fa_secret.
      */
-    public function testTwoFAKeyGoogle2faSecretAttributeEncryption(){
+    public function testTwoFAKeyGoogle2faSecretAttributeEncryption()
+    {
         $user = factory(User::class)->create();
         $key = TwoFAKey::create([
             'user_id'          => $user->id,
