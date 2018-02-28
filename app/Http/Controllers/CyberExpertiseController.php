@@ -6,7 +6,6 @@ use App\CyberExpertise;
 use App\Http\Requests\CyberExpertiseStoreRequest;
 use App\Http\Requests\CyberExpertiseUpdateRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class CyberExpertiseController extends Controller

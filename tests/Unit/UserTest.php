@@ -71,4 +71,14 @@ class UserTest extends TestCase
         $user = User::find($user->id);
         $this->assertCount(2, $user->codes);
     }
+
+    /**
+     * Assert the user->name magic works ;)
+     */
+    public function testUserNameMagic()
+    {
+        $user = factory(User::class)->create();
+        $user->middle_name = 'de';
+        $this->assertEquals($user->first_name.' de '.$user->last_name, $user->name);
+    }
 }
