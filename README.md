@@ -8,6 +8,7 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/build.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![StyleCI](https://styleci.io/repos/120670007/shield?branch=master)](https://styleci.io/repos/120670007)
 
 Installation:
 ```bash

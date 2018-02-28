@@ -41,7 +41,7 @@
                             <br>
                             <img src="{{$data['google2fa_url'] }}" alt="">
                             <br>
-                            <br> <strong>2. Voer de gegenereerde ORP code in om 2FA in te schakelen</strong>
+                            <br> <strong>2. Voer de gegenereerde OTP code in om 2FA in te schakelen</strong>
                             <br>
                             <br>
                             <form class="" method="POST" action="{{ route('enable2fa') }}">

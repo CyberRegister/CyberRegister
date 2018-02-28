@@ -5,12 +5,13 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Two Factor Authentication</div>
+                    <div class="panel-heading">Twee-factorenauthenticatie</div>
                     <div class="panel-body">
-                        <p>Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to
-                            verify your identity.
-                            Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers
-                            exploiting weak or stolen credentials.</p>
+                        <p>Twee-factorenauthenticatie (2FA) versterkt de toegangsbeveiliging door
+                            twee methoden (ook wel factoren genoemd) te vragen om uw identiteit te
+                            verifi&#xEB;ren. Twee-factor-authenticatie beschermt tegen phishing, social
+                            engineering en wachtwoord brute force-aanvallen en beveiligt uw logins
+                            tegen aanvallers die zwakke of gestolen inloggegevens misbruiken.</p>
 
                         @if (session('error'))
                             <div class="alert alert-danger">
@@ -23,7 +24,7 @@
                             </div>
                         @endif
 
-                        <strong>Enter the pin from Google Authenticator Enable 2FA</strong><br/><br/>
+                        <strong>Voer de OTP code vanuit uw app in</strong><br/><br/>
                         <form class="form-horizontal" action="{{ route('2faVerify') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('one_time_password-code') ? ' has-error' : '' }}">
@@ -34,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button class="btn btn-primary" type="submit">Authenticate</button>
+                                    <button class="btn btn-primary" type="submit">Authenticeren</button>
                                 </div>
                             </div>
                         </form>
