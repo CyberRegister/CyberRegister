@@ -31,7 +31,10 @@
         </div>
     </nav>
     <div class="content">
-        <div class="container">Iets met inhoud . .</div>
+        <div class="container">
+            <p>Iets met inhoud . .</p>
+            <p>Bekijk de code op <a href="https://github.com/CyberRegister/CyberRegister">GitHub</a>.</p>
+        </div>
         <div class="footer">
             <img src="static/footerlogo.png" width="610">
         </div>
