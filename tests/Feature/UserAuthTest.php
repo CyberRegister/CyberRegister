@@ -115,6 +115,7 @@ class UserAuthTest extends TestCase
             ResetPassword::class,
             function ($notification) use (&$token) {
                 $token = $notification->token;
+
                 return true;
             }
         );

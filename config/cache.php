@@ -86,6 +86,6 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX','cyber_cache'),
+    'prefix' => env('CACHE_PREFIX', 'cyber_cache'),
 
 ];
