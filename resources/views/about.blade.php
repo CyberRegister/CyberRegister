@@ -43,6 +43,7 @@
             <p>
                 Mede mogelijk gemaakt door:
                 <ul>
+                    <li>Stichting Eurocyber</li>
                     <li>
                         <a href="https://dewinter.com/">De Winter Information Solutions</a> idee.
                     </li>
