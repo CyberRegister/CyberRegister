@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Expertise;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ExpertisePolicy
@@ -14,6 +14,7 @@ class ExpertisePolicy
      * Controllers may do stuff . .
      *
      * @param User $user
+     *
      * @return null|bool
      */
     public function before(User $user)
@@ -36,8 +37,9 @@ class ExpertisePolicy
     /**
      * Determine whether the user can see a Expertise.
      *
-     * @param  \App\User  $user
-     * @param  Expertise $expertise
+     * @param \App\User $user
+     * @param Expertise $expertise
+     *
      * @return bool
      */
     public function show(User $user, Expertise $expertise)

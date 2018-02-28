@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\ReservedUsernames;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +25,7 @@ class UserSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'q' => 'required:string'
+            'q' => 'required:string',
         ];
     }
 }

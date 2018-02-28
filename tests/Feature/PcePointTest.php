@@ -2,15 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Expertise;
 use App\PcePoint;
 use App\User;
 use Faker\Factory;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class PcePointTest extends TestCase
 {
@@ -37,7 +34,7 @@ class PcePointTest extends TestCase
     }
 
     /**
-     * Check 200
+     * Check 200.
      */
     public function testPcePointIndex()
     {
@@ -49,7 +46,7 @@ class PcePointTest extends TestCase
     }
 
     /**
-     * Check 200
+     * Check 200.
      */
     public function testPcePointIndexIsController()
     {
@@ -98,9 +95,9 @@ class PcePointTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->post('/pcePoint', [
                 'location_code' => $faker->bothify('??##??'),
-                'user_id' => $user->id,
-                'points' => $faker->numberBetween(0, 1000),
-                '_token' => 'test'
+                'user_id'       => $user->id,
+                'points'        => $faker->numberBetween(0, 1000),
+                '_token'        => 'test',
             ]);
         $response->assertStatus(403);
     }
@@ -118,9 +115,9 @@ class PcePointTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->post('/pcePoint', [
                 'location_code' => $faker->bothify('??##??'),
-                'user_id' => $user->id,
-                'points' => $faker->numberBetween(0, 1000),
-                '_token' => 'test'
+                'user_id'       => $user->id,
+                'points'        => $faker->numberBetween(0, 1000),
+                '_token'        => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/pcePoint');
         $this->assertCount(1, PcePoint::all());
@@ -166,9 +163,9 @@ class PcePointTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->put('/pcePoint/'.$pcePoint->id, [
                 'location_code' => $faker->bothify('??##??'),
-                'user_id' => $user->id,
-                'points' => $faker->numberBetween(0, 1000),
-                '_token' => 'test'
+                'user_id'       => $user->id,
+                'points'        => $faker->numberBetween(0, 1000),
+                '_token'        => 'test',
             ]);
         $response->assertStatus(403);
     }
@@ -187,9 +184,9 @@ class PcePointTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->put('/pcePoint/'.$pcePoint->id, [
                 'location_code' => $faker->bothify('??##??'),
-                'user_id' => $user->id,
-                'points' => $faker->numberBetween(0, 1000),
-                '_token' => 'test'
+                'user_id'       => $user->id,
+                'points'        => $faker->numberBetween(0, 1000),
+                '_token'        => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/pcePoint');
     }

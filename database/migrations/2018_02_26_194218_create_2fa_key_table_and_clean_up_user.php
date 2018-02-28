@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class Create2faKeyTableAndCleanUpUser extends Migration
 {
@@ -20,7 +20,7 @@ class Create2faKeyTableAndCleanUpUser extends Migration
             $table->string('google2fa_secret')->nullable();
             $table->timestamps();
         });
-        Schema::table('2fa_key', function(Blueprint $table) {
+        Schema::table('2fa_key', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
         Schema::table('users', function (Blueprint $table) {

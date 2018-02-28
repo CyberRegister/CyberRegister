@@ -2,17 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\CyberExpertise;
 use App\Expertise;
 use App\PcePoint;
-use App\CyberExpertise;
-use App\Policies\UserPolicy;
 use App\User;
 use Faker\Factory;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class CyberExpertiseTest extends TestCase
 {
@@ -39,7 +36,7 @@ class CyberExpertiseTest extends TestCase
     }
 
     /**
-     * Check 200
+     * Check 200.
      */
     public function testCyberExpertiseIndex()
     {
@@ -86,10 +83,10 @@ class CyberExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post('/cyberExpertise', [
-                'expertise_code' => $faker->bothify('??#'),
-                'description' => $faker->paragraph,
+                'expertise_code'  => $faker->bothify('??#'),
+                'description'     => $faker->paragraph,
                 'required_points' => $faker->numberBetween(0, 1000),
-                '_token' => 'test'
+                '_token'          => 'test',
             ]);
         $response->assertStatus(403);
     }
@@ -106,10 +103,10 @@ class CyberExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post('/cyberExpertise', [
-                'expertise_code' => $faker->bothify('??#'),
-                'description' => $faker->paragraph,
+                'expertise_code'  => $faker->bothify('??#'),
+                'description'     => $faker->paragraph,
                 'required_points' => $faker->numberBetween(0, 1000),
-                '_token' => 'test'
+                '_token'          => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/cyberExpertise');
         $this->assertCount(1, CyberExpertise::all());
@@ -154,10 +151,10 @@ class CyberExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/cyberExpertise/'.$cyberExpertise->expertise_code, [
-                'expertise_code' => $faker->bothify('??#'),
-                'description' => $faker->paragraph,
+                'expertise_code'  => $faker->bothify('??#'),
+                'description'     => $faker->paragraph,
                 'required_points' => $faker->numberBetween(0, 1000),
-                '_token' => 'test'
+                '_token'          => 'test',
             ]);
         $response->assertStatus(403);
     }
@@ -175,10 +172,10 @@ class CyberExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put('/cyberExpertise/'.$cyberExpertise->expertise_code, [
-                'expertise_code' => $faker->bothify('??#'),
-                'description' => $faker->paragraph,
+                'expertise_code'  => $faker->bothify('??#'),
+                'description'     => $faker->paragraph,
                 'required_points' => $faker->numberBetween(0, 1000),
-                '_token' => 'test'
+                '_token'          => 'test',
             ]);
         $response->assertStatus(302)->assertRedirect('/cyberExpertise');
     }
@@ -225,7 +222,7 @@ class CyberExpertiseTest extends TestCase
     }
 
     /**
-     * Check user delete also removes Expertise(s) and PcePoint(s)
+     * Check user delete also removes Expertise(s) and PcePoint(s).
      */
     public function testCyberExpertiseDestroyRecursive()
     {

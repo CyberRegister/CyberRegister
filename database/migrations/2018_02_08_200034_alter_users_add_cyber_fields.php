@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AlterUsersAddCyberFields extends Migration
 {
@@ -40,7 +40,7 @@ class AlterUsersAddCyberFields extends Migration
             $table->dropColumn([
                 'cyber_code', 'verification_code', 'first_name', 'middle_name',
                 'last_name', 'initials', 'date_of_birth', 'place_of_birth', 'photo',
-                'controller_code', 'is_controller'
+                'controller_code', 'is_controller',
             ]);
             $table->string('name')->after('id');
         });

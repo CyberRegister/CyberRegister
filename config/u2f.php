@@ -1,11 +1,11 @@
 <?php
 /**
-     * User: LAHAXE Arnaud
-     * Date: 18/05/2015
-     * Time: 17:49
-     * FileName : u2f.php
-     * Project : laravel-u2f
-     */
+ * User: LAHAXE Arnaud
+ * Date: 18/05/2015
+ * Time: 17:49
+ * FileName : u2f.php
+ * Project : laravel-u2f.
+ */
 
 return [
     /*
@@ -55,5 +55,5 @@ return [
      * The authenticate middleware. If the request is valid for this middleware we
      * can get the current user by Auth::user()
      */
-    'authMiddlewareName' => 'web' // web needs to come first, then auth, for sessions to work properly.
+    'authMiddlewareName' => 'web', // web needs to come first, then auth, for sessions to work properly.
 ];

@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -36,14 +36,15 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @param UserSearchRequest $request
+     *
      * @return View
      */
     public function search(UserSearchRequest $request): View
     {
         $users = User::where('cyber_code', 'like', '%'.$request->q.'%')->get();
+
         return view('users.index', ['users' => $users, 'q' => $request->q]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -58,21 +59,22 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserStoreRequest  $request
+     * @param UserStoreRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserStoreRequest $request): RedirectResponse
     {
         try {
             User::create([
-                'cyber_code' => $request->cyber_code,
-                'first_name' =>  $request->first_name,
-                'middle_name' => $request->middle_name,
-                'last_name' => $request->last_name,
-                'date_of_birth' => $request->date_of_birth,
+                'cyber_code'     => $request->cyber_code,
+                'first_name'     => $request->first_name,
+                'middle_name'    => $request->middle_name,
+                'last_name'      => $request->last_name,
+                'date_of_birth'  => $request->date_of_birth,
                 'place_of_birth' => $request->place_of_birth,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
+                'email'          => $request->email,
+                'password'       => bcrypt($request->password),
             ]);
         } catch (\Exception $e) {
             return redirect()
@@ -85,7 +87,8 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return View
      */
     public function show(User $user): View
@@ -97,26 +100,32 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return \Illuminate\Contracts\View\Factory|View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|View
      */
     public function edit(User $user): View
     {
         $this->authorize('edit', $user);
+
         return view('users.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserUpdateRequest  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @param UserUpdateRequest $request
+     * @param \App\User         $user
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
         $this->authorize('update', $user);
+
         try {
             $user->update($request->all());
             if ($request->hasFile('file') && $request->file('file')->isValid()) {
@@ -133,13 +142,16 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @param \App\User $user
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user): RedirectResponse
     {
         $this->authorize('delete', $user);
+
         try {
             $user->delete();
         } catch (\Exception $e) {

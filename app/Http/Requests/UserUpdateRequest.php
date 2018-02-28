@@ -27,17 +27,17 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'cyber_code' => [
-                new ReservedUsernames,
+                new ReservedUsernames(),
                 'required',
                 'alpha_num',
                 'max:6',
             ],
-            'first_name' => 'required|string|max:255',
-            'middle_name' => 'max:255',
-            'last_name' => 'required|string|max:255',
-            'date_of_birth' => 'required|date|before:yesterday',
+            'first_name'     => 'required|string|max:255',
+            'middle_name'    => 'max:255',
+            'last_name'      => 'required|string|max:255',
+            'date_of_birth'  => 'required|date|before:yesterday',
             'place_of_birth' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email'          => 'required|string|email|max:255',
         ];
     }
 }

@@ -5,8 +5,8 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Lahaxearnaud\U2f\Models\U2fKey;
 
 class User extends Authenticatable
@@ -29,9 +29,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'google2fa_secret'
+        'password', 'remember_token', 'google2fa_secret',
     ];
-    
+
     /**
      * The "booting" method of the model.
      *
@@ -62,10 +62,17 @@ class User extends Authenticatable
     public function getNameAttribute(): string
     {
         $names = [];
-        if ($this->first_name) $names[] = $this->first_name;
-        if ($this->middle_name) $names[] = $this->middle_name;
-        if ($this->last_name) $names[] = $this->last_name;
-        return join(' ', $names);
+        if ($this->first_name) {
+            $names[] = $this->first_name;
+        }
+        if ($this->middle_name) {
+            $names[] = $this->middle_name;
+        }
+        if ($this->last_name) {
+            $names[] = $this->last_name;
+        }
+
+        return implode(' ', $names);
     }
 
     /**
@@ -81,11 +88,13 @@ class User extends Authenticatable
     /**
      * @return array
      */
-    public function getCodesAttribute() {
+    public function getCodesAttribute()
+    {
         $codes = [];
         foreach ($this->expertises as $expertise) {
             $codes[$expertise->code] = $expertise->description;
         }
+
         return $codes;
     }
 

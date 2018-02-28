@@ -25,7 +25,7 @@ class Disable2FaRequest extends FormRequest
     public function rules()
     {
         return [
-            'current-password' => 'required'
+            'current-password' => 'required',
         ];
     }
 }

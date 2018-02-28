@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\CyberExpertise;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CyberExpertisePolicy
@@ -14,6 +14,7 @@ class CyberExpertisePolicy
      * Controllers may do stuff . .
      *
      * @param User $user
+     *
      * @return null|bool
      */
     public function before(User $user)
