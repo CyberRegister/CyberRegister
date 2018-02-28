@@ -9,6 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Lahaxearnaud\U2f\Models\U2fKey;
 
+/**
+ * Class User
+ *
+ * @package App
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -40,10 +45,12 @@ class User extends Authenticatable
     protected static function boot()
     {
         parent::boot();
-        static::deleting(function ($user) {
-            $user->expertises()->delete();
-            $user->pcePoints()->delete();
-        });
+        static::deleting(
+            function (User $user) {
+                $user->expertises()->delete();
+                $user->pcePoints()->delete();
+            }
+        );
     }
 
     /**

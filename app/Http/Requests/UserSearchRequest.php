@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class UserSearchRequest
+ * 
+ * @package App\Http\Requests
+ */
 class UserSearchRequest extends FormRequest
 {
     /**

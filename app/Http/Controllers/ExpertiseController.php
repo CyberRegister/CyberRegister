@@ -10,7 +10,7 @@ use Illuminate\View\View;
 class ExpertiseController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Expertises.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
@@ -24,7 +24,7 @@ class ExpertiseController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Expertise.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
@@ -38,7 +38,7 @@ class ExpertiseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Expertise in storage.
      *
      * @param ExpertiseRequest $request
      *
@@ -61,7 +61,7 @@ class ExpertiseController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Expertise.
      *
      * @param \App\Expertise $expertise
      *
@@ -77,7 +77,7 @@ class ExpertiseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Expertise.
      *
      * @param \App\Expertise $expertise
      *
@@ -93,7 +93,7 @@ class ExpertiseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Expertise in storage.
      *
      * @param ExpertiseRequest $request
      * @param \App\Expertise   $expertise
@@ -109,14 +109,16 @@ class ExpertiseController extends Controller
         try {
             $expertise->update($request->all());
         } catch (\Exception $e) {
-            return redirect()->route('expertise.edit', ['id' => $expertise->id])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route(
+                'expertise.edit', ['id' => $expertise->id]
+            )->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('expertise.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Expertise from storage.
      *
      * @param \App\Expertise $expertise
      *
@@ -131,7 +133,8 @@ class ExpertiseController extends Controller
         try {
             $expertise->delete();
         } catch (\Exception $e) {
-            return redirect()->route('expertise.edit', ['id' => $expertise->id])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('expertise.edit', ['id' => $expertise->id])
+                ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('expertise.index');

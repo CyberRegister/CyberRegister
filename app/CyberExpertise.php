@@ -5,6 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Class CyberExpertise
+ *
+ * @package App
+ */
 class CyberExpertise extends Model
 {
     /**
@@ -24,9 +29,11 @@ class CyberExpertise extends Model
     protected static function boot()
     {
         parent::boot();
-        static::deleting(function ($cyberExpertise) {
-            $cyberExpertise->expertises()->delete();
-        });
+        static::deleting(
+            function (CyberExpertise $cyberExpertise) {
+                $cyberExpertise->expertises()->delete();
+            }
+        );
     }
 
     /**

@@ -5,6 +5,11 @@ namespace App\Http\Middleware;
 use App\Support\Google2FAAuthenticator;
 use Closure;
 
+/**
+ * Class Google2FAMiddleware
+ *
+ * @package App\Http\Middleware
+ */
 class Google2FAMiddleware
 {
     /**

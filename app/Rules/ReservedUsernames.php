@@ -4,6 +4,11 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * Class ReservedUsernames
+ *
+ * @package App\Rules
+ */
 class ReservedUsernames implements Rule
 {
     private $blacklist = [

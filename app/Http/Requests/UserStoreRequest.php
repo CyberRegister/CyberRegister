@@ -6,6 +6,11 @@ use App\Rules\ReservedUsernames;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class UserStoreRequest
+ *
+ * @package App\Http\Requests
+ */
 class UserStoreRequest extends FormRequest
 {
     /**

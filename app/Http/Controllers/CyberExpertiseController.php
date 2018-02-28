@@ -11,7 +11,7 @@ use Illuminate\View\View;
 class CyberExpertiseController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the CyberExpertises.
      *
      * @return \Illuminate\Contracts\View\Factory|View
      */
@@ -21,7 +21,7 @@ class CyberExpertiseController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new CyberExpertise.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
@@ -35,7 +35,7 @@ class CyberExpertiseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created CyberExpertise in storage.
      *
      * @param CyberExpertiseStoreRequest $request
      *
@@ -57,7 +57,7 @@ class CyberExpertiseController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified CyberExpertise.
      *
      * @param \App\CyberExpertise $cyberExpertise
      *
@@ -69,7 +69,7 @@ class CyberExpertiseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified CyberExpertise.
      *
      * @param \App\CyberExpertise $cyberExpertise
      *
@@ -85,7 +85,7 @@ class CyberExpertiseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified CyberExpertise in storage.
      *
      * @param CyberExpertiseUpdateRequest $request
      * @param \App\CyberExpertise         $cyberExpertise
@@ -101,14 +101,15 @@ class CyberExpertiseController extends Controller
         try {
             $cyberExpertise->update($request->all());
         } catch (\Exception $e) {
-            return redirect()->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])
+                ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('cyberExpertise.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified CyberExpertise from storage.
      *
      * @param \App\CyberExpertise $cyberExpertise
      *
@@ -123,7 +124,8 @@ class CyberExpertiseController extends Controller
         try {
             $cyberExpertise->delete();
         } catch (\Exception $e) {
-            return redirect()->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])
+                ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('cyberExpertise.index');

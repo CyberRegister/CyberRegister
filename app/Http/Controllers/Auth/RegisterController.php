@@ -49,7 +49,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make(
+            $data, [
             'cyber_code' => [
                 new ReservedUsernames(),
                 'required',
@@ -64,7 +65,8 @@ class RegisterController extends Controller
             'place_of_birth' => 'required|string|max:255',
             'email'          => 'required|string|email|max:255|unique:users',
             'password'       => 'required|string|min:6|confirmed',
-        ]);
+            ]
+        );
     }
 
     /**
@@ -76,7 +78,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return User::create(
+            [
             'cyber_code'     => $data['cyber_code'],
             'first_name'     => $data['first_name'],
             'middle_name'    => isset($data['middle_name']) ? $data['middle_name'] : null,
@@ -85,6 +88,7 @@ class RegisterController extends Controller
             'place_of_birth' => $data['place_of_birth'],
             'email'          => $data['email'],
             'password'       => bcrypt($data['password']),
-        ]);
+            ]
+        );
     }
 }

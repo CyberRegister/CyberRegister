@@ -5,6 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class PcePoint
+ *
+ * @package App
+ */
 class PcePoint extends Model
 {
     /**
@@ -18,6 +23,8 @@ class PcePoint extends Model
 
     /**
      * Get the user that owns the points.
+     *
+     * @return BelongsTo
      */
     public function user(): BelongsTo
     {

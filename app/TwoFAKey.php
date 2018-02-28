@@ -5,6 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class TwoFAKey
+ *
+ * @package App
+ */
 class TwoFAKey extends Model
 {
     /**
@@ -16,6 +21,8 @@ class TwoFAKey extends Model
 
     /**
      * Get the user that owns this expertise.
+     *
+     * @return BelongsTo
      */
     public function user(): BelongsTo
     {

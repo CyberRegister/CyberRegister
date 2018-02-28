@@ -13,7 +13,7 @@ use Intervention\Image\Facades\Image;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a User search box.
      *
      * @return View
      */
@@ -23,7 +23,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Users.
      *
      * @param UserSearchRequest $request
      *
@@ -37,7 +37,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new User.
      *
      * @return View
      */
@@ -47,7 +47,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created User in storage.
      *
      * @param UserStoreRequest $request
      *
@@ -56,7 +56,8 @@ class UserController extends Controller
     public function store(UserStoreRequest $request): RedirectResponse
     {
         try {
-            User::create([
+            User::create(
+                [
                 'cyber_code'     => $request->cyber_code,
                 'first_name'     => $request->first_name,
                 'middle_name'    => $request->middle_name,
@@ -65,7 +66,8 @@ class UserController extends Controller
                 'place_of_birth' => $request->place_of_birth,
                 'email'          => $request->email,
                 'password'       => bcrypt($request->password),
-            ]);
+                ]
+            );
         } catch (\Exception $e) {
             return redirect()
                 ->route('users.create')->withInput()->withErrors([$e->getMessage()]);
@@ -75,7 +77,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified User.
      *
      * @param \App\User $user
      *
@@ -87,7 +89,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified User.
      *
      * @param User $user
      *
@@ -103,7 +105,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified User in storage.
      *
      * @param UserUpdateRequest $request
      * @param \App\User         $user
@@ -123,14 +125,15 @@ class UserController extends Controller
                 $user->save();
             }
         } catch (\Exception $e) {
-            return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])
+                ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('users.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified User from storage.
      *
      * @param \App\User $user
      *
@@ -145,7 +148,8 @@ class UserController extends Controller
         try {
             $user->delete();
         } catch (\Exception $e) {
-            return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])
+                ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('users.index');

@@ -11,7 +11,7 @@ use Illuminate\View\View;
 class PcePointController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the PcePoints.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
@@ -25,7 +25,7 @@ class PcePointController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new PcePoint.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
@@ -39,7 +39,7 @@ class PcePointController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created PcePoint in storage.
      *
      * @param PcePointRequest $request
      *
@@ -61,7 +61,7 @@ class PcePointController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified PcePoint.
      *
      * @param \App\PcePoint $pcePoint
      *
@@ -77,7 +77,7 @@ class PcePointController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified PcePoint.
      *
      * @param \App\PcePoint $pcePoint
      *
@@ -93,7 +93,7 @@ class PcePointController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified PcePoint in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\PcePoint            $pcePoint
@@ -109,14 +109,15 @@ class PcePointController extends Controller
         try {
             $pcePoint->update($request->all());
         } catch (\Exception $e) {
-            return redirect()->route('pcePoint.edit', ['id' => $pcePoint->id])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('pcePoint.edit', ['id' => $pcePoint->id])
+                ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('pcePoint.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified PcePoint from storage.
      *
      * @param \App\PcePoint $pcePoint
      *
@@ -131,7 +132,8 @@ class PcePointController extends Controller
         try {
             $pcePoint->delete();
         } catch (\Exception $e) {
-            return redirect()->route('pcePoint.edit', ['id' => $pcePoint->id])->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('pcePoint.edit', ['id' => $pcePoint->id])
+                ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('pcePoint.index');

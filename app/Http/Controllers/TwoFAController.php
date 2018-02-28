@@ -45,11 +45,13 @@ class TwoFAController extends Controller
         $google2fa = app('pragmarx.google2fa');
 
         // Add the secret key to the registration data
-        TwoFAKey::create([
+        TwoFAKey::create(
+            [
             'user_id'          => $user->id,
             'google2fa_enable' => 0,
             'google2fa_secret' => $google2fa->generateSecretKey(),
-        ]);
+            ]
+        );
 
         return redirect('/2fa')->with('success', 'Secret Key is generated, Please verify Code to Enable 2FA');
     }
@@ -84,7 +86,8 @@ class TwoFAController extends Controller
     {
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with('error', 'Your  password does not matches with your account password. Please try again.');
+            return redirect()->back()
+                ->with('error', 'Your  password does not matches with your account password. Please try again.');
         }
         $user = Auth::user();
         $user->twoFAKey->google2fa_enable = false;
