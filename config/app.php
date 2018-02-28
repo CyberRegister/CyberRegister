@@ -150,20 +150,19 @@ return [
         /*
          * Package Service Providers...
          */
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
+        Lahaxearnaud\U2f\U2fServiceProvider::class,
+        Spatie\Csp\CspServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
-        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
-        Lahaxearnaud\U2f\U2fServiceProvider::class,
-        Spatie\Csp\CspServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*

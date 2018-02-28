@@ -1,7 +1,5 @@
 <?php
 
-use Faker\Generator as Faker;
-
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -13,7 +11,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Expertise::class, function (Faker $faker) {
+$factory->define(App\Expertise::class, function () {
     return [
         'user_id'            => factory(\App\User::class)->create()->id,
         'cyber_expertise_id' => factory(\App\CyberExpertise::class)->create()->id,

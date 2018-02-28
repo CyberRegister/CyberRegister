@@ -113,9 +113,8 @@ class UserAuthTest extends TestCase
         Notification::assertSentTo(
             [$user],
             ResetPassword::class,
-            function ($notification, $channels) use (&$token) {
+            function ($notification) use (&$token) {
                 $token = $notification->token;
-
                 return true;
             }
         );
