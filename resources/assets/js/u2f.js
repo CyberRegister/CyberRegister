@@ -288,20 +288,27 @@ u2f.getPortSingleton_ = function(callback) {
 	if (u2f.port_) {
 		callback(u2f.port_);
 	} else {
-		if (u2f.waitingForPort_.length == 0) {
-			u2f.getMessagePort(function(port) {
-				u2f.port_ = port;
-				u2f.port_.addEventListener('message',
-					/** @type {function(Event)} */
-					(u2f.responseHandler_));
-
-				// Careful, here be async callbacks. Maybe.
-				while (u2f.waitingForPort_.length)
-					u2f.waitingForPort_.shift()(u2f.port_);
-			});
+		if (u2f.waitingForPort_.length === 0) {
+			u2f.getMessagePort(u2f.getMessagePort_);
 		}
 		u2f.waitingForPort_.push(callback);
 	}
+};
+
+/**
+ * Actually do the work here
+ * @param port
+ * @private
+ */
+u2f.getMessagePort_ = function(port) {
+	u2f.port_ = port;
+	u2f.port_.addEventListener('message',
+		/** @type {function(Event)} */
+		(u2f.responseHandler_));
+
+	// Careful, here be async callbacks. Maybe.
+	while (u2f.waitingForPort_.length)
+		u2f.waitingForPort_.shift()(u2f.port_);
 };
 
 /**

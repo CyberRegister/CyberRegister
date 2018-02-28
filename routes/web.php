@@ -17,10 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/logout', 'HomeController@logout')->name('logout');
-
 Route::group(['middleware' => ['2fa', 'u2f', 'auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/logout', 'HomeController@logout')->name('logout');
     Route::post('users/search', 'UserController@search')->name('users.search');
     Route::resource('users', 'UserController');
     Route::resource('pcePoint', 'PcePointController');
