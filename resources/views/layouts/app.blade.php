@@ -43,9 +43,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a href="{{ url('/over') }}" class="nav-link">Wat is het</a></li>
+                            @auth
                             <li><a class="nav-link" href="{{ route('users.index') }}">Cyber Experts</a></li>
                             <li><a class="nav-link" href="{{ route('cyberExpertise.index') }}">Cyber Expertises</a></li>
-                            @auth
                             @if(Auth::user()->is_controller)
                             <li><a class="nav-link" href="{{ route('expertise.index') }}">Expertises</a></li>
                             <li><a class="nav-link" href="{{ route('pcePoint.index') }}">PCE punten</a></li>
@@ -57,30 +58,30 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                                <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                                <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                            <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Cyber</a></li>
+                            <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                             @else
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" id="logout">
+                                        Logout
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" id="logout">
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                            @csrf
-                                        </form>
-                                        @if(is_null(Auth::user()->u2fKey))
-                                        <a class="dropdown-item" href="{{ route('u2f.register') }}" id="u2f-register">U2F toevoegen</a>
-                                        @endif
-                                        @if(is_null(Auth::user()->twoFAKey))
-                                        <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-register">2FA toevoegen</a>
-                                        @else
-                                        <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-edit">2FA aanpassen</a>
-                                        @endif
-                                    </div>
-                                </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
+                                    @if(is_null(Auth::user()->u2fKey))
+                                    <a class="dropdown-item" href="{{ route('u2f.register') }}" id="u2f-register">U2F toevoegen</a>
+                                    @endif
+                                    @if(is_null(Auth::user()->twoFAKey))
+                                    <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-register">2FA toevoegen</a>
+                                    @else
+                                    <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-edit">2FA aanpassen</a>
+                                    @endif
+                                </div>
+                            </li>
                             @endguest
                         </ul>
                     </div>

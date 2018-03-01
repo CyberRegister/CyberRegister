@@ -6,9 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 /**
  * Class CreateU2fKeyTable.
  *
- *
- *
- * @author  LAHAXE Arnaud
+ * @author LAHAXE Arnaud
  */
 class CreateU2fKeyTable extends Migration
 {
@@ -19,19 +17,23 @@ class CreateU2fKeyTable extends Migration
      */
     public function up()
     {
-        Schema::create('u2f_key', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->string('keyHandle');
-            $table->string('publicKey')->unique();
-            $table->text('certificate');
-            $table->integer('counter');
-            $table->timestamps();
-        });
+        Schema::create(
+            'u2f_key', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('user_id')->unsigned();
+                $table->string('keyHandle');
+                $table->string('publicKey')->unique();
+                $table->text('certificate');
+                $table->integer('counter');
+                $table->timestamps();
+            }
+        );
 
-        Schema::table('u2f_key', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
-        });
+        Schema::table(
+            'u2f_key', function (Blueprint $table) {
+                $table->foreign('user_id')->references('id')->on('users');
+            }
+        );
     }
 
     /**

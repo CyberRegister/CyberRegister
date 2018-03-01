@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Welkom in de Cyber Wereld!
+                    Welkom in de Cyberwereld!
                 </div>
             </div>
         </div>

@@ -11,9 +11,11 @@
 |
 */
 
-$factory->define(App\Expertise::class, function () {
-    return [
+$factory->define(
+    App\Expertise::class, function () {
+        return [
         'user_id'            => factory(\App\User::class)->create()->id,
         'cyber_expertise_id' => factory(\App\CyberExpertise::class)->create()->id,
-    ];
-});
+        ];
+    }
+);

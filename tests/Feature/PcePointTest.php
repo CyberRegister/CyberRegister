@@ -93,12 +93,14 @@ class PcePointTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
-            ->post('/pcePoint', [
+            ->post(
+                '/pcePoint', [
                 'location_code' => $faker->bothify('??##??'),
                 'user_id'       => $user->id,
                 'points'        => $faker->numberBetween(0, 1000),
                 '_token'        => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(403);
     }
 
@@ -113,12 +115,14 @@ class PcePointTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
-            ->post('/pcePoint', [
+            ->post(
+                '/pcePoint', [
                 'location_code' => $faker->bothify('??##??'),
                 'user_id'       => $user->id,
                 'points'        => $faker->numberBetween(0, 1000),
                 '_token'        => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/pcePoint');
         $this->assertCount(1, PcePoint::all());
     }
@@ -161,12 +165,14 @@ class PcePointTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
-            ->put('/pcePoint/'.$pcePoint->id, [
+            ->put(
+                '/pcePoint/'.$pcePoint->id, [
                 'location_code' => $faker->bothify('??##??'),
                 'user_id'       => $user->id,
                 'points'        => $faker->numberBetween(0, 1000),
                 '_token'        => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(403);
     }
 
@@ -182,12 +188,14 @@ class PcePointTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
-            ->put('/pcePoint/'.$pcePoint->id, [
+            ->put(
+                '/pcePoint/'.$pcePoint->id, [
                 'location_code' => $faker->bothify('??##??'),
                 'user_id'       => $user->id,
                 'points'        => $faker->numberBetween(0, 1000),
                 '_token'        => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/pcePoint');
     }
 

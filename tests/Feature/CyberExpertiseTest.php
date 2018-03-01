@@ -82,12 +82,14 @@ class CyberExpertiseTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
-            ->post('/cyberExpertise', [
+            ->post(
+                '/cyberExpertise', [
                 'expertise_code'  => $faker->bothify('??#'),
                 'description'     => $faker->paragraph,
                 'required_points' => $faker->numberBetween(0, 1000),
                 '_token'          => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(403);
     }
 
@@ -102,12 +104,14 @@ class CyberExpertiseTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
-            ->post('/cyberExpertise', [
+            ->post(
+                '/cyberExpertise', [
                 'expertise_code'  => $faker->bothify('??#'),
                 'description'     => $faker->paragraph,
                 'required_points' => $faker->numberBetween(0, 1000),
                 '_token'          => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/cyberExpertise');
         $this->assertCount(1, CyberExpertise::all());
     }
@@ -150,12 +154,14 @@ class CyberExpertiseTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
-            ->put('/cyberExpertise/'.$cyberExpertise->expertise_code, [
+            ->put(
+                '/cyberExpertise/'.$cyberExpertise->expertise_code, [
                 'expertise_code'  => $faker->bothify('??#'),
                 'description'     => $faker->paragraph,
                 'required_points' => $faker->numberBetween(0, 1000),
                 '_token'          => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(403);
     }
 
@@ -171,12 +177,14 @@ class CyberExpertiseTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
-            ->put('/cyberExpertise/'.$cyberExpertise->expertise_code, [
+            ->put(
+                '/cyberExpertise/'.$cyberExpertise->expertise_code, [
                 'expertise_code'  => $faker->bothify('??#'),
                 'description'     => $faker->paragraph,
                 'required_points' => $faker->numberBetween(0, 1000),
                 '_token'          => 'test',
-            ]);
+                ]
+            );
         $response->assertStatus(302)->assertRedirect('/cyberExpertise');
     }
 

@@ -5,11 +5,8 @@ namespace Tests\Feature;
 use App\TwoFAKey;
 use App\User;
 use Faker\Factory;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Support\Facades\Notification;
-use PragmaRX\Google2FALaravel\Exceptions\InvalidSecretKey;
 use Tests\TestCase;
 
 class TwoFATest extends TestCase
@@ -30,7 +27,7 @@ class TwoFATest extends TestCase
     }
 
     /**
-     * Test OTP failure
+     * Test OTP failure.
      */
     public function test2FALoginFail()
     {
@@ -40,16 +37,16 @@ class TwoFATest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->actingAs($user)
-            ->post('/2faVerify',[
-                '_token' => 'test',
-                'one_time_password' => '12345'
+            ->post('/2faVerify', [
+                '_token'            => 'test',
+                'one_time_password' => '12345',
             ]);
         $response->assertStatus(422)
             ->assertViewIs('auth.google2fa');
     }
 
     /**
-     * Test OTP hard failure
+     * Test OTP hard failure.
      */
     public function test2FALoginEmpty()
     {
@@ -57,16 +54,16 @@ class TwoFATest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->actingAs($user)
-            ->post('/2faVerify',[
-                '_token' => 'test',
-                'one_time_password' => '12345'
+            ->post('/2faVerify', [
+                '_token'            => 'test',
+                'one_time_password' => '12345',
             ]);
         $response->assertStatus(500)
             ->assertSee('PragmaRX\Google2FALaravel\Exceptions\InvalidSecretKey: Secret key cannot be empty.');
     }
 
     /**
-     * Test OTP failure
+     * Test OTP failure.
      */
     public function test2FALogin()
     {
@@ -76,9 +73,9 @@ class TwoFATest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->actingAs($user)
-            ->post('/2faVerify',[
-                '_token' => 'test',
-                'one_time_password' => $google2fa->getCurrentOtp($secret)
+            ->post('/2faVerify', [
+                '_token'            => 'test',
+                'one_time_password' => $google2fa->getCurrentOtp($secret),
             ]);
         $response->assertStatus(302)
             ->assertRedirect('/');
@@ -86,6 +83,7 @@ class TwoFATest extends TestCase
 
     /**
      * @param string $secret
+     *
      * @return User
      */
     private function get2FAUser($secret = 'secret'): User
@@ -98,6 +96,7 @@ class TwoFATest extends TestCase
                 'google2fa_secret' => $secret,
             ]
         );
+
         return User::find($user->id);
     }
 }
