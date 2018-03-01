@@ -70,7 +70,7 @@
                             <form class="" method="POST" action="{{ route('disable2fa') }}">
                                 @csrf
                                 <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                                    <label for="change-password" class="col-lg-4 form-control-label">Huidige wachtwoord</label>
+                                    <label for="current-password" class="col-lg-4 form-control-label">Huidige wachtwoord</label>
                                     <div class="col-lg-6">
                                         <input id="current-password" type="password" class="form-control" name="current-password" autocomplete="current-password" required>
                                         @if ($errors->has('current-password'))
