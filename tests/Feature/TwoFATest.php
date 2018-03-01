@@ -101,7 +101,7 @@ class TwoFATest extends TestCase
             ->assertRedirect('/2fa')
             ->assertSessionHas('success', 'Geheime sleutel is gegenereerd, voer OTP in om 2FA te activeren.');
         $user = User::find($user->id);
-        $this->assertFalse((bool)$user->twoFAKey->google2fa_enable);
+        $this->assertFalse((bool) $user->twoFAKey->google2fa_enable);
         $response = $this
             ->actingAs($user)
             ->get('/2fa');
@@ -113,7 +113,7 @@ class TwoFATest extends TestCase
             ->actingAs($user)
             ->post('/2fa', [
                 '_token'            => 'test',
-                'verify-code' => '12345',
+                'verify-code'       => '12345',
             ]);
         $response->assertStatus(302)
             ->assertRedirect('/2fa')
@@ -124,13 +124,13 @@ class TwoFATest extends TestCase
             ->actingAs($user)
             ->post('/2fa', [
                 '_token'            => 'test',
-                'verify-code' => $google2fa->getCurrentOtp($user->twoFAKey->google2fa_secret),
+                'verify-code'       => $google2fa->getCurrentOtp($user->twoFAKey->google2fa_secret),
             ]);
         $response->assertStatus(302)
             ->assertRedirect('/2fa')
             ->assertSessionHas('success', '2FA is geactiveerd.');
         $user = User::find($user->id);
-        $this->assertTrue((bool)$user->twoFAKey->google2fa_enable);
+        $this->assertTrue((bool) $user->twoFAKey->google2fa_enable);
     }
 
     /**
@@ -141,7 +141,7 @@ class TwoFATest extends TestCase
         $google2fa = app('pragmarx.google2fa');
         $secret = $google2fa->generateSecretKey();
         $user = $this->get2FAUser($secret);
-        $this->assertTrue((bool)$user->twoFAKey->google2fa_enable);
+        $this->assertTrue((bool) $user->twoFAKey->google2fa_enable);
         $response = $this
             ->actingAs($user)
             ->get('/2fa');
@@ -152,7 +152,7 @@ class TwoFATest extends TestCase
             ->actingAs($user)
             ->post('/disable2fa', [
                 '_token'            => 'test',
-                'current-password' => 'test',
+                'current-password'  => 'test',
             ]);
         $response->assertStatus(302)
             ->assertRedirect('/2fa')
@@ -162,13 +162,13 @@ class TwoFATest extends TestCase
             ->actingAs($user)
             ->post('/disable2fa', [
                 '_token'            => 'test',
-                'current-password' => 'secret',
+                'current-password'  => 'secret',
             ]);
         $response->assertStatus(302)
             ->assertRedirect('/2fa')
             ->assertSessionHas('success', '2FA is uitgeschakeld.');
         $user = User::find($user->id);
-        $this->assertFalse((bool)$user->twoFAKey->google2fa_enable);
+        $this->assertFalse((bool) $user->twoFAKey->google2fa_enable);
     }
 
     /**
