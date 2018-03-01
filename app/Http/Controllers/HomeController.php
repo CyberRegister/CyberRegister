@@ -17,7 +17,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the logout page for non-js peopel.
+     * Show the logout page for non-js people.
      *
      * @return View
      */
