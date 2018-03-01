@@ -43,9 +43,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a href="{{ url('/over') }}" class="nav-link">Wat is het</a></li>
+                            @auth
                             <li><a class="nav-link" href="{{ route('users.index') }}">Cyber Experts</a></li>
                             <li><a class="nav-link" href="{{ route('cyberExpertise.index') }}">Cyber Expertises</a></li>
-                            @auth
                             @if(Auth::user()->is_controller)
                             <li><a class="nav-link" href="{{ route('expertise.index') }}">Expertises</a></li>
                             <li><a class="nav-link" href="{{ route('pcePoint.index') }}">PCE punten</a></li>
@@ -56,7 +57,6 @@
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
-                            <li class="nav-item"><a href="{{ url('/over') }}" class="nav-link">Wat is het</a></li>
                             @guest
                             <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Cyber</a></li>
                             <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
