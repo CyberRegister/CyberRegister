@@ -16,7 +16,9 @@ class Csp extends Basic
         $this
             ->addDirective(Directive::IMG, 'data:')
             ->addDirective(Directive::STYLE, 'https:')
+            ->addDirective(Directive::STYLE, 'inline:')
             ->addDirective(Directive::FONT, 'self')
+            ->addDirective(Directive::FONT, 'data:')
             ->addDirective(Directive::FONT, 'https:');
     }
 }
