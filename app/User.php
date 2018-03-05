@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Lahaxearnaud\U2f\Models\U2fKey;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * Class User.
  */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.

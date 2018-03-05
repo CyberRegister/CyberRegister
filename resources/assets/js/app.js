@@ -124,3 +124,25 @@ u2fClient = {
 	}
 };
 /* eslint-enable no-undef */
+
+window.Vue = require('vue');
+
+window.Vue.component(
+	'passport-clients',
+	require('./components/passport/Clients.vue')
+);
+
+window.Vue.component(
+	'passport-authorized-clients',
+	require('./components/passport/AuthorizedClients.vue')
+);
+
+window.Vue.component(
+	'passport-personal-access-tokens',
+	require('./components/passport/PersonalAccessTokens.vue')
+);
+
+new window.Vue({
+	el: '#app'
+});
+

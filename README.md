@@ -18,6 +18,7 @@ composer install
 cp .env.example .env      # Edit config
 php artisan key:generate
 php artisan migrate
+php artisan passport:keys
 yarn install
 yarn production
 ```
