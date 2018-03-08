@@ -54,6 +54,7 @@ class ReservedUsernames implements Rule
         if ($attribute !== 'cyber_code') {
             return true;
         }
+
         return !in_array(strtolower($value), $this->blacklist, true);
     }
 
