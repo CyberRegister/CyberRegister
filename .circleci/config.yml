@@ -33,6 +33,8 @@ jobs:
       - run: sudo mv composer.phar /usr/local/bin/composer
 
       - run: composer install -n --prefer-dist
+      
+      - run: composer global require phpunit
 
       - save_cache:
           paths:
