@@ -66,12 +66,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" id="logout">
-                                        Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                    </form>
+                                    <a class="dropdown-item" href="{{ route('users.edit', ['cyber_code' => Auth::user()->cyber_code]) }}" id="user-edit">Profiel bewerken</a>
                                     @if(is_null(Auth::user()->u2fKey))
                                     <a class="dropdown-item" href="{{ route('u2f.register') }}" id="u2f-register">U2F toevoegen</a>
                                     @endif
@@ -80,6 +75,12 @@
                                     @else
                                     <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-edit">2FA aanpassen</a>
                                     @endif
+                                    <a class="dropdown-item" href="{{ route('logout') }}" id="logout">
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
                                 </div>
                             </li>
                             @endguest
