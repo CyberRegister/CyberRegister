@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.1.5-browsers
+      - image: circleci/php:latest
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -26,16 +26,8 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-      - run: php composer-setup.php
-      - run: php -r "unlink('composer-setup.php');"
-      - run: php composer.phar self-update
-      - run: sudo mv composer.phar /usr/local/bin/composer
-
       - run: composer install -n --prefer-dist
       
-      - run: composer global require phpunit
-
       - save_cache:
           paths:
             - ./vendor
