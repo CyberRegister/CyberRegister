@@ -25,6 +25,12 @@
                 <a href="https://scrutinizer-ci.com/">Scrutinizer</a> kwaliteitscontrole.
             </li>
         </ul>
+        Onder auspiciën van:
+        <ul>
+            <li>
+                <a href="https://hivd.nl/">Hackers Inlichtingen en Veiligheidsdienst</a>
+            </li>
+        </ul>
     </p>
     <p>Bekijk de code op <a href="https://github.com/CyberRegister/CyberRegister">GitHub</a>.</p>
 </div>
