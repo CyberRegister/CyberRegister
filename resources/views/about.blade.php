@@ -25,30 +25,29 @@
         Het aantal cyberaanvallen dat de Nederlandse hacker inlichtingendiensten zien, en de omvang van de (economische) schade, bewijzen dat spionageaanvallen een reëel risico vormen voor het Nederlandse bedrijfsleven en de overheid.<br>
         Het cyberregister helpt bedrijven bij het filteren van cybercharlatans en cyberkwakzalvers, zo kunnen bedrijven er zich van verzekeren dat ze met serieuze cyberexperts van doen hebben.
     </p>
-    <p>
-        Mede mogelijk gemaakt door:
-        <ul>
-            <li>Stichting Eurocyber</li>
-            <li>
-                <a href="https://dewinter.com/">De Winter Information Solutions</a> idee.
-            </li>
-            <li>
-                <a href="https://beehive42.org/">Beehive Techcampus 4.2</a> diensten.
-            </li>
-            <li>
-                <a href="https://sentry.io/">Sentry</a> monitoring.
-            </li>
-            <li>
-                <a href="https://scrutinizer-ci.com/">Scrutinizer</a> kwaliteitscontrole.
-            </li>
-        </ul>
-        Onder auspiciën van:
-        <ul>
-            <li>
-                <a href="https://hivd.nl/">Hackers Inlichtingen en Veiligheidsdienst</a>
-            </li>
-        </ul>
-    </p>
+    <h2>Cyberregister</h2>
+    <h3>Mede mogelijk gemaakt door:</h3>
+    <ul>
+        <li>Stichting Eurocyber</li>
+        <li>
+            <a href="https://dewinter.com/">De Winter Information Solutions</a> idee.
+        </li>
+        <li>
+            <a href="https://beehive42.org/">Beehive Techcampus 4.2</a> diensten.
+        </li>
+        <li>
+            <a href="https://sentry.io/">Sentry</a> monitoring.
+        </li>
+        <li>
+            <a href="https://scrutinizer-ci.com/">Scrutinizer</a> kwaliteitscontrole.
+        </li>
+    </ul>
+    <h3>Onder auspiciën van:</h3>
+    <ul>
+        <li>
+            <a href="https://hivd.nl/">Hackers Inlichtingen en Veiligheidsdienst</a>
+        </li>
+    </ul>
     <p>Bekijk de code op <a href="https://github.com/CyberRegister/CyberRegister">GitHub</a>.</p>
 </div>
 @endsection
