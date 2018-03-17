@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">{{ $user->name }}</div>
+                <div class="card-header"><strong>{{ $user->name }}</strong> {{ implode(", ", $user->expertises) }}</div>
 
                 <div class="card-body">
                     @if (session('status'))

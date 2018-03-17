@@ -32,7 +32,7 @@
         <div class="header">
             <img src="/static/logohome.png" width="610">
         </div>
-        <div id="payoff">Cyberregister</div>
+        <div id="payoff"><a href="/">Cyberregister</a></div>
         <nav class="navbar navbar-light bg-light navbar-expand-md"
              role="navigation">
             <div class="container">
