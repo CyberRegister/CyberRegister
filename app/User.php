@@ -101,6 +101,8 @@ class User extends Authenticatable
             $codes[$expertise->code] = $expertise->description;
         }
 
+        sort($codes);
+
         return $codes;
     }
 
