@@ -20,7 +20,7 @@ class Expertise extends Model
     ];
 
     /**
-     * @var array 
+     * @var array
      */
     protected $dates = ['date_of_certification', 'date_of_expiration'];
 
