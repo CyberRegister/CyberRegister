@@ -31,7 +31,10 @@ class UserController extends Controller
      */
     public function search(UserSearchRequest $request): View
     {
-        $users = User::where('cyber_code', 'like', '%'.$request->q.'%')
+        $users = User::with(['expertises' => function ($query) {
+                $query->where('cyber_expertise_id', 1);
+            }])
+            ->where('cyber_code', 'like', '%'.$request->q.'%')
             ->orWhere('first_name', 'like', '%'.$request->q.'%')
             ->orWhere('last_name', 'like', '%'.$request->q.'%')
             ->get();
