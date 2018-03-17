@@ -20,6 +20,11 @@ class Expertise extends Model
     ];
 
     /**
+     * @var array 
+     */
+    protected $dates = ['date_of_certification', 'date_of_expiration'];
+
+    /**
      * Get the user that owns this expertise.
      */
     public function user(): BelongsTo
