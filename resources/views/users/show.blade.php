@@ -19,11 +19,15 @@
                         </div>
                     @endif
                     @if(!is_null($user->expertises))
-                    <ul>
+                    <table>
                     @foreach($user->expertises->sortBy('cyber_expertise_id') as $expertise)
-                        <li>{{ $expertise->code }} ( {{ $expertise->description }} ) @if($expertise->date_of_expiration)geldig tot {{  $expertise->date_of_expiration->format('Y-m-d') }}@endif</li>
+                        <tr>
+                            <td>{{ $expertise->code }}</td>
+                            <td>{{ $expertise->description }}</td>
+                            <td>@if($expertise->date_of_expiration)geldig tot {{  $expertise->date_of_expiration->format('Y-m-d') }}@endif</td>
+                        </tr>
                     @endforeach
-                    </ul>
+                    </table>
                     @endif
                     @if(!empty($user->photo))
                         <img src="{{ $user->photo }}" alt="{{ $user->name }}" width="100%" />
