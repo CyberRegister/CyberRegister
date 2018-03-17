@@ -7,7 +7,7 @@
             <div class="card card-default">
                 <div class="card-header">
                     <strong>{{ $user->name }}</strong>
-                    @foreach($user->expertises as $expertise)
+                    @foreach($user->expertises->sortBy('cyber_expertise_id') as $expertise)
                         {{ $expertise->code }}
                     @endforeach
                 </div>
@@ -20,7 +20,7 @@
                     @endif
                     @if(!is_null($user->expertises))
                     <ul>
-                    @foreach($user->expertises as $expertise)
+                    @foreach($user->expertises->sortBy('cyber_expertise_id') as $expertise)
                         <li>{{ $expertise->code }} ( {{ $expertise->description }} )</li>
                     @endforeach
                     </ul>
