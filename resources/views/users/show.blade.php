@@ -19,7 +19,7 @@
                         </div>
                     @endif
                     @if(!is_null($user->expertises))
-                    <table>
+                    <table width="100%">
                     @foreach($user->expertises->sortBy('cyber_expertise_id') as $expertise)
                         <tr>
                             <td>{{ $expertise->code }}</td>
