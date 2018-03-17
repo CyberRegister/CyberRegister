@@ -21,7 +21,7 @@
                     @if(!is_null($user->expertises))
                     <ul>
                     @foreach($user->expertises->sortBy('cyber_expertise_id') as $expertise)
-                        <li>{{ $expertise->code }} ( {{ $expertise->description }} )</li>
+                        <li>{{ $expertise->code }} ( {{ $expertise->description }} ) @if($expertise->date_of_certification)geldig tot {{  $expertise->date_of_certification->format('Y-m-d') }}@endif</li>
                     @endforeach
                     </ul>
                     @endif
