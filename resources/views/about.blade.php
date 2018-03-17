@@ -15,7 +15,6 @@
         Met het Cyberregister breiden we deze screening uit naar iedereen die in de cyber werkt en een bewijs van cyberexpertise nodig heeft.<br>
         Een cyberexpert dient per twee jaar voldoende Permanente Cyber Expertise (PCE) punten te behalen.<br>
         Per cyberexpertise is een bepaald aantal punten gesteld die per twee jaar verworven dienen te worden.<br>
-        Permanente Cyber Expertise punten kunnen verzameld worden door het bijwonen van relevante congressen, festivals, workshops, deelnemerschap bij een <a href="https://hackerspaces.nl/">hackerspace</a> en deelname aan gecybercertificeerde <a href="https://hackopen.org/">hackathons</a>.<br>
         Geregistreerde cyberexperts kunnen desgewenst verwijzen naar een publieke URL binnen dit register om te laten zien welke cyberexpertises zij bezitten.
     </p>
     <h2>Voor bedrijven</h2>

@@ -24,12 +24,15 @@ Route::get(
 
 Auth::routes();
 
+Route::post('search', 'UserController@search')->name('expert.search');
+Route::get('expert/{user}', 'UserController@show')->name('expert.show');
+
 Route::group(
     ['middleware' => ['2fa', 'u2f', 'auth']], function () {
         Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/logout', 'HomeController@logout')->name('logout');
-        Route::post('users/search', 'UserController@search')->name('users.search');
         Route::resource('users', 'UserController');
+        Route::post('users/search', 'UserController@search')->name('users.search');
         Route::resource('pcePoint', 'PcePointController');
         Route::resource('expertise', 'ExpertiseController');
         Route::resource('cyberExpertise', 'CyberExpertiseController');
