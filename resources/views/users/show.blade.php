@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Users</div>
+                <div class="card-header">{{ $user->name }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,8 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    TODO: more than just {{ $user->name }}
                     @if(!is_null($user->expertises))
                     <ul>
                     @foreach($user->expertises as $expertise)
