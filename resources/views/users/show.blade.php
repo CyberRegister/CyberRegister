@@ -16,7 +16,7 @@
                     @if(!is_null($user->expertises))
                     <ul>
                     @foreach($user->expertises as $expertise)
-                        <li>{{ $expertise->code }}</li>
+                        <li>{{ $expertise->code }} ( {{ $expertise->description }} )</li>
                     @endforeach
                     </ul>
                     @endif
