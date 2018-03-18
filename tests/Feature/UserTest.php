@@ -83,6 +83,9 @@ class UserTest extends TestCase
     public function testUserSearchQueryExact()
     {
         $user = factory(User::class)->create();
+        $expertise = new Expertise();
+        $expertise->user()->associate($user);
+
         $response = $this
             ->actingAs($user)
             ->post(
@@ -91,7 +94,9 @@ class UserTest extends TestCase
                 ]
             );
         $response->assertStatus(200)
-            ->assertViewHas('users', User::all())->assertViewHas('q', $user->cyber_code);
+            ->assertViewHas('users', User::with(['expertises' => function ($query) {
+                $query->where('cyber_expertise_id', 1);
+            }])->get())->assertViewHas('q', $user->cyber_code);
     }
 
     /**
