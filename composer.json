@@ -22,6 +22,7 @@
     },
     "require-dev": {
         "codacy/coverage": "dev-master",
+        "codeception/codeception": "^2.4",
         "codedungeon/phpunit-result-printer": "^0.9.1",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
