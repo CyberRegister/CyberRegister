@@ -9,7 +9,8 @@
 [![Build Status](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/build.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![StyleCI](https://styleci.io/repos/120670007/shield?branch=master)](https://styleci.io/repos/120670007)
-[![Badges](https://img.shields.io/badge/badges-12-green.svg)](https://shields.io)
+[![codecov](https://codecov.io/gh/CyberRegister/CyberRegister/branch/master/graph/badge.svg)](https://codecov.io/gh/CyberRegister/CyberRegister)
+[![Badges](https://img.shields.io/badge/badges-13-green.svg)](https://shields.io)
 [![Cyberveiligheid](https://img.shields.io/badge/Cyberveiligheid-97%25-yellow.svg)](https://eurocyber.nl)
 
 Installation:
