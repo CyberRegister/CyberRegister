@@ -21,3 +21,4 @@ yarn-error.log
 codeclimate.json
 cc-test-reporter
 deploy_*
+tests/_support/

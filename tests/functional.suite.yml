@@ -10,3 +10,6 @@ modules:
     enabled:
         # add a framework module here
         - \Helper\Functional
+        - Asserts
+        - REST:
+            depends: Laravel5
