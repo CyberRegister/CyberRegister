@@ -12,14 +12,14 @@
     },
     "devDependencies": {
         "axios": "^0.18",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.1.0",
         "cross-env": "^5.1",
         "dropzone": "^5.4.0",
-        "eslint": "^4.19.0",
+        "eslint": "^4.19.1",
         "eslint-loader": "^2.0.0",
         "jquery": "^3.3",
         "laravel-mix": "^2.1",
-        "lodash": "^4.17.5",
+        "lodash": "^4.17.10",
         "popper.js": "^1.14",
         "vue": "^2.5.16"
     }
