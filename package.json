@@ -19,7 +19,7 @@
         "eslint-loader": "^2.0.0",
         "jquery": "^3.3",
         "laravel-mix": "^2.1",
-        "lodash": "^4.17.10",
+        "lodash": "^4.17.13",
         "popper.js": "^1.14",
         "vue": "^2.5.16"
     }
