@@ -28,7 +28,7 @@ class CyberExpertise extends Model
     {
         parent::boot();
         static::deleting(
-            function (CyberExpertise $cyberExpertise) {
+            function (self $cyberExpertise) {
                 $cyberExpertise->expertises()->delete();
             }
         );

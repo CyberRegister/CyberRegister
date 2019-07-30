@@ -45,7 +45,7 @@ class User extends Authenticatable
     {
         parent::boot();
         static::deleting(
-            function (User $user) {
+            function (self $user) {
                 $user->expertises()->delete();
                 $user->pcePoints()->delete();
             }
