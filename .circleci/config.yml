@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: sudo apt install -y libsqlite3-dev zlib1g-dev libmagickwand-dev
       - run: sudo docker-php-ext-install zip
-      - run: yes '' | sudo pecl install imagick
+      - run: yes '' | sudo pecl install imagick || true
       - run: sudo docker-php-ext-enable imagick
       - run: sudo composer self-update
       - restore_cache:
