@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expertise;
 use App\Http\Requests\ExpertiseRequest;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -12,8 +13,7 @@ class ExpertiseController extends Controller
     /**
      * Display a listing of the Expertises.
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @throws AuthorizationException
      * @return View
      */
     public function index(): View
@@ -26,8 +26,7 @@ class ExpertiseController extends Controller
     /**
      * Show the form for creating a new Expertise.
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @throws AuthorizationException
      * @return View
      */
     public function create(): View
@@ -41,9 +40,7 @@ class ExpertiseController extends Controller
      * Store a newly created Expertise in storage.
      *
      * @param ExpertiseRequest $request
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @throws AuthorizationException
      * @return RedirectResponse
      */
     public function store(ExpertiseRequest $request): RedirectResponse
@@ -63,10 +60,8 @@ class ExpertiseController extends Controller
     /**
      * Display the specified Expertise.
      *
-     * @param \App\Expertise $expertise
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param Expertise $expertise
+     * @throws AuthorizationException
      * @return View
      */
     public function show(Expertise $expertise): View
@@ -79,10 +74,8 @@ class ExpertiseController extends Controller
     /**
      * Show the form for editing the specified Expertise.
      *
-     * @param \App\Expertise $expertise
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param Expertise $expertise
+     * @throws AuthorizationException
      * @return View
      */
     public function edit(Expertise $expertise): View
@@ -96,10 +89,8 @@ class ExpertiseController extends Controller
      * Update the specified Expertise in storage.
      *
      * @param ExpertiseRequest $request
-     * @param \App\Expertise   $expertise
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param Expertise   $expertise
+     * @throws AuthorizationException
      * @return RedirectResponse
      */
     public function update(ExpertiseRequest $request, Expertise $expertise): RedirectResponse
@@ -120,10 +111,8 @@ class ExpertiseController extends Controller
     /**
      * Remove the specified Expertise from storage.
      *
-     * @param \App\Expertise $expertise
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param Expertise $expertise
+     * @throws AuthorizationException
      * @return RedirectResponse
      */
     public function destroy(Expertise $expertise): RedirectResponse

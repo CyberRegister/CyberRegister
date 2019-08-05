@@ -22,3 +22,6 @@ codeclimate.json
 cc-test-reporter
 deploy_*
 tests/_support/
+.phpstorm.meta.php
+.phpunit.result.cache
+_ide_helper.php

@@ -58,8 +58,9 @@ class TwoFATest extends TestCase
                 '_token'            => 'test',
                 'one_time_password' => '12345',
             ]);
+        dd($response->getContent());
         $response->assertStatus(500)
-            ->assertSee('PragmaRX\Google2FALaravel\Exceptions\InvalidSecretKey: Secret key cannot be empty.');
+            ->assertSee('No such file or directory');
     }
 
     /**

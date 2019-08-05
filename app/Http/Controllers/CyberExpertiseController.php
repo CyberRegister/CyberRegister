@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CyberExpertise;
 use App\Http\Requests\CyberExpertiseStoreRequest;
 use App\Http\Requests\CyberExpertiseUpdateRequest;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -13,7 +14,7 @@ class CyberExpertiseController extends Controller
     /**
      * Display a listing of the CyberExpertises.
      *
-     * @return \Illuminate\Contracts\View\Factory|View
+     * @return View
      */
     public function index(): View
     {
@@ -23,8 +24,7 @@ class CyberExpertiseController extends Controller
     /**
      * Show the form for creating a new CyberExpertise.
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @throws AuthorizationException
      * @return View
      */
     public function create(): View
@@ -38,10 +38,8 @@ class CyberExpertiseController extends Controller
      * Store a newly created CyberExpertise in storage.
      *
      * @param CyberExpertiseStoreRequest $request
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
+     * @return RedirectResponse
      */
     public function store(CyberExpertiseStoreRequest $request): RedirectResponse
     {
@@ -59,8 +57,7 @@ class CyberExpertiseController extends Controller
     /**
      * Display the specified CyberExpertise.
      *
-     * @param \App\CyberExpertise $cyberExpertise
-     *
+     * @param CyberExpertise $cyberExpertise
      * @return View
      */
     public function show(CyberExpertise $cyberExpertise): View
@@ -71,10 +68,8 @@ class CyberExpertiseController extends Controller
     /**
      * Show the form for editing the specified CyberExpertise.
      *
-     * @param \App\CyberExpertise $cyberExpertise
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param CyberExpertise $cyberExpertise
+     * @throws AuthorizationException
      * @return View
      */
     public function edit(CyberExpertise $cyberExpertise): View
@@ -88,10 +83,8 @@ class CyberExpertiseController extends Controller
      * Update the specified CyberExpertise in storage.
      *
      * @param CyberExpertiseUpdateRequest $request
-     * @param \App\CyberExpertise         $cyberExpertise
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param CyberExpertise         $cyberExpertise
+     * @throws AuthorizationException
      * @return RedirectResponse
      */
     public function update(CyberExpertiseUpdateRequest $request, CyberExpertise $cyberExpertise): RedirectResponse
@@ -111,10 +104,8 @@ class CyberExpertiseController extends Controller
     /**
      * Remove the specified CyberExpertise from storage.
      *
-     * @param \App\CyberExpertise $cyberExpertise
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param CyberExpertise $cyberExpertise
+     * @throws AuthorizationException
      * @return RedirectResponse
      */
     public function destroy(CyberExpertise $cyberExpertise): RedirectResponse

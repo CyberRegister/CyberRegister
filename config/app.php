@@ -150,7 +150,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Lahaxearnaud\U2f\U2fServiceProvider::class,
         Spatie\Csp\CspServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
@@ -212,7 +211,6 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         'Google2FA'    => PragmaRX\Google2FALaravel\Facade::class,
-        'Sentry'       => Sentry\SentryLaravel\SentryFacade::class,
         'U2f'          => Lahaxearnaud\U2f\U2fFacade::class,
         'Image'        => Intervention\Image\Facades\Image::class,
     ],

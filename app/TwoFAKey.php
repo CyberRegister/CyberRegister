@@ -7,6 +7,24 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TwoFAKey.
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $google2fa_enable
+ * @property string $google2fa_secret
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereGoogle2faEnable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereGoogle2faSecret($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereUserId($value)
+ * @mixin \Eloquent
  */
 class TwoFAKey extends Model
 {

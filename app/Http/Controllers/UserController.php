@@ -6,6 +6,7 @@ use App\Http\Requests\UserSearchRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Intervention\Image\Facades\Image;
@@ -26,7 +27,6 @@ class UserController extends Controller
      * Display a listing of the Users.
      *
      * @param UserSearchRequest $request
-     *
      * @return View
      */
     public function search(UserSearchRequest $request): View
@@ -44,7 +44,6 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new User.
-     *
      * @return View
      */
     public function create(): View
@@ -56,8 +55,7 @@ class UserController extends Controller
      * Store a newly created User in storage.
      *
      * @param UserStoreRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(UserStoreRequest $request): RedirectResponse
     {
@@ -85,8 +83,7 @@ class UserController extends Controller
     /**
      * Display the specified User.
      *
-     * @param \App\User $user
-     *
+     * @param User $user
      * @return View
      */
     public function show(User $user): View
@@ -98,10 +95,8 @@ class UserController extends Controller
      * Show the form for editing the specified User.
      *
      * @param User $user
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
-     * @return \Illuminate\Contracts\View\Factory|View
+     * @throws AuthorizationException
+     * @return View
      */
     public function edit(User $user): View
     {
@@ -114,11 +109,9 @@ class UserController extends Controller
      * Update the specified User in storage.
      *
      * @param UserUpdateRequest $request
-     * @param \App\User         $user
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @param User         $user
+     * @throws AuthorizationException
+     * @return RedirectResponse
      */
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
@@ -141,11 +134,9 @@ class UserController extends Controller
     /**
      * Remove the specified User from storage.
      *
-     * @param \App\User $user
-     *
+     * @param User $user
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy(User $user): RedirectResponse
     {

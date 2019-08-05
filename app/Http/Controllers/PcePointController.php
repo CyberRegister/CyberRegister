@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PcePointRequest;
 use App\PcePoint;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -13,8 +14,7 @@ class PcePointController extends Controller
     /**
      * Display a listing of the PcePoints.
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @throws AuthorizationException
      * @return View
      */
     public function index(): View
@@ -27,8 +27,7 @@ class PcePointController extends Controller
     /**
      * Show the form for creating a new PcePoint.
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @throws AuthorizationException
      * @return View
      */
     public function create(): View
@@ -42,9 +41,7 @@ class PcePointController extends Controller
      * Store a newly created PcePoint in storage.
      *
      * @param PcePointRequest $request
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @throws AuthorizationException
      * @return RedirectResponse
      */
     public function store(PcePointRequest $request): RedirectResponse
@@ -63,10 +60,8 @@ class PcePointController extends Controller
     /**
      * Display the specified PcePoint.
      *
-     * @param \App\PcePoint $pcePoint
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param PcePoint $pcePoint
+     * @throws AuthorizationException
      * @return View
      */
     public function show(PcePoint $pcePoint): View
@@ -79,9 +74,8 @@ class PcePointController extends Controller
     /**
      * Show the form for editing the specified PcePoint.
      *
-     * @param \App\PcePoint $pcePoint
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param PcePoint $pcePoint
+     * @throws AuthorizationException
      *
      * @return View
      */
@@ -95,11 +89,9 @@ class PcePointController extends Controller
     /**
      * Update the specified PcePoint in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\PcePoint            $pcePoint
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param Request $request
+     * @param PcePoint            $pcePoint
+     * @throws AuthorizationException
      * @return RedirectResponse
      */
     public function update(Request $request, PcePoint $pcePoint): RedirectResponse
@@ -119,10 +111,8 @@ class PcePointController extends Controller
     /**
      * Remove the specified PcePoint from storage.
      *
-     * @param \App\PcePoint $pcePoint
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param PcePoint $pcePoint
+     * @throws AuthorizationException
      * @return RedirectResponse
      */
     public function destroy(PcePoint $pcePoint): RedirectResponse

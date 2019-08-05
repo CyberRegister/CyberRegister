@@ -32,7 +32,7 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" nonce="{{ cspNonce() }}">
+<script type="text/javascript" nonce="{{ csp_nonce() }}">
     var sigs = {!! json_encode($currentKeys) !!};
     var req = {!! json_encode($registerData) !!};
 

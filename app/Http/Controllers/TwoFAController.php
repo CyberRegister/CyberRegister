@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Disable2FaRequest;
 use App\Http\Requests\Enable2FaRequest;
 use App\TwoFAKey;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class TwoFAController extends Controller
 {
     /**
-     * @return $this
+     * @return View
      */
     public function show2faForm()
     {
@@ -36,7 +38,7 @@ class TwoFAController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function generate2faSecret()
     {
@@ -58,8 +60,7 @@ class TwoFAController extends Controller
 
     /**
      * @param Enable2FaRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function enable2fa(Enable2FaRequest $request)
     {
@@ -79,8 +80,7 @@ class TwoFAController extends Controller
 
     /**
      * @param Disable2FaRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function disable2fa(Disable2FaRequest $request)
     {
