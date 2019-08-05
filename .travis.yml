@@ -13,7 +13,7 @@ services:
 before_script:
   - cp .env.travis .env
   - mysql -e 'create database cyber_test;'
-  - pecl install imagick
+  - yes '' | pecl install imagick
   - composer self-update
   - composer install --dev --no-interaction
   - curl -s -o $HOME/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.33.2/nvm.sh
