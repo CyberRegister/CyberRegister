@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 7.1
   - 7.2
   - 7.3
 
@@ -19,7 +18,7 @@ before_script:
   - curl -s -o $HOME/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.33.2/nvm.sh
   - source $HOME/.nvm/nvm.sh
   - yarn install
-  - yarn prod
+  - yarn build
   - php artisan key:generate
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -30,6 +29,7 @@ script:
   - phplint '**/*.php' '!vendor/**' '!storage/**'
   - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
   - yarn lint
+  - php artisan code:analyse
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
