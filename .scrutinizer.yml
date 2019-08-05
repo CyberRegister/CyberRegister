@@ -9,7 +9,7 @@ build:
         tests:
             environment:
                 php:
-                    version: 7.1
+                    version: 7.2
                 mysql: 5.7
                 variables:
                     DB_TEST_USERNAME: root
