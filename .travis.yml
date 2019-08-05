@@ -2,16 +2,14 @@ language: php
 
 php:
   - 7.1
+  - 7.2
+  - 7.3
 
 env:
-  - TRAVIS_NODE_VERSION="9"
+  - TRAVIS_NODE_VERSION="12"
 
-addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
+services:
+  - mysql
 
 before_script:
   - cp .env.travis .env
