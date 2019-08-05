@@ -60,6 +60,7 @@ class TwoFAController extends Controller
 
     /**
      * @param Enable2FaRequest $request
+     *
      * @return RedirectResponse
      */
     public function enable2fa(Enable2FaRequest $request)
@@ -80,6 +81,7 @@ class TwoFAController extends Controller
 
     /**
      * @param Disable2FaRequest $request
+     *
      * @return RedirectResponse
      */
     public function disable2fa(Disable2FaRequest $request)

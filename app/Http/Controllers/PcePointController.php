@@ -15,6 +15,7 @@ class PcePointController extends Controller
      * Display a listing of the PcePoints.
      *
      * @throws AuthorizationException
+     *
      * @return View
      */
     public function index(): View
@@ -28,6 +29,7 @@ class PcePointController extends Controller
      * Show the form for creating a new PcePoint.
      *
      * @throws AuthorizationException
+     *
      * @return View
      */
     public function create(): View
@@ -41,7 +43,9 @@ class PcePointController extends Controller
      * Store a newly created PcePoint in storage.
      *
      * @param PcePointRequest $request
+     *
      * @throws AuthorizationException
+     *
      * @return RedirectResponse
      */
     public function store(PcePointRequest $request): RedirectResponse
@@ -61,7 +65,9 @@ class PcePointController extends Controller
      * Display the specified PcePoint.
      *
      * @param PcePoint $pcePoint
+     *
      * @throws AuthorizationException
+     *
      * @return View
      */
     public function show(PcePoint $pcePoint): View
@@ -75,6 +81,7 @@ class PcePointController extends Controller
      * Show the form for editing the specified PcePoint.
      *
      * @param PcePoint $pcePoint
+     *
      * @throws AuthorizationException
      *
      * @return View
@@ -89,9 +96,11 @@ class PcePointController extends Controller
     /**
      * Update the specified PcePoint in storage.
      *
-     * @param Request $request
-     * @param PcePoint            $pcePoint
+     * @param Request  $request
+     * @param PcePoint $pcePoint
+     *
      * @throws AuthorizationException
+     *
      * @return RedirectResponse
      */
     public function update(Request $request, PcePoint $pcePoint): RedirectResponse
@@ -112,7 +121,9 @@ class PcePointController extends Controller
      * Remove the specified PcePoint from storage.
      *
      * @param PcePoint $pcePoint
+     *
      * @throws AuthorizationException
+     *
      * @return RedirectResponse
      */
     public function destroy(PcePoint $pcePoint): RedirectResponse

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\User $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey query()

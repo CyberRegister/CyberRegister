@@ -25,6 +25,7 @@ class CyberExpertiseController extends Controller
      * Show the form for creating a new CyberExpertise.
      *
      * @throws AuthorizationException
+     *
      * @return View
      */
     public function create(): View
@@ -38,7 +39,9 @@ class CyberExpertiseController extends Controller
      * Store a newly created CyberExpertise in storage.
      *
      * @param CyberExpertiseStoreRequest $request
+     *
      * @throws AuthorizationException
+     *
      * @return RedirectResponse
      */
     public function store(CyberExpertiseStoreRequest $request): RedirectResponse
@@ -58,6 +61,7 @@ class CyberExpertiseController extends Controller
      * Display the specified CyberExpertise.
      *
      * @param CyberExpertise $cyberExpertise
+     *
      * @return View
      */
     public function show(CyberExpertise $cyberExpertise): View
@@ -69,7 +73,9 @@ class CyberExpertiseController extends Controller
      * Show the form for editing the specified CyberExpertise.
      *
      * @param CyberExpertise $cyberExpertise
+     *
      * @throws AuthorizationException
+     *
      * @return View
      */
     public function edit(CyberExpertise $cyberExpertise): View
@@ -83,8 +89,10 @@ class CyberExpertiseController extends Controller
      * Update the specified CyberExpertise in storage.
      *
      * @param CyberExpertiseUpdateRequest $request
-     * @param CyberExpertise         $cyberExpertise
+     * @param CyberExpertise              $cyberExpertise
+     *
      * @throws AuthorizationException
+     *
      * @return RedirectResponse
      */
     public function update(CyberExpertiseUpdateRequest $request, CyberExpertise $cyberExpertise): RedirectResponse
@@ -105,7 +113,9 @@ class CyberExpertiseController extends Controller
      * Remove the specified CyberExpertise from storage.
      *
      * @param CyberExpertise $cyberExpertise
+     *
      * @throws AuthorizationException
+     *
      * @return RedirectResponse
      */
     public function destroy(CyberExpertise $cyberExpertise): RedirectResponse

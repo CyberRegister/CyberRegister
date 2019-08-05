@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read string $code
  * @property-read null|string $description
  * @property-read \App\User $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise query()
