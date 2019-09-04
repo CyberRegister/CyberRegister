@@ -9,8 +9,10 @@ jobs:
     working_directory: ~/laravel
     steps:
       - checkout
+      - run: sudo apt update
       - run: sudo apt install -y libsqlite3-dev zlib1g-dev libmagickwand-dev mariadb-client
-      - run: sudo docker-php-ext-install zip
+      - run: sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
+      - run: sudo docker-php-ext-install zip pdo_mysql
       - run: yes '' | sudo pecl install imagick || true
       - run: sudo docker-php-ext-enable imagick
       - run: sudo composer self-update
