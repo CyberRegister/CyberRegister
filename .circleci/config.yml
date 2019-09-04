@@ -9,6 +9,7 @@ jobs:
     working_directory: ~/laravel
     steps:
       - checkout
+      - run: cp .env.testing .env
       - run: sudo apt update
       - run: sudo apt install -y libsqlite3-dev zlib1g-dev libmagickwand-dev mariadb-client
       - run: sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
@@ -35,9 +36,9 @@ jobs:
           paths:
             - node_modules
       - run: mysqladmin create cyber_test --user="root" --host="127.0.0.1"
-      - run: php artisan key:generate
+      - run: php artisan key:generate --env=testing
       - run: php artisan migrate --env=testing --database=testing --force --seed
-      - run: php artisan passport:keys
-      - run: php artisan config:cache
+      - run: php artisan passport:keys --env=testing
+      - run: php artisan config:cache --env=testing
       - run: ./vendor/bin/codecept build
       - run: ./vendor/bin/codecept run
