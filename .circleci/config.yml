@@ -3,6 +3,9 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.2-node-browsers
+      - image: circleci/mysql:5.7-ram
+        environment:
+          - MYSQL_ROOT_PASSWORD=
     working_directory: ~/laravel
     steps:
       - checkout
@@ -29,5 +32,8 @@ jobs:
           key: node-v1-{{ checksum "package.json" }}
           paths:
             - node_modules
+      - run: mysqladmin create cyber_test --user="root" --host="127.0.0.1"
+      - run: php artisan migrate --env=testing --database=testing --force --seed
+      - run: php artisan config:cache
       - run: ./vendor/bin/codecept build
       - run: ./vendor/bin/codecept run
