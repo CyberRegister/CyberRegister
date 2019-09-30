@@ -13,6 +13,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/cyberregister/cyberregister/badge)](https://www.codefactor.io/repository/github/cyberregister/cyberregister)
 [![Badges](https://img.shields.io/badge/badges-14-green.svg)](https://shields.io)
 [![Cyberveiligheid](https://img.shields.io/badge/Cyberveiligheid-97%25-yellow.svg)](https://eurocyber.nl)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister?ref=badge_shield)
 
 Installation:
 ```bash
@@ -29,6 +30,9 @@ yarn production
 Cyberregister is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister?ref=badge_large)
 
 ## Development
 
