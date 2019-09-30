@@ -26,12 +26,15 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - npm i -g phplint
+  - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
 
 script:
   - phplint '**/*.php' '!vendor/**' '!storage/**'
   - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
   - yarn lint
   - php artisan code:analyse
+  - fossa init
+  - fossa analyze
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
