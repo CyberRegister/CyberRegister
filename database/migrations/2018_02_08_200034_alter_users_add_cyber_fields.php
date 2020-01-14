@@ -42,9 +42,9 @@ class AlterUsersAddCyberFields extends Migration
             'users', function (Blueprint $table) {
                 $table->dropColumn(
                     [
-                    'cyber_code', 'verification_code', 'first_name', 'middle_name',
-                    'last_name', 'initials', 'date_of_birth', 'place_of_birth', 'photo',
-                    'controller_code', 'is_controller',
+                        'cyber_code', 'verification_code', 'first_name', 'middle_name',
+                        'last_name', 'initials', 'date_of_birth', 'place_of_birth', 'photo',
+                        'controller_code', 'is_controller',
                     ]
                 );
                 $table->string('name')->after('id');

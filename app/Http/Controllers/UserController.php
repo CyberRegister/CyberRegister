@@ -65,14 +65,14 @@ class UserController extends Controller
         try {
             User::create(
                 [
-                'cyber_code'     => $request->cyber_code,
-                'first_name'     => $request->first_name,
-                'middle_name'    => $request->middle_name,
-                'last_name'      => $request->last_name,
-                'date_of_birth'  => $request->date_of_birth,
-                'place_of_birth' => $request->place_of_birth,
-                'email'          => $request->email,
-                'password'       => bcrypt($request->password),
+                    'cyber_code'     => $request->cyber_code,
+                    'first_name'     => $request->first_name,
+                    'middle_name'    => $request->middle_name,
+                    'last_name'      => $request->last_name,
+                    'date_of_birth'  => $request->date_of_birth,
+                    'place_of_birth' => $request->place_of_birth,
+                    'email'          => $request->email,
+                    'password'       => bcrypt($request->password),
                 ]
             );
         } catch (\Exception $e) {

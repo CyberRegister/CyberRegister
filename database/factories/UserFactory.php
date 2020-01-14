@@ -16,14 +16,14 @@ use Faker\Generator as Faker;
 $factory->define(
     App\User::class, function (Faker $faker) {
         return [
-        'cyber_code'     => $faker->unique()->bothify('??##??'),
-        'first_name'     => $faker->firstName,
-        'last_name'      => $faker->lastName,
-        'email'          => $faker->unique()->safeEmail,
-        'date_of_birth'  => $faker->date(),
-        'place_of_birth' => $faker->city,
-        'password'       => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
+            'cyber_code'     => $faker->unique()->bothify('??##??'),
+            'first_name'     => $faker->firstName,
+            'last_name'      => $faker->lastName,
+            'email'          => $faker->unique()->safeEmail,
+            'date_of_birth'  => $faker->date(),
+            'place_of_birth' => $faker->city,
+            'password'       => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+            'remember_token' => str_random(10),
         ];
     }
 );

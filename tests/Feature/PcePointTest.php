@@ -11,8 +11,8 @@ use Tests\TestCase;
 
 class PcePointTest extends TestCase
 {
-    use DatabaseTransactions, DatabaseMigrations;
-
+    use DatabaseTransactions;
+    use DatabaseMigrations;
     /**
      * Check redirect to /login when going to the /pcePoint page.
      */
@@ -95,10 +95,10 @@ class PcePointTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->post(
                 '/pcePoint', [
-                'location_code' => $faker->bothify('??##??'),
-                'user_id'       => $user->id,
-                'points'        => $faker->numberBetween(0, 1000),
-                '_token'        => 'test',
+                    'location_code' => $faker->bothify('??##??'),
+                    'user_id'       => $user->id,
+                    'points'        => $faker->numberBetween(0, 1000),
+                    '_token'        => 'test',
                 ]
             );
         $response->assertStatus(403);
@@ -117,10 +117,10 @@ class PcePointTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->post(
                 '/pcePoint', [
-                'location_code' => $faker->bothify('??##??'),
-                'user_id'       => $user->id,
-                'points'        => $faker->numberBetween(0, 1000),
-                '_token'        => 'test',
+                    'location_code' => $faker->bothify('??##??'),
+                    'user_id'       => $user->id,
+                    'points'        => $faker->numberBetween(0, 1000),
+                    '_token'        => 'test',
                 ]
             );
         $response->assertStatus(302)->assertRedirect('/pcePoint');
@@ -167,10 +167,10 @@ class PcePointTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->put(
                 '/pcePoint/'.$pcePoint->id, [
-                'location_code' => $faker->bothify('??##??'),
-                'user_id'       => $user->id,
-                'points'        => $faker->numberBetween(0, 1000),
-                '_token'        => 'test',
+                    'location_code' => $faker->bothify('??##??'),
+                    'user_id'       => $user->id,
+                    'points'        => $faker->numberBetween(0, 1000),
+                    '_token'        => 'test',
                 ]
             );
         $response->assertStatus(403);
@@ -190,10 +190,10 @@ class PcePointTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->put(
                 '/pcePoint/'.$pcePoint->id, [
-                'location_code' => $faker->bothify('??##??'),
-                'user_id'       => $user->id,
-                'points'        => $faker->numberBetween(0, 1000),
-                '_token'        => 'test',
+                    'location_code' => $faker->bothify('??##??'),
+                    'user_id'       => $user->id,
+                    'points'        => $faker->numberBetween(0, 1000),
+                    '_token'        => 'test',
                 ]
             );
         $response->assertStatus(302)->assertRedirect('/pcePoint');

@@ -11,8 +11,8 @@ use Tests\TestCase;
 
 class TwoFATest extends TestCase
 {
-    use DatabaseTransactions, DatabaseMigrations;
-
+    use DatabaseTransactions;
+    use DatabaseMigrations;
     /**
      * Check the intercept functionality.
      */

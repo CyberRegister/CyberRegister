@@ -16,8 +16,8 @@ use Faker\Generator as Faker;
 $factory->define(
     App\PcePoint::class, function (Faker $faker) {
         return [
-        'user_id' => factory(\App\User::class)->create()->id,
-        'points'  => $faker->randomDigit(3),
+            'user_id' => factory(\App\User::class)->create()->id,
+            'points'  => $faker->randomDigit(3),
         ];
     }
 );

@@ -13,8 +13,8 @@ use Tests\TestCase;
 
 class CyberExpertiseTest extends TestCase
 {
-    use DatabaseTransactions, DatabaseMigrations;
-
+    use DatabaseTransactions;
+    use DatabaseMigrations;
     /**
      * Check redirect to /login when going to the /cyberExpertise page.
      */
@@ -84,10 +84,10 @@ class CyberExpertiseTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->post(
                 '/cyberExpertise', [
-                'expertise_code'  => $faker->bothify('??#'),
-                'description'     => $faker->paragraph,
-                'required_points' => $faker->numberBetween(0, 1000),
-                '_token'          => 'test',
+                    'expertise_code'  => $faker->bothify('??#'),
+                    'description'     => $faker->paragraph,
+                    'required_points' => $faker->numberBetween(0, 1000),
+                    '_token'          => 'test',
                 ]
             );
         $response->assertStatus(403);
@@ -106,10 +106,10 @@ class CyberExpertiseTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->post(
                 '/cyberExpertise', [
-                'expertise_code'  => $faker->bothify('??#'),
-                'description'     => $faker->paragraph,
-                'required_points' => $faker->numberBetween(0, 1000),
-                '_token'          => 'test',
+                    'expertise_code'  => $faker->bothify('??#'),
+                    'description'     => $faker->paragraph,
+                    'required_points' => $faker->numberBetween(0, 1000),
+                    '_token'          => 'test',
                 ]
             );
         $response->assertStatus(302)->assertRedirect('/cyberExpertise');
@@ -156,10 +156,10 @@ class CyberExpertiseTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->put(
                 '/cyberExpertise/'.$cyberExpertise->expertise_code, [
-                'expertise_code'  => $faker->bothify('??#'),
-                'description'     => $faker->paragraph,
-                'required_points' => $faker->numberBetween(0, 1000),
-                '_token'          => 'test',
+                    'expertise_code'  => $faker->bothify('??#'),
+                    'description'     => $faker->paragraph,
+                    'required_points' => $faker->numberBetween(0, 1000),
+                    '_token'          => 'test',
                 ]
             );
         $response->assertStatus(403);
@@ -179,10 +179,10 @@ class CyberExpertiseTest extends TestCase
             ->withSession(['_token' => 'test'])
             ->put(
                 '/cyberExpertise/'.$cyberExpertise->expertise_code, [
-                'expertise_code'  => $faker->bothify('??#'),
-                'description'     => $faker->paragraph,
-                'required_points' => $faker->numberBetween(0, 1000),
-                '_token'          => 'test',
+                    'expertise_code'  => $faker->bothify('??#'),
+                    'description'     => $faker->paragraph,
+                    'required_points' => $faker->numberBetween(0, 1000),
+                    '_token'          => 'test',
                 ]
             );
         $response->assertStatus(302)->assertRedirect('/cyberExpertise');

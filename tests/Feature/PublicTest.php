@@ -8,8 +8,8 @@ use Tests\TestCase;
 
 class PublicTest extends TestCase
 {
-    use DatabaseTransactions, DatabaseMigrations;
-
+    use DatabaseTransactions;
+    use DatabaseMigrations;
     /**
      * A basic test example.
      */

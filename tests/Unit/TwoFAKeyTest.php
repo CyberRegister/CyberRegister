@@ -22,9 +22,9 @@ class TwoFAKeyTest extends TestCase
         // Add the secret key to the registration data
         $key = TwoFAKey::create(
             [
-            'user_id'          => $user->id,
-            'google2fa_enable' => 0,
-            'google2fa_secret' => $google2fa->generateSecretKey(),
+                'user_id'          => $user->id,
+                'google2fa_enable' => 0,
+                'google2fa_secret' => $google2fa->generateSecretKey(),
             ]
         );
         $this->assertEquals($user->cyber_code, $key->user->cyber_code);
@@ -38,9 +38,9 @@ class TwoFAKeyTest extends TestCase
         $user = factory(User::class)->create();
         $key = TwoFAKey::create(
             [
-            'user_id'          => $user->id,
-            'google2fa_enable' => 0,
-            'google2fa_secret' => 'henk',
+                'user_id'          => $user->id,
+                'google2fa_enable' => 0,
+                'google2fa_secret' => 'henk',
             ]
         );
         $this->assertEquals('henk', $key->google2fa_secret);

@@ -83,7 +83,7 @@ class Expertise extends Model
      *
      * @return null|string
      */
-    public function getDescriptionAttribute():? string
+    public function getDescriptionAttribute(): ?string
     {
         return $this->cyberExpertise->description;
     }

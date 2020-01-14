@@ -49,9 +49,9 @@ class TwoFAController extends Controller
         // Add the secret key to the registration data
         TwoFAKey::create(
             [
-            'user_id'          => $user->id,
-            'google2fa_enable' => 0,
-            'google2fa_secret' => $google2fa->generateSecretKey(),
+                'user_id'          => $user->id,
+                'google2fa_enable' => 0,
+                'google2fa_secret' => $google2fa->generateSecretKey(),
             ]
         );
 

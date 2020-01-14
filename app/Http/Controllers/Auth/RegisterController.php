@@ -51,20 +51,20 @@ class RegisterController extends Controller
     {
         return Validator::make(
             $data, [
-            'cyber_code' => [
-                new ReservedUsernames(),
-                'required',
-                'alpha_num',
-                'max:6',
-                'unique:users',
-            ],
-            'first_name'     => 'required|string|max:255',
-            'middle_name'    => 'max:255',
-            'last_name'      => 'required|string|max:255',
-            'date_of_birth'  => 'required|date|before:yesterday',
-            'place_of_birth' => 'required|string|max:255',
-            'email'          => 'required|string|email|max:255|unique:users',
-            'password'       => 'required|string|min:6|confirmed',
+                'cyber_code' => [
+                    new ReservedUsernames(),
+                    'required',
+                    'alpha_num',
+                    'max:6',
+                    'unique:users',
+                ],
+                'first_name'     => 'required|string|max:255',
+                'middle_name'    => 'max:255',
+                'last_name'      => 'required|string|max:255',
+                'date_of_birth'  => 'required|date|before:yesterday',
+                'place_of_birth' => 'required|string|max:255',
+                'email'          => 'required|string|email|max:255|unique:users',
+                'password'       => 'required|string|min:6|confirmed',
             ]
         );
     }
@@ -80,14 +80,14 @@ class RegisterController extends Controller
     {
         return User::create(
             [
-            'cyber_code'     => $data['cyber_code'],
-            'first_name'     => $data['first_name'],
-            'middle_name'    => isset($data['middle_name']) ? $data['middle_name'] : null,
-            'last_name'      => $data['last_name'],
-            'date_of_birth'  => $data['date_of_birth'],
-            'place_of_birth' => $data['place_of_birth'],
-            'email'          => $data['email'],
-            'password'       => bcrypt($data['password']),
+                'cyber_code'     => $data['cyber_code'],
+                'first_name'     => $data['first_name'],
+                'middle_name'    => isset($data['middle_name']) ? $data['middle_name'] : null,
+                'last_name'      => $data['last_name'],
+                'date_of_birth'  => $data['date_of_birth'],
+                'place_of_birth' => $data['place_of_birth'],
+                'email'          => $data['email'],
+                'password'       => bcrypt($data['password']),
             ]
         );
     }
