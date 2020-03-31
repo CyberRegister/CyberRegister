@@ -14,7 +14,8 @@ class AlterCyberExpertisesChangeExpertiseCodeUnique extends Migration
     public function up()
     {
         Schema::table(
-            'cyber_expertises', function (Blueprint $table) {
+            'cyber_expertises',
+            function (Blueprint $table) {
                 $table->string('expertise_code', 3)->nullable()->unique()->change();
             }
         );
@@ -28,7 +29,8 @@ class AlterCyberExpertisesChangeExpertiseCodeUnique extends Migration
     public function down()
     {
         Schema::table(
-            'cyber_expertises', function (Blueprint $table) {
+            'cyber_expertises',
+            function (Blueprint $table) {
                 $table->dropUnique('cyber_expertises_expertise_code_unique');
             }
         );

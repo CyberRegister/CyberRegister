@@ -12,12 +12,14 @@
 */
 
 Route::get(
-    '/', function () {
+    '/',
+    function () {
         return view('welcome');
     }
 );
 Route::get(
-    '/over', function () {
+    '/over',
+    function () {
         return view('about');
     }
 );
@@ -28,7 +30,8 @@ Route::post('search', 'UserController@search')->name('expert.search');
 Route::get('expert/{user}', 'UserController@show')->name('expert.show');
 
 Route::group(
-    ['middleware' => ['2fa', 'u2f', 'auth']], function () {
+    ['middleware' => ['2fa', 'u2f', 'auth']],
+    function () {
         Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/logout', 'HomeController@logout')->name('logout');
         Route::resource('users', 'UserController');
@@ -40,7 +43,8 @@ Route::group(
 );
 
 Route::group(
-    ['middleware' => 'auth'], function () {
+    ['middleware' => 'auth'],
+    function () {
         Route::get('/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@registerData')->name('u2f.register.data');
         Route::post('/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@register')->name('u2f.register');
         Route::get('/u2f/auth', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@authData')->name('u2f.auth.data');
@@ -51,7 +55,8 @@ Route::group(
         Route::post('/2fa', 'TwoFAController@enable2fa')->name('enable2fa');
         Route::post('/disable2fa', 'TwoFAController@disable2fa')->name('disable2fa');
         Route::post(
-            '/2faVerify', function () {
+            '/2faVerify',
+            function () {
                 return redirect(URL()->previous());
             }
         )->name('2faVerify')->middleware('2fa');

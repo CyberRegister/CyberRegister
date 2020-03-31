@@ -16,6 +16,7 @@ class UserTest extends TestCase
 {
     use DatabaseTransactions;
     use DatabaseMigrations;
+
     /**
      * Check redirect to /login when going to the /users page.
      */
@@ -69,7 +70,8 @@ class UserTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->post(
-                '/users/search', [
+                '/users/search',
+                [
                     'q' => 'xyz',
                 ]
             );
@@ -89,7 +91,8 @@ class UserTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->post(
-                '/users/search', [
+                '/users/search',
+                [
                     'q' => $user->cyber_code,
                 ]
             );
@@ -123,7 +126,8 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post(
-                '/users', [
+                '/users',
+                [
                     'cyber_code'            => $faker->bothify('??##??'),
                     'first_name'            => $faker->firstName,
                     'middle_name'           => 'de',
@@ -191,7 +195,8 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/users/'.$userTwo->cyber_code, [
+                '/users/'.$userTwo->cyber_code,
+                [
                     'cyber_code'     => $faker->bothify('??##??'),
                     'first_name'     => $faker->firstName,
                     'middle_name'    => 'de',
@@ -218,7 +223,8 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/users/'.$userTwo->cyber_code, [
+                '/users/'.$userTwo->cyber_code,
+                [
                     'cyber_code'     => $faker->bothify('??##??'),
                     'first_name'     => $faker->firstName,
                     'middle_name'    => 'de',
@@ -243,7 +249,8 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/users/'.$user->cyber_code, [
+                '/users/'.$user->cyber_code,
+                [
                     'cyber_code'     => $faker->bothify('??##??'),
                     'first_name'     => $faker->firstName,
                     'middle_name'    => 'de',
@@ -274,7 +281,8 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/users/'.$user->cyber_code, [
+                '/users/'.$user->cyber_code,
+                [
                     'cyber_code'     => $faker->bothify('??##??'),
                     'first_name'     => $faker->firstName,
                     'middle_name'    => 'de',
@@ -308,7 +316,8 @@ class UserTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/users/'.$user->cyber_code, [
+                '/users/'.$user->cyber_code,
+                [
                     'cyber_code'     => $user->cyber_code,
                     'first_name'     => $faker->firstName,
                     'middle_name'    => 'de',

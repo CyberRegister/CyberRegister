@@ -14,7 +14,8 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(
-    App\User::class, function (Faker $faker) {
+    App\User::class,
+    function (Faker $faker) {
         return [
             'cyber_code'     => $faker->unique()->bothify('??##??'),
             'first_name'     => $faker->firstName,

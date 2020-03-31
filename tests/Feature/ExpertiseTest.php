@@ -14,6 +14,7 @@ class ExpertiseTest extends TestCase
 {
     use DatabaseTransactions;
     use DatabaseMigrations;
+
     /**
      * Check redirect to /login when going to the /expertise page.
      */
@@ -95,7 +96,8 @@ class ExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post(
-                '/expertise', [
+                '/expertise',
+                [
                     'certification_code'    => $faker->bothify('??##??'),
                     'date_of_certification' => $faker->date(),
                     'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
@@ -119,7 +121,8 @@ class ExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post(
-                '/expertise', [
+                '/expertise',
+                [
                     'certification_code'    => $faker->bothify('??##??'),
                     'date_of_certification' => $faker->date(),
                     'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
@@ -171,7 +174,8 @@ class ExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/expertise/'.$expertise->id, [
+                '/expertise/'.$expertise->id,
+                [
                     'certification_code'    => $faker->bothify('??##??'),
                     'date_of_certification' => $faker->date(),
                     'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
@@ -196,7 +200,8 @@ class ExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/expertise/'.$expertise->id, [
+                '/expertise/'.$expertise->id,
+                [
                     'certification_code'    => $faker->bothify('??##??'),
                     'date_of_certification' => $faker->date(),
                     'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),

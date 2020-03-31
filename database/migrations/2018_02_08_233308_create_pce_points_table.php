@@ -14,7 +14,8 @@ class CreatePcePointsTable extends Migration
     public function up()
     {
         Schema::create(
-            'pce_points', function (Blueprint $table) {
+            'pce_points',
+            function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('user_id')->unsigned();
                 $table->string('location_code', 6)->nullable();
@@ -34,7 +35,8 @@ class CreatePcePointsTable extends Migration
     public function down()
     {
         Schema::table(
-            'pce_points', function (Blueprint $table) {
+            'pce_points',
+            function (Blueprint $table) {
                 $table->dropForeign(['user_id']);
             }
         );

@@ -13,6 +13,7 @@ class TwoFATest extends TestCase
 {
     use DatabaseTransactions;
     use DatabaseMigrations;
+
     /**
      * Check the intercept functionality.
      */

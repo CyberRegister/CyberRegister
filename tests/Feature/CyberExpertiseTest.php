@@ -15,6 +15,7 @@ class CyberExpertiseTest extends TestCase
 {
     use DatabaseTransactions;
     use DatabaseMigrations;
+
     /**
      * Check redirect to /login when going to the /cyberExpertise page.
      */
@@ -83,7 +84,8 @@ class CyberExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post(
-                '/cyberExpertise', [
+                '/cyberExpertise',
+                [
                     'expertise_code'  => $faker->bothify('??#'),
                     'description'     => $faker->paragraph,
                     'required_points' => $faker->numberBetween(0, 1000),
@@ -105,7 +107,8 @@ class CyberExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post(
-                '/cyberExpertise', [
+                '/cyberExpertise',
+                [
                     'expertise_code'  => $faker->bothify('??#'),
                     'description'     => $faker->paragraph,
                     'required_points' => $faker->numberBetween(0, 1000),
@@ -155,7 +158,8 @@ class CyberExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/cyberExpertise/'.$cyberExpertise->expertise_code, [
+                '/cyberExpertise/'.$cyberExpertise->expertise_code,
+                [
                     'expertise_code'  => $faker->bothify('??#'),
                     'description'     => $faker->paragraph,
                     'required_points' => $faker->numberBetween(0, 1000),
@@ -178,7 +182,8 @@ class CyberExpertiseTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/cyberExpertise/'.$cyberExpertise->expertise_code, [
+                '/cyberExpertise/'.$cyberExpertise->expertise_code,
+                [
                     'expertise_code'  => $faker->bothify('??#'),
                     'description'     => $faker->paragraph,
                     'required_points' => $faker->numberBetween(0, 1000),

@@ -14,6 +14,7 @@ class UserAuthTest extends TestCase
 {
     use DatabaseTransactions;
     use DatabaseMigrations;
+
     /**
      * login failed get redirected.
      */
@@ -22,7 +23,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                '/login', [
+                '/login',
+                [
                     'email'    => 'annejan@noprotocol.nl',
                     'password' => 'badPass',
                     '_token'   => 'test',
@@ -32,7 +34,8 @@ class UserAuthTest extends TestCase
             ->assertRedirect('')
             ->assertSessionHas('errors')
             ->assertSessionHas(
-                '_old_input', [
+                '_old_input',
+                [
                     'email'  => 'annejan@noprotocol.nl',
                     '_token' => 'test',
                 ]
@@ -50,7 +53,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                '/login', [
+                '/login',
+                [
                     'cyber_code' => $user->cyber_code,
                     'password'   => $password,
                     '_token'     => 'test',
@@ -108,7 +112,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                'password/email', [
+                'password/email',
+                [
                     'email'  => $user->email,
                     '_token' => 'test',
                 ]
@@ -139,7 +144,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                '/password/reset', [
+                '/password/reset',
+                [
                     'email'                 => $user->email,
                     'token'                 => $token,
                     'password'              => $password,
@@ -152,7 +158,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                '/logout', [
+                '/logout',
+                [
                     '_token' => 'test',
                 ]
             );
@@ -161,7 +168,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                '/login', [
+                '/login',
+                [
                     'cyber_code' => $user->cyber_code,
                     'password'   => $password,
                     '_token'     => 'test',
@@ -181,7 +189,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                '/register', [
+                '/register',
+                [
                     'cyber_code'            => $faker->bothify('??##??'),
                     'first_name'            => $faker->firstName,
                     'middle_name'           => 'de',
@@ -210,7 +219,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                '/register', [
+                '/register',
+                [
                     'cyber_code'            => $faker->bothify('??##??'),
                     'first_name'            => $faker->firstName,
                     'last_name'             => $faker->lastName,
@@ -238,7 +248,8 @@ class UserAuthTest extends TestCase
         $response = $this
             ->withSession(['_token'=>'test'])
             ->post(
-                '/register', [
+                '/register',
+                [
                     'cyber_code'            => 'admin',
                     'first_name'            => $faker->firstName,
                     'middle_name'           => 'de',

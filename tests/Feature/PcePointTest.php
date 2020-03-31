@@ -13,6 +13,7 @@ class PcePointTest extends TestCase
 {
     use DatabaseTransactions;
     use DatabaseMigrations;
+
     /**
      * Check redirect to /login when going to the /pcePoint page.
      */
@@ -94,7 +95,8 @@ class PcePointTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post(
-                '/pcePoint', [
+                '/pcePoint',
+                [
                     'location_code' => $faker->bothify('??##??'),
                     'user_id'       => $user->id,
                     'points'        => $faker->numberBetween(0, 1000),
@@ -116,7 +118,8 @@ class PcePointTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->post(
-                '/pcePoint', [
+                '/pcePoint',
+                [
                     'location_code' => $faker->bothify('??##??'),
                     'user_id'       => $user->id,
                     'points'        => $faker->numberBetween(0, 1000),
@@ -166,7 +169,8 @@ class PcePointTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/pcePoint/'.$pcePoint->id, [
+                '/pcePoint/'.$pcePoint->id,
+                [
                     'location_code' => $faker->bothify('??##??'),
                     'user_id'       => $user->id,
                     'points'        => $faker->numberBetween(0, 1000),
@@ -189,7 +193,8 @@ class PcePointTest extends TestCase
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
             ->put(
-                '/pcePoint/'.$pcePoint->id, [
+                '/pcePoint/'.$pcePoint->id,
+                [
                     'location_code' => $faker->bothify('??##??'),
                     'user_id'       => $user->id,
                     'points'        => $faker->numberBetween(0, 1000),

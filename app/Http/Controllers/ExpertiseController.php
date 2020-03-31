@@ -111,7 +111,8 @@ class ExpertiseController extends Controller
             $expertise->update($request->all());
         } catch (\Exception $e) {
             return redirect()->route(
-                'expertise.edit', ['id' => $expertise->id]
+                'expertise.edit',
+                ['id' => $expertise->id]
             )->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification

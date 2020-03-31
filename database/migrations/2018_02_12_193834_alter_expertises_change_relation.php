@@ -14,7 +14,8 @@ class AlterExpertisesChangeRelation extends Migration
     public function up()
     {
         Schema::table(
-            'expertises', function (Blueprint $table) {
+            'expertises',
+            function (Blueprint $table) {
                 $table->dropColumn('expertise_code');
                 $table->integer('cyber_expertise_id')->unsigned()->after('user_id');
                 $table->foreign('cyber_expertise_id')->references('id')->on('cyber_expertises')->onDelete('no action')->onUpdate('no action');
@@ -30,12 +31,14 @@ class AlterExpertisesChangeRelation extends Migration
     public function down()
     {
         Schema::table(
-            'expertises', function (Blueprint $table) {
+            'expertises',
+            function (Blueprint $table) {
                 $table->dropForeign(['cyber_expertise_id']);
             }
         );
         Schema::table(
-            'expertises', function (Blueprint $table) {
+            'expertises',
+            function (Blueprint $table) {
                 $table->dropColumn(['cyber_expertise_id']);
                 $table->string('expertise_code', 3)->nullable()->after('user_id');
             }

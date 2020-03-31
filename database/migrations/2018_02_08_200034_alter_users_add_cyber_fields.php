@@ -14,7 +14,8 @@ class AlterUsersAddCyberFields extends Migration
     public function up()
     {
         Schema::table(
-            'users', function (Blueprint $table) {
+            'users',
+            function (Blueprint $table) {
                 $table->string('cyber_code', 6)->unique()->nullable()->after('remember_token');
                 $table->string('verification_code', 4)->nullable()->after('cyber_code');
                 $table->string('first_name')->nullable()->after('id');
@@ -39,7 +40,8 @@ class AlterUsersAddCyberFields extends Migration
     public function down()
     {
         Schema::table(
-            'users', function (Blueprint $table) {
+            'users',
+            function (Blueprint $table) {
                 $table->dropColumn(
                     [
                         'cyber_code', 'verification_code', 'first_name', 'middle_name',

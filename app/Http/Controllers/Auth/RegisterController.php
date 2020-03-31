@@ -50,7 +50,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make(
-            $data, [
+            $data,
+            [
                 'cyber_code' => [
                     new ReservedUsernames(),
                     'required',
