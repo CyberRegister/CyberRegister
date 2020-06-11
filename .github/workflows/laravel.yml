@@ -26,7 +26,7 @@ jobs:
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Prequisites
-        run: pecl install imagick && docker-php-ext-enable imagick
+        run: sudo apt install imagemagick
       - name: Install Dependencies
         run: composer install
       - name: Generate key
