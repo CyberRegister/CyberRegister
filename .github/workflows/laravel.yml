@@ -1,0 +1,55 @@
+name: Laravel
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  laravel-tests:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mariadb:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Generate passport keys
+        run: php artisan passport:keys
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+      - name: Create DB tables
+        run: php artisan migrate --force
+        env:
+          API_DB_CONNECTION: mysql
+          API_DB_HOST: 127.0.0.1
+          API_DB_PORT: 33306
+          API_DB_DATABASE: laravel
+          API_DB_USERNAME: root
+          API_DB_PASSWORD: root
+      - name: Execute tests (Unit and Feature tests) via Pest
+        run: vendor/bin/pest
+        env:
+          API_DB_CONNECTION: mysql
+          API_DB_HOST: 127.0.0.1
+          API_DB_PORT: 33306
+          API_DB_DATABASE: laravel
+          API_DB_USERNAME: root
+          API_DB_PASSWORD: root
+      - name: Static analysis via PHPStan
+        run: vendor/bin/phpstan analyse
