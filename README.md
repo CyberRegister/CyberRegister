@@ -11,9 +11,11 @@
 [![StyleCI](https://styleci.io/repos/120670007/shield?branch=master)](https://styleci.io/repos/120670007)
 [![codecov](https://codecov.io/gh/CyberRegister/CyberRegister/branch/master/graph/badge.svg)](https://codecov.io/gh/CyberRegister/CyberRegister)
 [![CodeFactor](https://www.codefactor.io/repository/github/cyberregister/cyberregister/badge)](https://www.codefactor.io/repository/github/cyberregister/cyberregister)
-[![Badges](https://img.shields.io/badge/badges-14-green.svg)](https://shields.io)
+[![Badges](https://img.shields.io/badge/badges-16-green.svg)](https://shields.io)
 [![Cyberveiligheid](https://img.shields.io/badge/Cyberveiligheid-97%25-yellow.svg)](https://eurocyber.nl)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister?ref=badge_shield)
+![Node.js build and lint](https://github.com/CyberRegister/CyberRegister/workflows/Node.js%20build%20and%20lint/badge.svg)
+![Laravel](https://github.com/CyberRegister/CyberRegister/workflows/Laravel/badge.svg)
 
 Installation:
 ```bash
