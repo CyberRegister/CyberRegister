@@ -167,6 +167,7 @@ class User extends Authenticatable
 
     /**
      * @param string $value
+     *
      * @return void
      */
     public function setDateOfBirthAttribute($value)

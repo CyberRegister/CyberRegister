@@ -51,6 +51,7 @@ class TwoFAKey extends Model
      * Encrypt the user's google_2fa secret.
      *
      * @param string $value
+     *
      * @return void
      */
     public function setGoogle2faSecretAttribute($value)

@@ -22,6 +22,7 @@ class CyberExpertisePolicy
         if ($user->is_controller) {
             return true;
         }
+
         return null;
     }
 

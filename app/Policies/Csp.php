@@ -9,6 +9,7 @@ class Csp extends Basic
 {
     /**
      * @throws \Spatie\Csp\Exceptions\InvalidDirective|\Spatie\Csp\Exceptions\InvalidValueSet
+     *
      * @return void
      */
     public function configure()

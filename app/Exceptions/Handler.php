@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
-use Throwable;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -34,9 +34,9 @@ class Handler extends ExceptionHandler
      *
      * @param Throwable $e
      *
-     * @return mixed|void
-     *
      * @throws Exception
+     *
+     * @return mixed|void
      */
     public function report(Throwable $e)
     {
@@ -51,10 +51,11 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param Throwable $e
+     * @param Throwable                $e
+     *
+     * @throws Throwable
      *
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws Throwable
      */
     public function render($request, Throwable $e)
     {
