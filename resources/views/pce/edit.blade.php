@@ -8,7 +8,7 @@
                 <div class="card-header">
                     PCE punten bewerken
                     <span class="float-right">
-                        <form method="POST" action="{{ route('pcePoint.destroy', ['id' => $pcePoint->id]) }}">
+                        <form method="POST" action="{{ route('pcePoint.destroy', ['pcePoint' => $pcePoint->id]) }}">
                             <input type="hidden" name="_method" value="delete" />
                             @csrf
                             <button class="btn btn-danger btn-xs" name="delete-resource" type="submit" value="delete">delete</button>
@@ -19,7 +19,7 @@
                 {{ implode(' ', $errors->all()) }}
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('pcePoint.update', ['id' => $pcePoint->id]) }}" class="register">
+                    <form method="POST" action="{{ route('pcePoint.update', ['pcePoint' => $pcePoint->id]) }}" class="register">
                         <input type="hidden" name="_method" value="patch" />
                         @csrf
 

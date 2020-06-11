@@ -52,22 +52,22 @@ yarn watch
  
 Run all the tests
 ```bash
-phpunit
+vendor/bin/pest
 ```
 Run a test suite (for a list of availabe suites, see `/phpunit.xml`)
 ```bash 
-phpunit --testsuite <suite_name>
+vendor/bin/pest --testsuite <suite_name>
 ```
 Run a specific test file
 ```bash
-phpunit tests/<optional_folders>/TestFileName
+vendor/bin/pest tests/<optional_folders>/TestFileName
 ```
 Run a specific test case
 ``bash
-phpunit --filter <test_case_name>
+vendor/bin/pest --filter <test_case_name>
 ``
 Generate code coverage
 ```bash
-phpunit --coverage-html docs/coverage
+vendor/bin/pest --coverage-html docs/coverage
 ```
 This will create the code coverage docs in `docs/coverage/index.html`

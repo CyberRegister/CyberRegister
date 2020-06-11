@@ -29,7 +29,7 @@ before_script:
 
 script:
   - phplint '**/*.php' '!vendor/**' '!storage/**'
-  - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+  - php vendor/bin/pest --coverage-clover build/logs/clover.xml
   - yarn lint
   - php artisan code:analyse
   - fossa init

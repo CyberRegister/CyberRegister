@@ -8,7 +8,8 @@ use Spatie\Csp\Policies\Basic;
 class Csp extends Basic
 {
     /**
-     * @throws \Spatie\Csp\Exceptions\InvalidDirective
+     * @throws \Spatie\Csp\Exceptions\InvalidDirective|\Spatie\Csp\Exceptions\InvalidValueSet
+     * @return void
      */
     public function configure()
     {

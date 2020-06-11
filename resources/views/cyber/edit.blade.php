@@ -8,7 +8,7 @@
                 <div class="card-header">
                     CyberExpertise bewerken
                     <span class="float-right">
-                        <form method="POST" action="{{ route('cyberExpertise.destroy', ['expertise_code' => $cyberExpertise->expertise_code]) }}">
+                        <form method="POST" action="{{ route('cyberExpertise.destroy', ['cyberExpertise' => $cyberExpertise->expertise_code]) }}">
                             <input type="hidden" name="_method" value="delete" />
                             @csrf
                             <button class="btn btn-danger btn-xs" name="delete-resource" type="submit" value="delete">delete</button>
@@ -19,7 +19,7 @@
                 {{ implode(' ', $errors->all()) }}
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('cyberExpertise.update', ['expertise_code' => $cyberExpertise->expertise_code]) }}" class="register">
+                    <form method="POST" action="{{ route('cyberExpertise.update', ['cyberExpertise' => $cyberExpertise->expertise_code]) }}" class="register">
                         <input type="hidden" name="_method" value="patch" />
                         @csrf
 

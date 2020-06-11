@@ -8,7 +8,7 @@
                 <div class="card-header">
                     Cyberexpert bewerken
                     <span class="float-right">
-                        <form method="POST" action="{{ route('users.destroy', ['cyber_code' => $user->cyber_code]) }}">
+                        <form method="POST" action="{{ route('users.destroy', ['user' => $user->cyber_code]) }}">
                             <input type="hidden" name="_method" value="delete" />
                             @csrf
                             <button class="btn btn-danger btn-xs" name="delete-resource" type="submit" value="delete">delete</button>
@@ -19,7 +19,7 @@
                 {{ implode(' ', $errors->all()) }}
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update', ['cyber_code' => $user->cyber_code]) }}" class="dropzone" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('users.update', ['user' => $user->cyber_code]) }}" class="dropzone" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="patch" />
                         @csrf
                         <div class="form-group row">

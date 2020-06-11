@@ -9,6 +9,7 @@ use Illuminate\Contracts\Validation\Rule;
  */
 class ReservedUsernames implements Rule
 {
+    /** @var string[] */
     private $blacklist = [
         '0', 'about', 'access', 'ad', 'add', 'adm', 'admin', 'ads', 'adult', 'ajax', 'all', 'alpha', 'anon', 'api',
         'app', 'apps', 'asct', 'asset', 'atom', 'auth', 'avatar', 'backup', 'banner', 'beta', 'bin', 'blog', 'blogs',

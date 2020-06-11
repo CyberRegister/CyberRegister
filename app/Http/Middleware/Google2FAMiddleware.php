@@ -20,6 +20,7 @@ class Google2FAMiddleware
      */
     public function handle($request, Closure $next)
     {
+        /** @var Google2FAAuthenticator $authenticator */
         $authenticator = app(Google2FAAuthenticator::class)->boot($request);
 
         if ($authenticator->isAuthenticated()) {

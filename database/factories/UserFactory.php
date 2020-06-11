@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -24,7 +24,7 @@ $factory->define(
             'date_of_birth'  => $faker->date(),
             'place_of_birth' => $faker->city,
             'password'       => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-            'remember_token' => str_random(10),
+            'remember_token' => Str::random(10),
         ];
     }
 );

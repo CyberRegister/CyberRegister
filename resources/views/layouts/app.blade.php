@@ -66,7 +66,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('users.edit', ['cyber_code' => Auth::user()->cyber_code]) }}" id="user-edit">Profiel bewerken</a>
+                                    <a class="dropdown-item" href="{{ route('users.edit', ['user' => Auth::user()->cyber_code]) }}" id="user-edit">Profiel bewerken</a>
                                     @if(is_null(Auth::user()->u2fKey))
                                     <a class="dropdown-item" href="{{ route('u2f.register') }}" id="u2f-register">U2F toevoegen</a>
                                     @endif

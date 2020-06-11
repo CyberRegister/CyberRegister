@@ -4,17 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * Class TwoFAKey.
  *
  * @property int $id
  * @property int $user_id
- * @property int $google2fa_enable
+ * @property bool $google2fa_enable
  * @property string $google2fa_secret
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\User $user
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read User $user
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey newQuery()
@@ -47,9 +48,10 @@ class TwoFAKey extends Model
     }
 
     /**
-     * Ecrypt the user's google_2fa secret.
+     * Encrypt the user's google_2fa secret.
      *
      * @param string $value
+     * @return void
      */
     public function setGoogle2faSecretAttribute($value)
     {

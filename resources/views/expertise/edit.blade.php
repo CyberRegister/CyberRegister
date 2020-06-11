@@ -8,7 +8,7 @@
                 <div class="card-header">
                     Expertise bewerken
                     <span class="float-right">
-                        <form method="POST" action="{{ route('expertise.destroy', ['id' => $expertise->id]) }}">
+                        <form method="POST" action="{{ route('expertise.destroy', ['expertise' => $expertise->id]) }}">
                             <input type="hidden" name="_method" value="delete" />
                             @csrf
                             <button class="btn btn-danger btn-xs" name="delete-resource" type="submit" value="delete">delete</button>
@@ -19,7 +19,7 @@
                 {{ implode(' ', $errors->all()) }}
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('expertise.update', ['id' => $expertise->id]) }}" class="register">
+                    <form method="POST" action="{{ route('expertise.update', ['expertise' => $expertise->id]) }}" class="register">
                         <input type="hidden" name="_method" value="patch" />
                         @csrf
 

@@ -6,9 +6,7 @@
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         processIsolation="true"
-	 stopOnFailure="false"
-	 printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer">
+	     stopOnFailure="false">
     <testsuites>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>

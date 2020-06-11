@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\CyberExpertise;
 use App\Expertise;
-use App\PcePoint;
 use App\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

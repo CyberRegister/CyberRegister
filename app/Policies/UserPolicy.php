@@ -21,13 +21,14 @@ class UserPolicy
         if ($user->is_controller) {
             return true;
         }
+        return null;
     }
 
     /**
      * Determine whether the user can edit the model.
      *
-     * @param \App\User $user
-     * @param \App\User $model
+     * @param User $user
+     * @param User $model
      *
      * @return bool
      */
@@ -39,8 +40,8 @@ class UserPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param \App\User $user
-     * @param \App\User $model
+     * @param User $user
+     * @param User $model
      *
      * @return bool
      */
@@ -52,8 +53,8 @@ class UserPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param \App\User $user
-     * @param \App\User $model
+     * @param User $user
+     * @param User $model
      *
      * @return bool
      */

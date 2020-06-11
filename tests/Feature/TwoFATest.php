@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\TwoFAKey;
 use App\User;
-use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;

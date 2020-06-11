@@ -35,9 +35,9 @@
                     @forelse($users as $user)
                         <li>
                             @if(Auth::user() && Auth::user()->can('edit', $user))
-                            <a href="{{ route('users.edit', ['cyber_code' => $user->cyber_code]) }}">{{ $user->name }}</a>
+                            <a href="{{ route('users.edit', ['user' => $user->cyber_code]) }}">{{ $user->name }}</a>
                             @else
-                            <a href="{{ route('expert.show', ['cyber_code' => $user->cyber_code]) }}">{{ $user->name }}</a>
+                            <a href="{{ route('expert.show', ['user' => $user->cyber_code]) }}">{{ $user->name }}</a>
                             @endif
                         </li>
                     @empty
