@@ -72,6 +72,7 @@
                                     @else
                                     <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-edit">2FA aanpassen</a>
                                     @endif
+                                    <a class="dropdown-item" href="{{ route('webauthn.create') }}" id="webauthn-register">Beveiligingssleutel toevoegen</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" id="logout">
                                         Logout
                                     </a>

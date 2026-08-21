@@ -11,8 +11,9 @@
     "type": "project",
     "require": {
         "php": "^8.3",
-        "bacon/bacon-qr-code": "^3.0",
         "ext-imagick": "*",
+        "asbiin/laravel-webauthn": "^6.0",
+        "bacon/bacon-qr-code": "^3.0",
         "intervention/image": "^4.2",
         "intervention/image-laravel": "^4.1",
         "laravel/framework": "^13.0",

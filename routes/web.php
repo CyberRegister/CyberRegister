@@ -39,7 +39,7 @@ Route::post('search', [UserController::class, 'search'])->name('expert.search');
 Route::get('expert/{user}', [UserController::class, 'show'])->name('expert.show');
 
 Route::group(
-    ['middleware' => ['2fa', 'auth']],
+    ['middleware' => ['auth', '2fa', 'webauthn']],
     function () {
         Route::get('/home', [HomeController::class, 'index'])->name('home');
         Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
