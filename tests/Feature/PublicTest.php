@@ -38,6 +38,31 @@ class PublicTest extends TestCase
     }
 
     /**
+     * The front page carries the register description agreed in #19.
+     */
+    public function testWelcomeShowsRegisterDescription()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200)
+            ->assertSee('openbaar register van gecertificeerde cyberexperts')
+            ->assertSee('alleen geldige expertises doorzoekbaar');
+    }
+
+    /**
+     * The registration form explains what happens to the data, per #20.
+     */
+    public function testRegisterShowsDataNotice()
+    {
+        $response = $this->get('/register');
+
+        $response->assertStatus(200)
+            ->assertSee('openbaar doorzoekbare cyberregister')
+            ->assertSee('het recht om vergeten te worden')
+            ->assertSee('zodra u besluit forwarding aan te zetten');
+    }
+
+    /**
      * Check redirect to /login when going to the /home page.
      */
     public function testHomeRedirect()
