@@ -46,6 +46,12 @@ return [
     'nonce_generator' => Spatie\Csp\Nonce\RandomString::class,
 
     /*
+     * Set to false to stop adding nonces to the policy. The WebAuthn views
+     * rely on nonces for their inline scripts.
+     */
+    'nonce_enabled' => env('CSP_NONCE_ENABLED', true),
+
+    /*
      * Set to true to add the CSP headers while hot reloading assets.
      */
     'enabled_while_hot_reloading' => env('CSP_ENABLED_WHILE_HOT_RELOADING', false),

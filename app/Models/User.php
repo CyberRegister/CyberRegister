@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\Contracts\OAuthenticatable;
 use Laravel\Passport\HasApiTokens;
+use LaravelWebauthn\Models\WebauthnKey;
 
 /**
  * Class User.
@@ -39,6 +40,7 @@ use Laravel\Passport\HasApiTokens;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PcePoint[] $pcePoints
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @property-read \App\Models\TwoFAKey $twoFAKey
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \LaravelWebauthn\Models\WebauthnKey> $webauthnKeys
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
@@ -195,5 +197,15 @@ class User extends Authenticatable implements OAuthenticatable
     public function twoFAKey(): HasOne
     {
         return $this->hasOne(TwoFAKey::class);
+    }
+
+    /**
+     * Get the user's registered WebAuthn credentials.
+     *
+     * @return HasMany<WebauthnKey, $this>
+     */
+    public function webauthnKeys(): HasMany
+    {
+        return $this->hasMany(WebauthnKey::class);
     }
 }
