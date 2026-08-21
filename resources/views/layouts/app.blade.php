@@ -26,6 +26,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('static/icons/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
+    @yield('head')
 </head>
 <body>
     <div id="page">
