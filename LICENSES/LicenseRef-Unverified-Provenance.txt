@@ -1,0 +1,17 @@
+Licence not established
+
+The files annotated with this identifier were already present in this
+repository and carry no licence statement, no copyright notice and no record
+of where they came from.
+
+They are marked this way so that the uncertainty is visible rather than
+hidden behind a project wide licence that may not apply to them. Nothing here
+grants any permission.
+
+Each file needs one of the following before it can be treated as covered by
+the project licence:
+
+  * evidence of its origin and licence, after which it should be annotated
+    with that licence instead, or
+  * replacement with a file whose licence is known, or
+  * removal from the repository.

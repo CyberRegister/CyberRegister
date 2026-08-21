@@ -93,11 +93,46 @@ vendor/bin/phpstan analyse
 yarn lint
 ```
 
-## License
+## Licensing
 
 Cyberregister is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+The Laravel framework is likewise licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Licensing follows the [REUSE](https://reuse.software/) specification. Every
+file is accounted for, either by the blanket entry in `REUSE.toml` or by a more
+specific one, and the full text of every licence used lives in `LICENSES/`.
+CI enforces this, and you can check it yourself with:
+
+```bash
+reuse lint
+```
+
+Not everything in here is MIT, so read `REUSE.toml` before reusing parts of it:
+
+* The **Rijksoverheid house style fonts** in `resources/assets/fonts` are not
+  free to use. The Dutch State reserved its copyright on them under article 15b
+  of the Auteurswet, and use requires prior written permission from the
+  Rijksvoorlichtingsdienst unless the work is carried out for the
+  Rijksoverheid. See `LICENSES/LicenseRef-Rijkshuisstijl.txt`.
+* The **AGNL icon font** and the **security key illustration** carry no licence
+  statement and no record of where they came from, so they are marked
+  `LicenseRef-Unverified-Provenance` rather than assumed to be covered by the
+  project licence.
+
+### Dependency licence choices
+
+`nette/schema` and `nette/utils` reach this project through
+`league/commonmark`, which Laravel uses to render Markdown mail. Both are
+offered under more than one licence:
+
+> You may use Nette Framework under the terms of either the New BSD License or
+> the GNU General Public License (GPL) version 2 or 3. The BSD License is
+> recommended for most projects.
+
+The licences are alternatives rather than cumulative, so **this project uses
+them under BSD-3-Clause** and takes on no GPL obligation. Scanners that read
+the licence list as a conjunction will report these two as copyleft findings;
+that reading is wrong, and the choice recorded here is the answer to it.
 
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister?ref=badge_large)
