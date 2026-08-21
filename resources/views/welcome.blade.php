@@ -3,8 +3,10 @@
 <div class="container">
     <h2>Cyberregister</h2>
     <p>
-        Het register bestaat uit experts op verscheidene gebieden van cyber die allen beschikken over en hoge mate van cyberbewustzijn.<br>
-        Middels het cyberregister zijn cybercompetenties inzichtelijk, om te helpen bij het zoeken naar de juiste experts om cyberweerbaarheids processen te begeleiden.
+        Het cyberregister is een openbaar register van gecertificeerde cyberexperts. Deze professionals hebben daarvoor examens gedaan en houden de kennis bij via permanente educatie. In het register zijn alleen geldige expertises doorzoekbaar.
+    </p>
+    <p>
+        Ter verificatie kunt u een expert ook vragen om zijn of haar cyberprofessional pas te identificatie. Daarnaast kunt u bij verificatie ook via het register met de expert mailen. Hiervoor kunt u een bericht sturen naar de door de expert genoemde [cybercode] @ cyberregister.nl.
     </p>
     <form method="POST" action="{{ route('expert.search') }}" class="search">
         @csrf

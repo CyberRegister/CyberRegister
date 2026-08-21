@@ -8,6 +8,16 @@
                 <div class="card-header">Register</div>
 
                 <div class="card-body">
+                    <p>
+                        De gegevens in dit formulier worden gebruikt voor het opnemen in het openbaar doorzoekbare cyberregister.
+                    </p>
+                    <p>
+                        Vanaf het moment dat u beschikt over een geldige cybercertificering zijn uw persoonsgegevens (cybercode, naam, geboortedatum, geboorteplaats en geldige certificeringen) op te zoeken. Het e-mailadres gebruiken wij om u berichten te sturen over het register en uw certificeringen. Uw e-mailadres verstrekken wij niet aan derden. Zolang u over een geldige registratie beschikt kunnen externe partij u een e-mailsturen op uw cybercode @cyberregister.nl zodra u besluit forwarding aan te zetten.
+                    </p>
+                    <p>
+                        Op ieder moment kunt u inloggen in het cyberregister, zien welke gegevens wij van u verwerken. Ook kunt u uw gegevens blijvend laten verwijderen (het recht om vergeten te worden). Uiteraard bent u vanaf dat moment dan geen geregistreerd cyberexpert en kunt u ook niet meer aantonen dat u ooit geregistreerd bent geweest.
+                    </p>
+
                     <form method="POST" action="{{ route('register') }}" class="register">
                         @csrf
 
