@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+<script type="application/ld+json" @cspNonce>{!! json_encode(\App\Support\ExpertSchema::forExpert($user), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
