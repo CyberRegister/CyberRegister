@@ -4,7 +4,8 @@
 [![codecov](https://codecov.io/gh/CyberRegister/CyberRegister/branch/master/graph/badge.svg)](https://codecov.io/gh/CyberRegister/CyberRegister)
 [![CodeFactor](https://www.codefactor.io/repository/github/cyberregister/cyberregister/badge)](https://www.codefactor.io/repository/github/cyberregister/cyberregister)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister?ref=badge_shield)
-[![Badges](https://img.shields.io/badge/badges-7-green.svg)](https://shields.io)
+[![REUSE status](https://api.reuse.software/badge/github.com/CyberRegister/CyberRegister)](https://api.reuse.software/info/github.com/CyberRegister/CyberRegister)
+[![Badges](https://img.shields.io/badge/badges-8-green.svg)](https://shields.io)
 [![Cyberveiligheid](https://img.shields.io/badge/Cyberveiligheid-97%25-yellow.svg)](https://nl.wikipedia.org/wiki/Rian_van_Rijbroek)
 
 A register of cyber security experts, their expertises and PCE points, built
@@ -109,15 +110,24 @@ reuse lint
 
 Not everything in here is MIT, so read `REUSE.toml` before reusing parts of it:
 
-* The **Rijksoverheid house style fonts** in `resources/assets/fonts` are not
-  free to use. The Dutch State reserved its copyright on them under article 15b
-  of the Auteurswet, and use requires prior written permission from the
-  Rijksvoorlichtingsdienst unless the work is carried out for the
-  Rijksoverheid. See `LICENSES/LicenseRef-Rijkshuisstijl.txt`.
-* The **AGNL icon font** and the **security key illustration** carry no licence
-  statement and no record of where they came from, so they are marked
+* The **security key illustration** in `public/static` came from Google and
+  carries no licence statement, so it is marked
   `LicenseRef-Unverified-Provenance` rather than assumed to be covered by the
-  project licence.
+  project licence. That identifier grants nothing; it records that the question
+  is open.
+
+### Fonts
+
+Type is [IBM Plex](https://www.ibm.com/plex/) Sans and Serif, licensed under
+the SIL Open Font License 1.1. It arrives through the `@fontsource` packages
+and is served from this application's own origin, so no request goes to a font
+CDN when a page is rendered and no font files are committed here.
+
+The Rijksoverheid house style fonts this project used to carry were removed.
+The Dutch State reserved its copyright on them under article 15b of the
+Auteurswet, and use requires prior written permission from the
+Rijksvoorlichtingsdienst unless the work is carried out for the Rijksoverheid,
+which is not a claim this project can make.
 
 ### Dependency licence choices
 

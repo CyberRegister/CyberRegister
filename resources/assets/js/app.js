@@ -5,6 +5,14 @@
  */
 
 import './bootstrap';
+
+// Self hosted so no request leaves for a font CDN. IBM Plex is licensed
+// under the SIL Open Font License 1.1.
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/400-italic.css';
+import '@fontsource/ibm-plex-sans/700.css';
+import '@fontsource/ibm-plex-serif/400.css';
+
 import Dropzone from 'dropzone';
 
 window.Dropzone = Dropzone;

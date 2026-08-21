@@ -15,6 +15,9 @@ class CspPreset implements Preset
     /**
      * Add the application's own directives to the policy.
      *
+     * Fonts and stylesheets are served from this origin, so neither needs a
+     * blanket https: allowance any more.
+     *
      * @param Policy $policy
      *
      * @return void
@@ -23,7 +26,10 @@ class CspPreset implements Preset
     {
         $policy
             ->add(Directive::IMG, 'data:')
-            ->add(Directive::STYLE, ['https:', Keyword::UNSAFE_INLINE])
-            ->add(Directive::FONT, [Keyword::SELF, 'data:', 'https:']);
+            // Kept from the original policy as a fallback for user agents
+            // that do not support nonces. Where nonces are supported this is
+            // ignored, since the Basic preset adds one to style-src.
+            ->add(Directive::STYLE, Keyword::UNSAFE_INLINE)
+            ->add(Directive::FONT, 'data:');
     }
 }
