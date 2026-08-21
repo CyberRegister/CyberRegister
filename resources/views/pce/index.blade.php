@@ -33,7 +33,7 @@
                         <li>Niets of niemand gevonden</li>
                     @endforelse
                     </ul>
-                    @if(Auth::user()->can('create', \App\PcePoint::class))
+                    @if(Auth::user()->can('create', \App\Models\PcePoint::class))
                     <a href="{{ route('pcePoint.create') }}" class="btn btn-primary">Toevoegen</a>
                     @endif
                 </div>

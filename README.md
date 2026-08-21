@@ -1,23 +1,25 @@
 # Cyberregister
-[![Build Status](https://travis-ci.org/CyberRegister/CyberRegister.svg)](https://travis-ci.org/CyberRegister/CyberRegister)
-[![CodeClimate maintainability](https://api.codeclimate.com/v1/badges/d06b9ceaf76db20fd066/maintainability)](https://codeclimate.com/github/CyberRegister/CyberRegister/maintainability)
-[![CodeClimate test coverage](https://api.codeclimate.com/v1/badges/d06b9ceaf76db20fd066/test_coverage)](https://codeclimate.com/github/CyberRegister/CyberRegister/test_coverage)
-[![Codacy grade](https://api.codacy.com/project/badge/Grade/372524fda06445b7a6197030f6eda63c)](https://www.codacy.com/app/CyberRegister/CyberRegister?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CyberRegister/CyberRegister&amp;utm_campaign=Badge_Grade)
-[![Codacy coverage](https://api.codacy.com/project/badge/Coverage/372524fda06445b7a6197030f6eda63c)](https://www.codacy.com/app/CyberRegister/CyberRegister?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CyberRegister/CyberRegister&amp;utm_campaign=Badge_Coverage)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/build.png?b=master)](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/build-status/master)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/CyberRegister/CyberRegister/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
-[![StyleCI](https://styleci.io/repos/120670007/shield?branch=master)](https://styleci.io/repos/120670007)
+![Laravel](https://github.com/CyberRegister/CyberRegister/workflows/Laravel/badge.svg)
+![Node.js build and lint](https://github.com/CyberRegister/CyberRegister/workflows/Node.js%20build%20and%20lint/badge.svg)
 [![codecov](https://codecov.io/gh/CyberRegister/CyberRegister/branch/master/graph/badge.svg)](https://codecov.io/gh/CyberRegister/CyberRegister)
 [![CodeFactor](https://www.codefactor.io/repository/github/cyberregister/cyberregister/badge)](https://www.codefactor.io/repository/github/cyberregister/cyberregister)
-[![Badges](https://img.shields.io/badge/badges-16-green.svg)](https://shields.io)
-[![Cyberveiligheid](https://img.shields.io/badge/Cyberveiligheid-97%25-yellow.svg)](https://eurocyber.nl)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister?ref=badge_shield)
-![Node.js build and lint](https://github.com/CyberRegister/CyberRegister/workflows/Node.js%20build%20and%20lint/badge.svg)
-![Laravel](https://github.com/CyberRegister/CyberRegister/workflows/Laravel/badge.svg)
+[![Badges](https://img.shields.io/badge/badges-7-green.svg)](https://shields.io)
+[![Cyberveiligheid](https://img.shields.io/badge/Cyberveiligheid-97%25-yellow.svg)](https://nl.wikipedia.org/wiki/Rian_van_Rijbroek)
 
-Installation:
+A register of cyber security experts, their expertises and PCE points, built
+on Laravel 13.
+
+## Requirements
+
+* PHP 8.3 or newer, with the `imagick`, `gd`, `pdo_mysql`, `mbstring`, `bcmath`,
+  `intl`, `zip` and `fileinfo` extensions
+* Composer 2
+* Node 22 or newer, with Yarn
+* MySQL or MariaDB
+
+## Installation
+
 ```bash
 composer install
 cp .env.example .env      # Edit config
@@ -25,8 +27,72 @@ php artisan key:generate
 php artisan migrate
 php artisan passport:keys
 yarn install
-yarn production
+yarn build
 ```
+
+## Two factor authentication
+
+Accounts can be secured with a time based one time password (Google2FA) and
+with a hardware security key over WebAuthn. Both are optional and can be used
+together. Users who register neither are not prompted for a second factor.
+
+WebAuthn needs a secure context, so hardware keys only work over HTTPS or on
+`localhost`.
+
+## Development
+
+Running the development server:
+```bash
+php artisan serve
+```
+Frontend development server (with hot module replacement):
+```bash
+yarn dev
+```
+Production build:
+```bash
+yarn build
+```
+
+## Running tests
+
+Run all the tests
+```bash
+vendor/bin/pest
+```
+Run a test suite (for a list of available suites, see `/phpunit.xml`)
+```bash
+vendor/bin/pest --testsuite <suite_name>
+```
+Run a specific test file
+```bash
+vendor/bin/pest tests/<optional_folders>/TestFileName
+```
+Run a specific test case
+```bash
+vendor/bin/pest --filter <test_case_name>
+```
+Generate code coverage
+```bash
+vendor/bin/pest --coverage-html docs/coverage
+```
+This will create the code coverage docs in `docs/coverage/index.html`
+
+## Static analysis
+
+The code is analysed by [PHPStan](https://phpstan.org/) with
+[Larastan](https://github.com/larastan/larastan) at level 8, which is also
+enforced in CI:
+```bash
+vendor/bin/phpstan analyse
+```
+
+## Linting the front-end
+
+```bash
+yarn lint
+```
+
 ## License
 
 Cyberregister is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
@@ -35,41 +101,3 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FCyberRegister%2FCyberRegister?ref=badge_large)
-
-## Development
-
-Running the development server:
-```bash
-php artisan serve
-```
-Frontend development:
-```bash
-yarn dev
-```
-With live-reload:
-```bash
-yarn watch
-```
-## Running tests
- 
-Run all the tests
-```bash
-vendor/bin/pest
-```
-Run a test suite (for a list of availabe suites, see `/phpunit.xml`)
-```bash 
-vendor/bin/pest --testsuite <suite_name>
-```
-Run a specific test file
-```bash
-vendor/bin/pest tests/<optional_folders>/TestFileName
-```
-Run a specific test case
-``bash
-vendor/bin/pest --filter <test_case_name>
-``
-Generate code coverage
-```bash
-vendor/bin/pest --coverage-html docs/coverage
-```
-This will create the code coverage docs in `docs/coverage/index.html`

@@ -1,26 +1,37 @@
 <?php
 
-use Faker\Generator as Faker;
-use Illuminate\Support\Str;
+namespace Database\Factories;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+use App\Models\CyberExpertise;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(
-    App\CyberExpertise::class,
-    function (Faker $faker) {
+/**
+ * @extends Factory<CyberExpertise>
+ */
+class CyberExpertiseFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<CyberExpertise>
+     */
+    protected $model = CyberExpertise::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
         return [
-            'expertise_code'  => Str::random(3),
-            'required_points' => $faker->randomDigit(3),
-            'description'     => $faker->paragraph,
+            // expertise_code is unique in the schema, on a case insensitive
+            // collation, so 'abc' and 'ABC' collide in the database even
+            // though Faker considers them distinct. Restricting the alphabet
+            // to a single case makes uniqueness here mean uniqueness there.
+            'expertise_code'  => $this->faker->unique()->regexify('[A-Z0-9]{3}'),
+            'required_points' => $this->faker->numberBetween(1, 999),
+            'description'     => $this->faker->paragraph(),
         ];
     }
-);
+}

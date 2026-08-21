@@ -1,22 +1,34 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+namespace Database\Factories;
 
-$factory->define(
-    App\Expertise::class,
-    function () {
+use App\Models\CyberExpertise;
+use App\Models\Expertise;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<Expertise>
+ */
+class ExpertiseFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<Expertise>
+     */
+    protected $model = Expertise::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
         return [
-            'user_id'            => factory(\App\User::class)->create()->id,
-            'cyber_expertise_id' => factory(\App\CyberExpertise::class)->create()->id,
+            'user_id'            => User::factory(),
+            'cyber_expertise_id' => CyberExpertise::factory(),
         ];
     }
-);
+}

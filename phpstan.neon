@@ -1,12 +1,13 @@
 includes:
-    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/larastan/larastan/extension.neon
+
 parameters:
     paths:
         - app
         - bootstrap
         - config
+        - database
         - public
         - routes
-    level: 6
-    inferPrivatePropertyTypeFromConstructor: true
-    checkMissingIterableValueType: false
+
+    level: 8

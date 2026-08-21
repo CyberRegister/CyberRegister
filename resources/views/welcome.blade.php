@@ -27,7 +27,7 @@
     </p>
     <p>
         Om melding te maken van cybermisstanden verwijzen wij u naar het <a href="https://cybermeldpunt.nl/">Cybermeldpunt</a>, van daar uit kan de Cyberonderzoeksraad één of meerdere cyberexperts aanstellen om een cyberonderzoek in te stellen.<br>
-        Er zijn de afgelopen maand reeds {{ \App\User::where('created_at', '<', Carbon\Carbon::now()->subMonth())->count() }} nieuwe experts ingeschreven.
+        Er zijn de afgelopen maand reeds {{ \App\Models\User::where('created_at', '<', Carbon\Carbon::now()->subMonth())->count() }} nieuwe experts ingeschreven.
     </p>
     <p>Bekijk de code op <a href="https://github.com/CyberRegister/CyberRegister">GitHub</a>.</p>
 </div>

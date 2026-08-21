@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\TwoFAKey;
-use App\User;
+use App\Models\TwoFAKey;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -16,7 +16,7 @@ class TwoFAKeyTest extends TestCase
      */
     public function testTwoFAKeyHasUserRelation()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->assertEmpty($user->twoFAKey);
         $google2fa = app('pragmarx.google2fa');
         // Add the secret key to the registration data
@@ -35,7 +35,7 @@ class TwoFAKeyTest extends TestCase
      */
     public function testTwoFAKeyGoogle2faSecretAttributeEncryption()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $key = TwoFAKey::create(
             [
                 'user_id'          => $user->id,

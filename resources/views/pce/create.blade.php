@@ -20,7 +20,7 @@
 
                             <div class="col-md-8">
                                 <select id="user_id" class="form-control{{ $errors->has('user_id') ? ' is-invalid' : '' }}" name="user_id">
-                                @foreach(App\User::all() as $user)
+                                @foreach(App\Models\User::all() as $user)
                                     <option value="{{ $user->id }}" @if($user->id === old('user_id'))selected="selected"@endif>{{ $user->name }}</option>
                                 @endforeach
                                 </select>

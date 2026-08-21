@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Cyberregister') }}</title>
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('static/icons/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('static/icons/apple-icon-60x60.png') }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('static/icons/apple-icon-72x72.png') }}">
@@ -67,14 +67,12 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('users.edit', ['user' => Auth::user()->cyber_code]) }}" id="user-edit">Profiel bewerken</a>
-                                    @if(is_null(Auth::user()->u2fKey))
-                                    <a class="dropdown-item" href="{{ route('u2f.register') }}" id="u2f-register">U2F toevoegen</a>
-                                    @endif
                                     @if(is_null(Auth::user()->twoFAKey))
                                     <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-register">2FA toevoegen</a>
                                     @else
                                     <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-edit">2FA aanpassen</a>
                                     @endif
+                                    <a class="dropdown-item" href="{{ route('webauthn.create') }}" id="webauthn-register">Beveiligingssleutel toevoegen</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" id="logout">
                                         Logout
                                     </a>
@@ -109,7 +107,6 @@
         </div>
     </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
 </body>
 </html>

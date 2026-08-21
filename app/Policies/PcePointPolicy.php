@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\PcePoint;
-use App\User;
+use App\Models\PcePoint;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PcePointPolicy
@@ -39,7 +39,7 @@ class PcePointPolicy
     /**
      * Determine whether the user can see a PcePoint.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @param PcePoint  $pcePoint
      *
      * @return bool

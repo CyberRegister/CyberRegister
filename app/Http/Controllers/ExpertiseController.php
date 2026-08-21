@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Expertise;
+use App\Models\Expertise;
 use App\Http\Requests\ExpertiseRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;

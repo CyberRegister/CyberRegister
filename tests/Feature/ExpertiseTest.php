@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\CyberExpertise;
-use App\Expertise;
-use App\User;
+use App\Models\CyberExpertise;
+use App\Models\Expertise;
+use App\Models\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -40,7 +40,7 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseIndex()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/expertise');
@@ -52,7 +52,7 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseIndexIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)
@@ -65,7 +65,7 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseCreate()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/expertise/create');
@@ -77,7 +77,7 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseCreateIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)
@@ -91,7 +91,7 @@ class ExpertiseTest extends TestCase
     public function testExpertiseStore()
     {
         $faker = Factory::create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
@@ -102,7 +102,7 @@ class ExpertiseTest extends TestCase
                     'date_of_certification' => $faker->date(),
                     'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
                     'user_id'               => $user->id,
-                    'cyber_expertise_id'    => factory(CyberExpertise::class)->create()->id,
+                    'cyber_expertise_id'    => CyberExpertise::factory()->create()->id,
                     '_token'                => 'test',
                 ]
             );
@@ -115,7 +115,7 @@ class ExpertiseTest extends TestCase
     public function testExpertiseStoreIsController()
     {
         $faker = Factory::create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)
@@ -127,7 +127,7 @@ class ExpertiseTest extends TestCase
                     'date_of_certification' => $faker->date(),
                     'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
                     'user_id'               => $user->id,
-                    'cyber_expertise_id'    => factory(CyberExpertise::class)->create()->id,
+                    'cyber_expertise_id'    => CyberExpertise::factory()->create()->id,
                     '_token'                => 'test',
                 ]
             );
@@ -140,8 +140,8 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseEditError()
     {
-        $user = factory(User::class)->create();
-        $expertise = factory(Expertise::class)->create();
+        $user = User::factory()->create();
+        $expertise = Expertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/expertise/'.$expertise->id.'/edit');
@@ -153,9 +153,9 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseEditIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $expertise = factory(Expertise::class)->create();
+        $expertise = Expertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/expertise/'.$expertise->id.'/edit');
@@ -167,8 +167,8 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseUpdateDenied()
     {
-        $user = factory(User::class)->create();
-        $expertise = factory(Expertise::class)->create();
+        $user = User::factory()->create();
+        $expertise = Expertise::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -180,7 +180,7 @@ class ExpertiseTest extends TestCase
                     'date_of_certification' => $faker->date(),
                     'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
                     'user_id'               => $user->id,
-                    'cyber_expertise_id'    => factory(CyberExpertise::class)->create()->id,
+                    'cyber_expertise_id'    => CyberExpertise::factory()->create()->id,
                     '_token'                => 'test',
                 ]
             );
@@ -192,9 +192,9 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseUpdateIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $expertise = factory(Expertise::class)->create();
+        $expertise = Expertise::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -206,7 +206,7 @@ class ExpertiseTest extends TestCase
                     'date_of_certification' => $faker->date(),
                     'date_of_expiration'    => $faker->dateTimeBetween('now', '+5 years')->format('Y-m-d'),
                     'user_id'               => $user->id,
-                    'cyber_expertise_id'    => factory(CyberExpertise::class)->create()->id,
+                    'cyber_expertise_id'    => CyberExpertise::factory()->create()->id,
                     '_token'                => 'test',
                 ]
             );
@@ -218,8 +218,8 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseDestroyDenied()
     {
-        $user = factory(User::class)->create();
-        $expertise = factory(Expertise::class)->create();
+        $user = User::factory()->create();
+        $expertise = Expertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/expertise/'.$expertise->id);
@@ -231,9 +231,9 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseDestroyIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $expertise = factory(Expertise::class)->create();
+        $expertise = Expertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/expertise/'.$expertise->id);
@@ -246,8 +246,8 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseShow()
     {
-        $user = factory(User::class)->create();
-        $expertise = factory(Expertise::class)->create();
+        $user = User::factory()->create();
+        $expertise = Expertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/expertise/'.$expertise->id);
@@ -259,7 +259,7 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseShowOwn()
     {
-        $expertise = factory(Expertise::class)->create();
+        $expertise = Expertise::factory()->create();
         $response = $this
             ->actingAs($expertise->user)
             ->get('/expertise/'.$expertise->id);
@@ -271,9 +271,9 @@ class ExpertiseTest extends TestCase
      */
     public function testExpertiseShowIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $expertise = factory(Expertise::class)->create();
+        $expertise = Expertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/expertise/'.$expertise->id);

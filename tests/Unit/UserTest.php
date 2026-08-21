@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Expertise;
-use App\PcePoint;
-use App\User;
+use App\Models\Expertise;
+use App\Models\PcePoint;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -13,12 +13,12 @@ class UserTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Assert user might have a relation with multiple App\PcePoint(s).
+     * Assert user might have a relation with multiple App\Models\PcePoint(s).
      */
     public function testUserHasPcePointHasRelation()
     {
         $pcePoint = new PcePoint();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->assertEmpty($user->pcePoints);
         $pcePoint->user()->associate($user);
         $pcePoint->points = 1;
@@ -34,18 +34,18 @@ class UserTest extends TestCase
     }
 
     /**
-     * Assert user might have a relation with multiple App\Expertise(s).
+     * Assert user might have a relation with multiple App\Models\Expertise(s).
      */
     public function testUserHasExpertiseRelation()
     {
-        $expertise = factory(Expertise::class)->create();
-        $user = factory(User::class)->create();
+        $expertise = Expertise::factory()->create();
+        $user = User::factory()->create();
         $this->assertEmpty($user->expertises);
         $expertise->user()->associate($user);
         $expertise->save();
         $user = User::find($user->id);
         $this->assertCount(1, $user->expertises);
-        $expertise = factory(Expertise::class)->create();
+        $expertise = Expertise::factory()->create();
         $expertise->user()->associate($user);
         $expertise->save();
         $user = User::find($user->id);
@@ -53,19 +53,19 @@ class UserTest extends TestCase
     }
 
     /**
-     * Assert user might have a relation with multiple App\CyberExpertise(s)
+     * Assert user might have a relation with multiple App\Models\CyberExpertise(s)
      * via the Expertise relation.
      */
     public function testUserHasCodesViaRelations()
     {
-        $expertise = factory(Expertise::class)->create();
-        $user = factory(User::class)->create();
+        $expertise = Expertise::factory()->create();
+        $user = User::factory()->create();
         $this->assertEmpty($user->codes);
         $expertise->user()->associate($user);
         $expertise->save();
         $user = User::find($user->id);
         $this->assertCount(1, $user->codes);
-        $expertise = factory(Expertise::class)->create();
+        $expertise = Expertise::factory()->create();
         $expertise->user()->associate($user);
         $expertise->save();
         $user = User::find($user->id);
@@ -77,7 +77,7 @@ class UserTest extends TestCase
      */
     public function testUserNameMagic()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->middle_name = 'de';
         $this->assertEquals($user->first_name.' de '.$user->last_name, $user->name);
     }

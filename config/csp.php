@@ -3,16 +3,29 @@
 return [
 
     /*
-     * A policy will determine which CSP headers will be set. A valid CSP policy is
-     * any class that extends `Spatie\Csp\Policies\Policy`
+     * Presets will determine which CSP headers will be set. A valid CSP preset is
+     * any class that implements `Spatie\Csp\Preset`.
      */
-    'policy' => \App\Policies\Csp::class,
+    'presets' => [
+        \Spatie\Csp\Presets\Basic::class,
+        \App\Support\CspPreset::class,
+    ],
 
     /*
-     * This policy which will be put in report only mode. This is great for testing out
-     * a new policy or changes to existing csp policy without breaking anyting.
+     * These presets which will be put in report only mode. This is great for testing out
+     * a new policy or changes to existing csp policy without breaking anything.
      */
-    'report_only_policy' => '',
+    'report_only_presets' => [],
+
+    /*
+     * These directives will be added to the policies.
+     */
+    'directives' => [],
+
+    /*
+     * These directives will be added to the report only policies.
+     */
+    'report_only_directives' => [],
 
     /*
      * All violations against the policy will be reported to this url.
@@ -31,4 +44,15 @@ return [
      * The class responsible for generating the nonces used in inline tags and headers.
      */
     'nonce_generator' => Spatie\Csp\Nonce\RandomString::class,
+
+    /*
+     * Set to false to stop adding nonces to the policy. The WebAuthn views
+     * rely on nonces for their inline scripts.
+     */
+    'nonce_enabled' => env('CSP_NONCE_ENABLED', true),
+
+    /*
+     * Set to true to add the CSP headers while hot reloading assets.
+     */
+    'enabled_while_hot_reloading' => env('CSP_ENABLED_WHILE_HOT_RELOADING', false),
 ];

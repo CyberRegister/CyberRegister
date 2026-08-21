@@ -28,7 +28,7 @@
 
                             <div class="col-md-8">
                                 <select id="user_id" class="form-control{{ $errors->has('user_id') ? ' is-invalid' : '' }}" name="user_id">
-                                @foreach(App\User::all() as $user)
+                                @foreach(App\Models\User::all() as $user)
                                     <option value="{{ $user->id }}" @if($user->id === $expertise->user_id)selected="selected"@endif>{{ $user->name }}</option>
                                 @endforeach
                                 </select>
@@ -45,7 +45,7 @@
 
                             <div class="col-md-8">
                                 <select id="cyber_expertise_id" class="form-control{{ $errors->has('cyber_expertise_id') ? ' is-invalid' : '' }}" name="cyber_expertise_id">
-                                    @foreach(App\CyberExpertise::all() as $cyberExpertise)
+                                    @foreach(App\Models\CyberExpertise::all() as $cyberExpertise)
                                         <option value="{{ $cyberExpertise->id }}" @if($cyberExpertise->id === $expertise->cyber_expertise_id)selected="selected"@endif>{{ $cyberExpertise->expertise_code }}</option>
                                     @endforeach
                                 </select>
