@@ -1,7 +1,6 @@
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+// Fonts are self hosted through @fontsource and imported from app.js, so
+// nothing is fetched from a font CDN at render time.
 
 // Variables
 @import "variables";

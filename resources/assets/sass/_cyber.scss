@@ -1,104 +1,10 @@
 
-@font-face{
-  font-family:"AGNL-Icon-Font";
-  src:url(../fonts/AGNL-Icon-Font.eot);
-  src:url(../fonts/AGNL-Icon-Font.eot?#iefix) format("embedded-opentype"),
-  url(../fonts/AGNL-Icon-Font.woff) format("woff"),
-  url(../fonts/AGNL-Icon-Font.ttf) format("truetype"),
-  url(../fonts/AGNL-Icon-Font.svg#AGNL-Icon-Font) format("svg");
-  font-weight:normal;
-  font-style:normal;
-}
-
-/*
-	-------------------------------------------------------------------
-	RijksoverheidSansHeading-Bold 2.0
-	-------------------------------------------------------------------
-*/
-@font-face{
-  font-family:"RijksOverheidSans";
-  src:url(../fonts/rijksoverheidsansheading-bold_2_0.eot);
-  src:url(../fonts/rijksoverheidsansheading-bold_2_0.eot?#iefix) format("embedded-opentype"),
-  url(../fonts/rijksoverheidsansheading-bold_2_0.woff) format("woff"),
-  url(../fonts/rijksoverheidsansheading-bold_2_0.ttf) format("truetype"),
-  url(../fonts/rijksoverheidsansheading-bold_2_0.svg#RijksOverheidSansBold) format("svg");
-  font-weight:bold;
-  font-style:normal;
-}
-
-/*
-	-------------------------------------------------------------------
-	RijksoverheidSansHeading-Regular 2.0
-	-------------------------------------------------------------------
-*/
-@font-face{
-  font-family:"RijksOverheidSans";
-  src:url(../fonts/rijksoverheidsansheading-regular_2_0.eot);
-  src:url(../fonts/rijksoverheidsansheading-regular_2_0.eot?#iefix) format("embedded-opentype"),
-  url(../fonts/rijksoverheidsansheading-regular_2_0.woff) format("woff"),
-  url(../fonts/rijksoverheidsansheading-regular_2_0.ttf) format("truetype"),
-  url(../fonts/rijksoverheidsansheading-regular_2_0.svg#RijksOverheidSansRegular) format("svg");
-  font-weight:normal;
-  font-style:normal;
-}
-
-
-/*
-	-------------------------------------------------------------------
-	RijksoverheidSansText-Regular
-	-------------------------------------------------------------------
-*/
-@font-face {
-  font-family: "RijksoverheidSansText-Regular";
-  src:url("../fonts/rijksoverheidsanstext-regular.eot");
-  src:url("../fonts/rijksoverheidsanstext-regular.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/rijksoverheidsanstext-regular.woff") format("woff"),
-  url("../fonts/rijksoverheidsanstext-regular.ttf") format("truetype"),
-  url("../fonts/rijksoverheidsanstext-regular.svg#RijksoverheidSansText-Regular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-/*
-	-------------------------------------------------------------------
-	RijksoverheidSerif-Regular
-	-------------------------------------------------------------------
-*/
-@font-face {
-  font-family: "RijksoverheidSerif-Regular";
-  src:url("../fonts/rijksoverheidserif-regular.eot");
-  src:url("../fonts/rijksoverheidserif-regular.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/rijksoverheidserif-regular.woff") format("woff"),
-  url("../fonts/rijksoverheidserif-regular.ttf") format("truetype"),
-  url("../fonts/rijksoverheidserif-regular.svg#RijksoverheidSerif-Regular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-/*
-	-------------------------------------------------------------------
-	RijksoverheidSerif-Italic
-	-------------------------------------------------------------------
-*/
-@font-face {
-  font-family: "RijksoverheidSerif-Italic";
-  src:url("../fonts/rijksoverheidserif-italic.eot");
-  src:url("../fonts/rijksoverheidserif-italic.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/rijksoverheidserif-italic.woff") format("woff"),
-  url("../fonts/rijksoverheidserif-italic.ttf") format("truetype"),
-  url("../fonts/rijksoverheidserif-italic.svg#RijksoverheidSerif-Italic") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-
 html {overflow-y: scroll;}
-body {color: #111; font-size: 14px; line-height: 1.7; background: #f3f5f6; font-family: "RijksoverheidSansText-Regular";}
+body {color: #111; font-size: 14px; line-height: 1.7; background: #f3f5f6; font-family: $font-family-sans-serif;}
 #page {background: white; margin: 13px auto; width: 1000px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);}
 .container {width: 100%;}
 #payoff {width: 700px; padding: 0px 30px; line-height: 1.2em; position: absolute;
-  font-family: "RijksoverheidSerif-Regular"; font-size: 40px; color: #111;
+  font-family: $font-family-serif; font-size: 40px; color: #111;
   top: 60px;
 }
 
@@ -112,7 +18,7 @@ body {color: #111; font-size: 14px; line-height: 1.7; background: #f3f5f6; font-
 .content .highlighted2 {background: #fcf5e2;}
 .content .highlighted3 {background: #eee;}
 .content p {margin: 10px 0 20px;}
-h1, h2, h3, h4, .h1, .h2, .h3, .h4 {line-height: 1.2; font-family: Arial, Helvetica, sans-serif; font-family: 'Source Sans Pro', sans-serif;}
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {line-height: 1.2; font-family: $font-family-sans-serif;}
 h2, .h2, h3, .h3 {font-size: 24px;}
 h2, .h2, h3, .h3 {margin-top: 35px; margin-bottom: 10px;}
 h4, .h4 {margin-top: 0px; margin-bottom: 0px; font-weight: bold;}
@@ -135,13 +41,12 @@ h4, .h4 {margin-top: 0px; margin-bottom: 0px; font-weight: bold;}
 }
 .nav-pills.nav-stacked>li>a:before {
   display: inline-block;
-  font-family: 'AGNL-Icon-Font';
   color: #111;
   -webkit-font-smoothing: antialiased;
   vertical-align: middle;
   font-size: 20px;
   line-height: 20px;
-  content: "\3e";
+  content: "\203A";
   float: left;
   position: relative; top: 2px;
   margin-right: 5px;
@@ -155,13 +60,12 @@ ul.linklist {padding-left: 0px;}
 ul.linklist li {list-style: none;}
 .linklist li:before {
   display: block;
-  font-family: 'AGNL-Icon-Font';
   color: #154273;
   -webkit-font-smoothing: antialiased;
   vertical-align: middle;
   font-size: 20px;
   line-height: 20px;
-  content: "\3e";
+  content: "\203A";
   float: left;
   position: relative; top: 2px;
   margin-right: 5px;
@@ -184,9 +88,8 @@ ul.linklist li {list-style: none;}
 .breadcrumb a {text-decoration: none;}
 .breadcrumb>li+li:before {
   padding: 0 5px;
-  font-family: 'AGNL-Icon-Font';
   color: #154273;
-  content: "\3e";
+  content: "\203A";
   font-size: 20px;
   line-height: 20px;
   display: inline-block;
@@ -207,12 +110,12 @@ ul.linklist li {list-style: none;}
   padding: 0 30px;
 }
 .navbar .navbar-form {padding: 0;}
-.navbar .navbar-form .form-control {font-family: "RijksoverheidSansText-Regular";}
+.navbar .navbar-form .form-control {font-family: $font-family-sans-serif;}
 .navbar-default .navbar-header .navbar-nav>li>a {text-decoration: underline;}
 .navbar-default .navbar-header .navbar-nav>li,
 .navbar-default .navbar-header .navbar-nav>li>a {font-style: normal; font-weight: normal; margin: 0; padding: 0; line-height: 38px;}
 .navbar-default .navbar-header .navbar-nav>li>a:hover {background: transparent; color: #777; text-decoration: underline;}
-.navbar-default .navbar-header .navbar-nav>li {font-family: "RijksoverheidSansText-Regular"; font-size: 14px; font-style: italic; margin-left: 30px;}
+.navbar-default .navbar-header .navbar-nav>li {font-family: $font-family-sans-serif; font-size: 14px; font-style: italic; margin-left: 30px;}
 .navbar-default .navbar-header .navbar-nav.navbar-right {margin-right: 0px;}
 .navbar-default .navbar-brand {height: auto; color: #777; color: #111; padding: 4px 20px; font-size: 23px; line-height: 1.2em;}
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {color: #111;}
@@ -229,7 +132,7 @@ ul.linklist li {list-style: none;}
   min-height: 0;
   font-weight: 700;
   font-size: 16px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: $font-family-sans-serif;
   line-height: 0.1em;
 }
 
@@ -247,7 +150,7 @@ ul.linklist li {list-style: none;}
   border: 0;
   border-radius: 0;
   font-size: 14px;
-  font-family: "RijksoverheidSansText-Regular";
+  font-family: $font-family-sans-serif;
 }
 .dropdown-menu>li>a {padding: 3px 15px;}
 .dropdown-menu .divider {background-color: rgba(0,0,0,0.1);}
@@ -270,7 +173,7 @@ label {font-weight: normal;}
 
 
 /* buttons */
-.btn {color: #111; border-color: #333; border-radius: 0px; background: #fcf5e2; font-family: "RijksoverheidSansText-Regular";}
+.btn {color: #111; border-color: #333; border-radius: 0px; background: #fcf5e2; font-family: $font-family-sans-serif;}
 .btn-primary {background-color: #ffb612;}
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
   color: #111; background-color: #ffb612; border-color: #111;}

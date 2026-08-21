@@ -22,24 +22,6 @@ precedence = "aggregate"
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
 
-# The Rijksoverheid house style fonts. The Dutch State reserved its copyright
-# on these under article 15b of the Auteurswet, and use requires prior written
-# permission unless the work is carried out for the Rijksoverheid. See
-# LICENSES/LicenseRef-Rijkshuisstijl.txt.
-[[annotations]]
-path = "resources/assets/fonts/rijksoverheid**"
-precedence = "aggregate"
-SPDX-FileCopyrightText = "Staat der Nederlanden (Ministerie van Algemene Zaken); typeface design Peter Verheul (OurType)"
-SPDX-License-Identifier = "LicenseRef-Rijkshuisstijl"
-
-# Icon font generated with IcoMoon. It carries no copyright notice and its
-# provenance is not recorded anywhere in this repository.
-[[annotations]]
-path = "resources/assets/fonts/AGNL-Icon-Font**"
-precedence = "aggregate"
-SPDX-FileCopyrightText = "NONE"
-SPDX-License-Identifier = "LicenseRef-Unverified-Provenance"
-
 # Google's two step verification security key illustration, originally loaded
 # from ssl.gstatic.com. No redistribution licence is recorded for it.
 [[annotations]]
