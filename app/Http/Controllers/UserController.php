@@ -6,7 +6,9 @@ use App\Http\Requests\UserSearchRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Intervention\Image\Laravel\Facades\Image;
@@ -32,12 +34,27 @@ class UserController extends Controller
      */
     public function search(UserSearchRequest $request): View
     {
-        $users = User::with(['expertises' => function ($query) {
-            $query->where('cyber_expertise_id', 1);
-        }])
-            ->where('cyber_code', 'like', '%'.$request->q.'%')
-            ->orWhere('first_name', 'like', '%'.$request->q.'%')
-            ->orWhere('last_name', 'like', '%'.$request->q.'%')
+        $today = Carbon::today();
+
+        $users = User::query()
+            ->whereHas(
+                'expertises',
+                function (Builder $query) use ($today) {
+                    $query->where('date_of_expiration', '>=', $today);
+                }
+            )
+            ->where(
+                function (Builder $query) use ($request) {
+                    $query->where('cyber_code', 'like', '%'.$request->q.'%')
+                        ->orWhere('first_name', 'like', '%'.$request->q.'%')
+                        ->orWhere('last_name', 'like', '%'.$request->q.'%');
+                }
+            )
+            ->with([
+                'expertises' => function ($query) use ($today) {
+                    $query->where('date_of_expiration', '>=', $today);
+                },
+            ])
             ->get();
 
         return view('users.index', ['users' => $users, 'q' => $request->q]);

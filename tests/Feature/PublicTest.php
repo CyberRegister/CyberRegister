@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -18,6 +20,21 @@ class PublicTest extends TestCase
     {
         $response = $this->get('/');
         $response->assertStatus(200);
+    }
+
+    /**
+     * The front page counts sign-ups from the past month, not the ones
+     * before it.
+     */
+    public function testWelcomeCountsRecentSignups()
+    {
+        User::factory()->create(['created_at' => Carbon::now()->subDays(3)]);
+        User::factory()->create(['created_at' => Carbon::now()->subMonths(6)]);
+
+        $response = $this->get('/');
+
+        $response->assertStatus(200)
+            ->assertSee('afgelopen maand reeds 1 nieuwe experts');
     }
 
     /**

@@ -63,7 +63,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * Check the /users/search page.
+     * A query matching nobody returns nothing.
      */
     public function testUserSearchQuery()
     {
@@ -77,17 +77,17 @@ class UserTest extends TestCase
                 ]
             );
         $response->assertStatus(200)
-            ->assertViewHas('users', User::where('cyber_code', 'like', '%xyz%')->get())->assertViewHas('q', 'xyz');
+            ->assertViewHas('q', 'xyz');
+        $this->assertCount(0, $response->viewData('users'));
     }
 
     /**
-     * Check the /users/search page.
+     * An expert holding a valid registration is found by their cyber code.
      */
     public function testUserSearchQueryExact()
     {
         $user = User::factory()->create();
-        $expertise = new Expertise();
-        $expertise->user()->associate($user);
+        Expertise::factory()->create(['user_id' => $user->id]);
 
         $response = $this
             ->actingAs($user)
@@ -98,9 +98,138 @@ class UserTest extends TestCase
                 ]
             );
         $response->assertStatus(200)
-            ->assertViewHas('users', User::with(['expertises' => function ($query) {
-                $query->where('cyber_expertise_id', 1);
-            }])->get())->assertViewHas('q', $user->cyber_code);
+            ->assertViewHas('q', $user->cyber_code);
+        $this->assertTrue($response->viewData('users')->contains('id', $user->id));
+    }
+
+    /**
+     * Someone without any registration is not in the public register.
+     */
+    public function testUserSearchExcludesUserWithoutRegistration()
+    {
+        $searcher = User::factory()->create();
+        $subject = User::factory()->create();
+
+        $response = $this
+            ->actingAs($searcher)
+            ->post('/users/search', ['q' => $subject->cyber_code]);
+
+        $response->assertStatus(200);
+        $this->assertFalse($response->viewData('users')->contains('id', $subject->id));
+    }
+
+    /**
+     * Someone whose registration has expired drops out of the register.
+     */
+    public function testUserSearchExcludesUserWithExpiredRegistration()
+    {
+        $searcher = User::factory()->create();
+        $subject = User::factory()->create();
+        Expertise::factory()->expired()->create(['user_id' => $subject->id]);
+
+        $response = $this
+            ->actingAs($searcher)
+            ->post('/users/search', ['q' => $subject->cyber_code]);
+
+        $response->assertStatus(200);
+        $this->assertFalse($response->viewData('users')->contains('id', $subject->id));
+    }
+
+    /**
+     * A name match still requires a valid registration, so the name filter
+     * cannot leak past the registration check.
+     */
+    public function testUserSearchByNameStillRequiresValidRegistration()
+    {
+        $searcher = User::factory()->create();
+        $subject = User::factory()->create(['last_name' => 'Rijbroek']);
+        Expertise::factory()->expired()->create(['user_id' => $subject->id]);
+
+        $response = $this
+            ->actingAs($searcher)
+            ->post('/users/search', ['q' => 'Rijbroek']);
+
+        $response->assertStatus(200);
+        $this->assertFalse($response->viewData('users')->contains('id', $subject->id));
+    }
+
+    /**
+     * Only unexpired registrations are eager loaded for the result list.
+     */
+    public function testUserSearchOnlyLoadsValidRegistrations()
+    {
+        $searcher = User::factory()->create();
+        $subject = User::factory()->create();
+        Expertise::factory()->create(['user_id' => $subject->id]);
+        Expertise::factory()->expired()->create(['user_id' => $subject->id]);
+
+        $response = $this
+            ->actingAs($searcher)
+            ->post('/users/search', ['q' => $subject->cyber_code]);
+
+        $found = $response->viewData('users')->firstWhere('id', $subject->id);
+        $this->assertNotNull($found);
+        $this->assertCount(1, $found->expertises);
+        $this->assertTrue($found->expertises->first()->isValid);
+    }
+
+    /**
+     * A search without a query is rejected rather than listing everyone.
+     */
+    public function testUserSearchRequiresQuery()
+    {
+        $user = User::factory()->create();
+        $response = $this
+            ->actingAs($user)
+            ->post('/users/search', []);
+
+        $response->assertStatus(302)
+            ->assertSessionHasErrors('q');
+    }
+
+    /**
+     * The query has to be a string, which the previously malformed
+     * 'required:string' rule did not enforce.
+     */
+    public function testUserSearchRejectsNonStringQuery()
+    {
+        $user = User::factory()->create();
+        $response = $this
+            ->actingAs($user)
+            ->post('/users/search', ['q' => ['an', 'array']]);
+
+        $response->assertStatus(302)
+            ->assertSessionHasErrors('q');
+    }
+
+    /**
+     * The expert page marks a valid registration.
+     */
+    public function testExpertShowMarksValidRegistration()
+    {
+        $user = User::factory()->create();
+        Expertise::factory()->create(['user_id' => $user->id]);
+
+        $response = $this->get(route('expert.show', ['user' => $user->cyber_code]));
+
+        $response->assertStatus(200)
+            ->assertSee('geregistreerd')
+            ->assertSee('geldig tot');
+    }
+
+    /**
+     * The expert page marks an expired registration as such.
+     */
+    public function testExpertShowMarksExpiredRegistration()
+    {
+        $user = User::factory()->create();
+        Expertise::factory()->expired()->create(['user_id' => $user->id]);
+
+        $response = $this->get(route('expert.show', ['user' => $user->cyber_code]));
+
+        $response->assertStatus(200)
+            ->assertSee('geen geldige registratie')
+            ->assertSee('verlopen op');
     }
 
     /**
