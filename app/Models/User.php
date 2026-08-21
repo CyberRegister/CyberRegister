@@ -39,7 +39,7 @@ use LaravelWebauthn\Models\WebauthnKey;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PcePoint[] $pcePoints
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
- * @property-read \App\Models\TwoFAKey $twoFAKey
+ * @property-read \App\Models\TwoFAKey|null $twoFAKey
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \LaravelWebauthn\Models\WebauthnKey> $webauthnKeys
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
