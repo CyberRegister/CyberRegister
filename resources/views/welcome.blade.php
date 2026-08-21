@@ -8,8 +8,7 @@
     <p>
         Ter verificatie kunt u een expert ook vragen om zijn of haar cyberprofessional pas te identificatie. Daarnaast kunt u bij verificatie ook via het register met de expert mailen. Hiervoor kunt u een bericht sturen naar de door de expert genoemde [cybercode] @ cyberregister.nl.
     </p>
-    <form method="POST" action="{{ route('expert.search') }}" class="search">
-        @csrf
+    <form method="GET" action="{{ route('expert.search') }}" class="search">
         <div class="form-group row">
             <label for="q" class="col-md-2 col-form-label text-md-right">Zoeken</label>
 

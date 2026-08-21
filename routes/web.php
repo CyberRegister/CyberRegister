@@ -35,7 +35,7 @@ Route::get(
 
 Auth::routes();
 
-Route::post('search', [UserController::class, 'search'])->name('expert.search');
+Route::get('search', [UserController::class, 'search'])->name('expert.search');
 Route::get('expert/{user}', [UserController::class, 'show'])->name('expert.show');
 
 Route::group(
@@ -43,8 +43,10 @@ Route::group(
     function () {
         Route::get('/home', [HomeController::class, 'index'])->name('home');
         Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+        // Registered before the resource, otherwise users/{user} claims
+        // "search" as a cyber code and the search returns a 404.
+        Route::get('users/search', [UserController::class, 'search'])->name('users.search');
         Route::resource('users', UserController::class);
-        Route::post('users/search', [UserController::class, 'search'])->name('users.search');
         Route::resource('pcePoint', PcePointController::class);
         Route::resource('expertise', ExpertiseController::class);
         Route::resource('cyberExpertise', CyberExpertiseController::class);

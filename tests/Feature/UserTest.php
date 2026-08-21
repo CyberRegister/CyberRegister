@@ -47,7 +47,8 @@ class UserTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->get('/users');
-        $response->assertStatus(200)->assertViewHas('users', [])->assertViewHas('q', '');
+        $response->assertStatus(200)->assertViewHas('q', '');
+        $this->assertSame(0, $response->viewData('users')->total());
     }
 
     /**
@@ -58,7 +59,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
-            ->post('/users/search');
+            ->get('/users/search');
         $response->assertStatus(302);
     }
 
@@ -70,12 +71,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
-            ->post(
-                '/users/search',
-                [
-                    'q' => 'xyz',
-                ]
-            );
+            ->get('/users/search?q='.urlencode('xyz'));
         $response->assertStatus(200)
             ->assertViewHas('q', 'xyz');
         $this->assertCount(0, $response->viewData('users'));
@@ -91,12 +87,7 @@ class UserTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->post(
-                '/users/search',
-                [
-                    'q' => $user->cyber_code,
-                ]
-            );
+            ->get('/users/search?q='.urlencode($user->cyber_code));
         $response->assertStatus(200)
             ->assertViewHas('q', $user->cyber_code);
         $this->assertTrue($response->viewData('users')->contains('id', $user->id));
@@ -112,7 +103,7 @@ class UserTest extends TestCase
 
         $response = $this
             ->actingAs($searcher)
-            ->post('/users/search', ['q' => $subject->cyber_code]);
+            ->get('/users/search?q='.urlencode($subject->cyber_code));
 
         $response->assertStatus(200);
         $this->assertFalse($response->viewData('users')->contains('id', $subject->id));
@@ -129,7 +120,7 @@ class UserTest extends TestCase
 
         $response = $this
             ->actingAs($searcher)
-            ->post('/users/search', ['q' => $subject->cyber_code]);
+            ->get('/users/search?q='.urlencode($subject->cyber_code));
 
         $response->assertStatus(200);
         $this->assertFalse($response->viewData('users')->contains('id', $subject->id));
@@ -147,7 +138,7 @@ class UserTest extends TestCase
 
         $response = $this
             ->actingAs($searcher)
-            ->post('/users/search', ['q' => 'Rijbroek']);
+            ->get('/users/search?q=Rijbroek');
 
         $response->assertStatus(200);
         $this->assertFalse($response->viewData('users')->contains('id', $subject->id));
@@ -165,7 +156,7 @@ class UserTest extends TestCase
 
         $response = $this
             ->actingAs($searcher)
-            ->post('/users/search', ['q' => $subject->cyber_code]);
+            ->get('/users/search?q='.urlencode($subject->cyber_code));
 
         $found = $response->viewData('users')->firstWhere('id', $subject->id);
         $this->assertNotNull($found);
@@ -181,7 +172,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
-            ->post('/users/search', []);
+            ->get('/users/search');
 
         $response->assertStatus(302)
             ->assertSessionHasErrors('q');
@@ -196,7 +187,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
-            ->post('/users/search', ['q' => ['an', 'array']]);
+            ->get('/users/search?q[]=an&q[]=array');
 
         $response->assertStatus(302)
             ->assertSessionHasErrors('q');
@@ -230,6 +221,116 @@ class UserTest extends TestCase
         $response->assertStatus(200)
             ->assertSee('geen geldige registratie')
             ->assertSee('verlopen op');
+    }
+
+    /**
+     * Long result sets are split into pages rather than listed in full.
+     */
+    public function testUserSearchIsPaginated()
+    {
+        $searcher = User::factory()->create();
+        $perPage = \App\Http\Controllers\UserController::PER_PAGE;
+
+        for ($i = 0; $i < $perPage + 3; $i++) {
+            $subject = User::factory()->create(['last_name' => 'Paginatie']);
+            Expertise::factory()->create(['user_id' => $subject->id]);
+        }
+
+        $response = $this->actingAs($searcher)->get('/users/search?q=Paginatie');
+        $response->assertStatus(200);
+
+        $users = $response->viewData('users');
+        $this->assertSame($perPage + 3, $users->total());
+        $this->assertCount($perPage, $users);
+        $this->assertTrue($users->hasMorePages());
+    }
+
+    /**
+     * The second page carries the rest of the results.
+     */
+    public function testUserSearchSecondPage()
+    {
+        $searcher = User::factory()->create();
+        $perPage = \App\Http\Controllers\UserController::PER_PAGE;
+
+        for ($i = 0; $i < $perPage + 3; $i++) {
+            $subject = User::factory()->create(['last_name' => 'Paginatie']);
+            Expertise::factory()->create(['user_id' => $subject->id]);
+        }
+
+        $response = $this->actingAs($searcher)->get('/users/search?q=Paginatie&page=2');
+        $response->assertStatus(200);
+
+        $users = $response->viewData('users');
+        $this->assertSame(2, $users->currentPage());
+        $this->assertCount(3, $users);
+    }
+
+    /**
+     * Results can be ordered by cyber code as well as by name.
+     */
+    public function testUserSearchSortsByCyberCode()
+    {
+        $searcher = User::factory()->create();
+        foreach (['zz99zz', 'aa11aa', 'mm55mm'] as $code) {
+            $subject = User::factory()->create(['cyber_code' => $code, 'last_name' => 'Sorteer']);
+            Expertise::factory()->create(['user_id' => $subject->id]);
+        }
+
+        $response = $this->actingAs($searcher)
+            ->get('/users/search?q=Sorteer&sort=code&direction=asc');
+        $response->assertStatus(200);
+
+        $codes = $response->viewData('users')->pluck('cyber_code')->all();
+        $sorted = $codes;
+        sort($sorted);
+        $this->assertSame($sorted, $codes);
+    }
+
+    /**
+     * Reversing the direction reverses the order.
+     */
+    public function testUserSearchSortsDescending()
+    {
+        $searcher = User::factory()->create();
+        foreach (['zz99zz', 'aa11aa', 'mm55mm'] as $code) {
+            $subject = User::factory()->create(['cyber_code' => $code, 'last_name' => 'Sorteer']);
+            Expertise::factory()->create(['user_id' => $subject->id]);
+        }
+
+        $response = $this->actingAs($searcher)
+            ->get('/users/search?q=Sorteer&sort=code&direction=desc');
+
+        $codes = $response->viewData('users')->pluck('cyber_code')->all();
+        $sorted = $codes;
+        rsort($sorted);
+        $this->assertSame($sorted, $codes);
+    }
+
+    /**
+     * An unknown sort column is rejected rather than reaching the query.
+     */
+    public function testUserSearchRejectsUnknownSort()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)
+            ->get('/users/search?q=iets&sort=password');
+
+        $response->assertStatus(302)->assertSessionHasErrors('sort');
+    }
+
+    /**
+     * An unknown direction is rejected too.
+     */
+    public function testUserSearchRejectsUnknownDirection()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)
+            ->get('/users/search?q=iets&direction=sideways');
+
+        $response->assertStatus(302)->assertSessionHasErrors('direction');
     }
 
     /**

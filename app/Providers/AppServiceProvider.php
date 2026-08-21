@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -21,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
         // request had no redirect target. That fallback is gone, and without a
         // target the handler answers with an empty 401 instead of redirecting.
         Authenticate::redirectUsing(fn () => route('login'));
+
+        // Laravel renders pagination with Tailwind by default and this
+        // application is built on Bootstrap 4.
+        Paginator::useBootstrapFour();
     }
 
     /**

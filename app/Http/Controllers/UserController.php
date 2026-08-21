@@ -10,11 +10,32 @@ use Carbon\Carbon;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Intervention\Image\Laravel\Facades\Image;
 
 class UserController extends Controller
 {
+    /**
+     * Sortable columns, mapped from the value accepted in the query string.
+     *
+     * Only these reach the query builder, so an unexpected sort cannot become
+     * part of the SQL.
+     *
+     * @var array<string, string>
+     */
+    public const SORTS = [
+        'naam' => 'last_name',
+        'code' => 'cyber_code',
+    ];
+
+    /**
+     * Results shown per page.
+     *
+     * @var int
+     */
+    public const PER_PAGE = 15;
+
     /**
      * Display a User search box.
      *
@@ -22,7 +43,17 @@ class UserController extends Controller
      */
     public function index(): View
     {
-        return view('users.index', ['users' => [], 'q' => '']);
+        return view(
+            'users.index',
+            [
+                // An empty page rather than an empty array, so the view always
+                // works with the same type whether or not a search ran.
+                'users'     => new LengthAwarePaginator([], 0, self::PER_PAGE),
+                'q'         => '',
+                'sort'      => 'naam',
+                'direction' => 'asc',
+            ]
+        );
     }
 
     /**
@@ -35,6 +66,10 @@ class UserController extends Controller
     public function search(UserSearchRequest $request): View
     {
         $today = Carbon::today();
+        // An empty sort= in the query string validates fine but is not a key
+        // in SORTS, so fall back rather than index into it blindly.
+        $sort = $request->input('sort') ?: 'naam';
+        $direction = $request->input('direction') ?: 'asc';
 
         $users = User::query()
             ->whereHas(
@@ -55,9 +90,19 @@ class UserController extends Controller
                     $query->where('date_of_expiration', '>=', $today);
                 },
             ])
-            ->get();
+            ->orderBy(self::SORTS[$sort], $direction)
+            ->paginate(self::PER_PAGE)
+            ->withQueryString();
 
-        return view('users.index', ['users' => $users, 'q' => $request->q]);
+        return view(
+            'users.index',
+            [
+                'users'     => $users,
+                'q'         => $request->q,
+                'sort'      => $sort,
+                'direction' => $direction,
+            ]
+        );
     }
 
     /**
