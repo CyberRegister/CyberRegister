@@ -110,7 +110,7 @@ class PcePointController extends Controller
         try {
             $pcePoint->update($request->all());
         } catch (\Exception $e) {
-            return redirect()->route('pcePoint.edit', ['id' => $pcePoint->id])
+            return redirect()->route('pcePoint.edit', ['pcePoint' => $pcePoint])
                 ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
@@ -133,7 +133,7 @@ class PcePointController extends Controller
         try {
             $pcePoint->delete();
         } catch (\Exception $e) {
-            return redirect()->route('pcePoint.edit', ['id' => $pcePoint->id])
+            return redirect()->route('pcePoint.edit', ['pcePoint' => $pcePoint])
                 ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
