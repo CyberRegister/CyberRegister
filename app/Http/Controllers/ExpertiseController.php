@@ -110,10 +110,8 @@ class ExpertiseController extends Controller
         try {
             $expertise->update($request->all());
         } catch (\Exception $e) {
-            return redirect()->route(
-                'expertise.edit',
-                ['id' => $expertise->id]
-            )->withInput()->withErrors([$e->getMessage()]);
+            return redirect()->route('expertise.edit', ['expertise' => $expertise])
+                ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
         return redirect()->route('expertise.index');
@@ -135,7 +133,7 @@ class ExpertiseController extends Controller
         try {
             $expertise->delete();
         } catch (\Exception $e) {
-            return redirect()->route('expertise.edit', ['id' => $expertise->id])
+            return redirect()->route('expertise.edit', ['expertise' => $expertise])
                 ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification

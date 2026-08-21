@@ -102,7 +102,7 @@ class CyberExpertiseController extends Controller
         try {
             $cyberExpertise->update($request->all());
         } catch (\Exception $e) {
-            return redirect()->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])
+            return redirect()->route('cyberExpertise.edit', ['cyberExpertise' => $cyberExpertise])
                 ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
@@ -125,7 +125,7 @@ class CyberExpertiseController extends Controller
         try {
             $cyberExpertise->delete();
         } catch (\Exception $e) {
-            return redirect()->route('cyberExpertise.edit', ['expertise_code' => $cyberExpertise->expertise_code])
+            return redirect()->route('cyberExpertise.edit', ['cyberExpertise' => $cyberExpertise])
                 ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification

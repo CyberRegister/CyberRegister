@@ -151,7 +151,7 @@ class UserController extends Controller
                 $user->save();
             }
         } catch (\Exception $e) {
-            return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])
+            return redirect()->route('users.edit', ['user' => $user])
                 ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
@@ -174,7 +174,7 @@ class UserController extends Controller
         try {
             $user->delete();
         } catch (\Exception $e) {
-            return redirect()->route('users.edit', ['cyber_code' => $user->cyber_code])
+            return redirect()->route('users.edit', ['user' => $user])
                 ->withInput()->withErrors([$e->getMessage()]);
         }
         // todo notification
