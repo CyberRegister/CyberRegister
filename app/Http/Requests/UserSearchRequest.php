@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Class UserSearchRequest.
@@ -27,7 +29,9 @@ class UserSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'q' => 'required|string|max:255',
+            'q'         => 'required|string|max:255',
+            'sort'      => ['nullable', Rule::in(array_keys(UserController::SORTS))],
+            'direction' => ['nullable', Rule::in(['asc', 'desc'])],
         ];
     }
 }
