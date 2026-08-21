@@ -1,7 +1,12 @@
 {
     "name": "annejan/cyber-register",
     "description": "Cyberregister",
-    "keywords": ["cyber", "register", "framework", "laravel"],
+    "keywords": [
+        "cyber",
+        "register",
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -11,7 +16,6 @@
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.3",
         "intervention/image": "^2.5",
-        "lahaxearnaud/laravel-u2f": "dev-master",
         "laravel/framework": "^7.15",
         "laravel/passport": "^9.2",
         "laravel/tinker": "^2.4",
@@ -23,20 +27,13 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
-        "codacy/coverage": "dev-master",
-        "codeception/codeception": "^4.1",
-        "codeception/module-asserts": "^1.2",
-        "codeception/module-laravel5": "^1.1",
-        "codeception/module-rest": "^1.2",
-        "codeception/phpunit-wrapper": "^9.0",
+        "fakerphp/faker": "^1.9",
         "filp/whoops": "^2.7",
-        "fzaninotto/faker": "^1.9",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^0.6",
         "pestphp/pest": "^0.1.5",
-        "phpunit/phpunit": "^9.0",
-        "symfony/thanks": "^1.2"
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "classmap": [
@@ -54,8 +51,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {
@@ -75,12 +71,6 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/annejan/laravel-u2f"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }

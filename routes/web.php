@@ -30,7 +30,7 @@ Route::post('search', 'UserController@search')->name('expert.search');
 Route::get('expert/{user}', 'UserController@show')->name('expert.show');
 
 Route::group(
-    ['middleware' => ['2fa', 'u2f', 'auth']],
+    ['middleware' => ['2fa', 'auth']],
     function () {
         Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/logout', 'HomeController@logout')->name('logout');
@@ -45,10 +45,6 @@ Route::group(
 Route::group(
     ['middleware' => 'auth'],
     function () {
-        Route::get('/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@registerData')->name('u2f.register.data');
-        Route::post('/u2f/register', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@register')->name('u2f.register');
-        Route::get('/u2f/auth', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@authData')->name('u2f.auth.data');
-        Route::post('/u2f/auth', '\Lahaxearnaud\U2f\Http\Controllers\U2fController@auth')->name('u2f.auth');
 
         Route::get('/2fa', 'TwoFAController@show2faForm')->name('2fa');
         Route::post('/generate2faSecret', 'TwoFAController@generate2faSecret')->name('generate2faSecret');

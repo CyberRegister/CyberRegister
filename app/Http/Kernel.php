@@ -60,6 +60,5 @@ class Kernel extends HttpKernel
         'guest'         => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'      => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         '2fa'           => \App\Http\Middleware\Google2FAMiddleware::class,
-        'u2f'           => \Lahaxearnaud\U2f\Http\Middleware\U2f::class,
     ];
 }

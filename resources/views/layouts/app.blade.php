@@ -67,9 +67,6 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('users.edit', ['user' => Auth::user()->cyber_code]) }}" id="user-edit">Profiel bewerken</a>
-                                    @if(is_null(Auth::user()->u2fKey))
-                                    <a class="dropdown-item" href="{{ route('u2f.register') }}" id="u2f-register">U2F toevoegen</a>
-                                    @endif
                                     @if(is_null(Auth::user()->twoFAKey))
                                     <a class="dropdown-item" href="{{ route('2fa') }}" id="2fa-register">2FA toevoegen</a>
                                     @else

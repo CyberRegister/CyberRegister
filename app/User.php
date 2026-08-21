@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Lahaxearnaud\U2f\Models\U2fKey;
 use Laravel\Passport\HasApiTokens;
 
 /**
@@ -38,7 +37,6 @@ use Laravel\Passport\HasApiTokens;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\PcePoint[] $pcePoints
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @property-read \App\TwoFAKey $twoFAKey
- * @property-read \Lahaxearnaud\U2f\Models\U2fKey $u2fKey
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
@@ -178,14 +176,6 @@ class User extends Authenticatable
             $date = Carbon::createFromFormat('d-m-Y', $value);
         }
         $this->attributes['date_of_birth'] = $date;
-    }
-
-    /**
-     * @return HasOne
-     */
-    public function u2fKey(): HasOne
-    {
-        return $this->hasOne(U2fKey::class);
     }
 
     /**
