@@ -27,7 +27,7 @@ class UserSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'q' => 'required:string',
+            'q' => 'required|string|max:255',
         ];
     }
 }

@@ -10,6 +10,11 @@
                     @foreach($user->expertises->sortBy('cyber_expertise_id') as $expertise)
                         {{ $expertise->code }}
                     @endforeach
+                    @if($user->expertises->contains->isValid)
+                        <span class="badge badge-success" title="Geldige registratie">&check; geregistreerd</span>
+                    @else
+                        <span class="badge badge-secondary" title="Geen geldige registratie">geen geldige registratie</span>
+                    @endif
                 </div>
 
                 <div class="card-body">
@@ -22,9 +27,16 @@
                     <table width="100%">
                     @foreach($user->expertises->sortBy('cyber_expertise_id') as $expertise)
                         <tr>
-                            <td>{{ $expertise->code }}</td>
+                            <td>
+                                @if($expertise->isValid)
+                                    <span class="text-success" title="Geldig">&check;</span>
+                                @else
+                                    <span class="text-muted" title="Verlopen">&times;</span>
+                                @endif
+                                {{ $expertise->code }}
+                            </td>
                             <td>{{ $expertise->description }}</td>
-                            <td>@if($expertise->date_of_expiration)geldig tot {{  $expertise->date_of_expiration->format('Y-m-d') }}@endif</td>
+                            <td>@if($expertise->date_of_expiration){{ $expertise->isValid ? 'geldig tot' : 'verlopen op' }} {{ $expertise->date_of_expiration->format('Y-m-d') }}@endif</td>
                         </tr>
                     @endforeach
                     </table>

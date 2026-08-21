@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read \App\Models\CyberExpertise $cyberExpertise
  * @property-read string $code
  * @property-read null|string $description
+ * @property-read bool $isValid
  * @property-read \App\Models\User $user
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise newModelQuery()
@@ -98,5 +100,16 @@ class Expertise extends Model
     public function getDescriptionAttribute(): ?string
     {
         return $this->cyberExpertise->description;
+    }
+
+    /**
+     * Whether this registration has not expired yet.
+     *
+     * @return bool
+     */
+    public function getIsValidAttribute(): bool
+    {
+        return $this->date_of_expiration !== null
+            && $this->date_of_expiration->startOfDay() >= Carbon::today();
     }
 }
