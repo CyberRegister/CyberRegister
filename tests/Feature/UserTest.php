@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Expertise;
-use App\PcePoint;
-use App\User;
+use App\Models\Expertise;
+use App\Models\PcePoint;
+use App\Models\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -43,7 +43,7 @@ class UserTest extends TestCase
      */
     public function testUserIndexUser()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/users');
@@ -55,7 +55,7 @@ class UserTest extends TestCase
      */
     public function testUserSearch()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->post('/users/search');
@@ -67,7 +67,7 @@ class UserTest extends TestCase
      */
     public function testUserSearchQuery()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->post(
@@ -85,7 +85,7 @@ class UserTest extends TestCase
      */
     public function testUserSearchQueryExact()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $expertise = new Expertise();
         $expertise->user()->associate($user);
 
@@ -108,7 +108,7 @@ class UserTest extends TestCase
      */
     public function testUserCreate()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/users/create');
@@ -121,7 +121,7 @@ class UserTest extends TestCase
     public function testUserStore()
     {
         $faker = Factory::create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $password = $faker->password;
         $response = $this
             ->actingAs($user)
@@ -150,8 +150,8 @@ class UserTest extends TestCase
      */
     public function testUserEditError()
     {
-        $user = factory(User::class)->create();
-        $userTwo = factory(User::class)->create();
+        $user = User::factory()->create();
+        $userTwo = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/users/'.$userTwo->cyber_code.'/edit');
@@ -163,9 +163,9 @@ class UserTest extends TestCase
      */
     public function testUserEditIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $userTwo = factory(User::class)->create();
+        $userTwo = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/users/'.$userTwo->cyber_code.'/edit');
@@ -177,7 +177,7 @@ class UserTest extends TestCase
      */
     public function testUserEditSelf()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/users/'.$user->cyber_code.'/edit');
@@ -189,8 +189,8 @@ class UserTest extends TestCase
      */
     public function testUserUpdateDenied()
     {
-        $user = factory(User::class)->create();
-        $userTwo = factory(User::class)->create();
+        $user = User::factory()->create();
+        $userTwo = User::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -216,9 +216,9 @@ class UserTest extends TestCase
      */
     public function testUserUpdateIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $userTwo = factory(User::class)->create();
+        $userTwo = User::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -244,7 +244,7 @@ class UserTest extends TestCase
      */
     public function testUserUpdateSelf()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -276,7 +276,7 @@ class UserTest extends TestCase
 //        copy($stub, $path);
 //        $file = new UploadedFile($path, $name, 'image/jpeg', filesize($path), true);
 //
-//        $user = factory(User::class)->create();
+//        $user = User::factory()->create();
 //        $faker = Factory::create();
 //        $response = $this
 //            ->actingAs($user)
@@ -311,7 +311,7 @@ class UserTest extends TestCase
 //        copy($stub, $path);
 //        $file = new UploadedFile($path, $name, 'image/jpeg', filesize($path), true);
 //
-//        $user = factory(User::class)->create();
+//        $user = User::factory()->create();
 //        $faker = Factory::create();
 //        $response = $this
 //            ->actingAs($user)
@@ -340,8 +340,8 @@ class UserTest extends TestCase
      */
     public function testUserDestroyDenied()
     {
-        $user = factory(User::class)->create();
-        $userTwo = factory(User::class)->create();
+        $user = User::factory()->create();
+        $userTwo = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/users/'.$userTwo->cyber_code);
@@ -353,9 +353,9 @@ class UserTest extends TestCase
      */
     public function testUserDestroyIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $userTwo = factory(User::class)->create();
+        $userTwo = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/users/'.$userTwo->cyber_code);
@@ -368,7 +368,7 @@ class UserTest extends TestCase
      */
     public function testUserDestroySelf()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/users/'.$user->cyber_code);
@@ -381,7 +381,7 @@ class UserTest extends TestCase
      */
     public function testUserShowSelf()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/users/'.$user->cyber_code);
@@ -393,8 +393,8 @@ class UserTest extends TestCase
      */
     public function testUserShow()
     {
-        $user = factory(User::class)->create();
-        $userTwo = factory(User::class)->create();
+        $user = User::factory()->create();
+        $userTwo = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/users/'.$userTwo->cyber_code);
@@ -406,8 +406,8 @@ class UserTest extends TestCase
      */
     public function testUserDestroyRecursive()
     {
-        $user = factory(User::class)->create();
-        $expertise = factory(Expertise::class)->create();
+        $user = User::factory()->create();
+        $expertise = Expertise::factory()->create();
         $expertise->user()->associate($user);
         $expertise->save();
         $this->assertCount(1, Expertise::all());

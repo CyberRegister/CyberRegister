@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\CyberExpertise;
-use App\Expertise;
-use App\User;
+use App\Models\CyberExpertise;
+use App\Models\Expertise;
+use App\Models\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -40,7 +40,7 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseIndex()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/cyberExpertise');
@@ -52,7 +52,7 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseCreate()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/cyberExpertise/create');
@@ -64,7 +64,7 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseCreateIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)
@@ -78,7 +78,7 @@ class CyberExpertiseTest extends TestCase
     public function testCyberExpertiseStore()
     {
         $faker = Factory::create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
@@ -100,7 +100,7 @@ class CyberExpertiseTest extends TestCase
     public function testCyberExpertiseStoreIsController()
     {
         $faker = Factory::create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)
@@ -123,8 +123,8 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseEditError()
     {
-        $user = factory(User::class)->create();
-        $cyberExpertise = factory(CyberExpertise::class)->create();
+        $user = User::factory()->create();
+        $cyberExpertise = CyberExpertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/cyberExpertise/'.$cyberExpertise->expertise_code.'/edit');
@@ -136,9 +136,9 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseEditIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $cyberExpertise = factory(CyberExpertise::class)->create();
+        $cyberExpertise = CyberExpertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/cyberExpertise/'.$cyberExpertise->expertise_code.'/edit');
@@ -150,8 +150,8 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseUpdateDenied()
     {
-        $user = factory(User::class)->create();
-        $cyberExpertise = factory(CyberExpertise::class)->create();
+        $user = User::factory()->create();
+        $cyberExpertise = CyberExpertise::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -173,9 +173,9 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseUpdateIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $cyberExpertise = factory(CyberExpertise::class)->create();
+        $cyberExpertise = CyberExpertise::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -197,8 +197,8 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseDestroyDenied()
     {
-        $user = factory(User::class)->create();
-        $cyberExpertise = factory(CyberExpertise::class)->create();
+        $user = User::factory()->create();
+        $cyberExpertise = CyberExpertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/cyberExpertise/'.$cyberExpertise->expertise_code);
@@ -210,9 +210,9 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseDestroyIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $cyberExpertise = factory(CyberExpertise::class)->create();
+        $cyberExpertise = CyberExpertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/cyberExpertise/'.$cyberExpertise->expertise_code);
@@ -225,8 +225,8 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseShow()
     {
-        $user = factory(User::class)->create();
-        $cyberExpertise = factory(CyberExpertise::class)->create();
+        $user = User::factory()->create();
+        $cyberExpertise = CyberExpertise::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/cyberExpertise/'.$cyberExpertise->expertise_code);
@@ -238,8 +238,8 @@ class CyberExpertiseTest extends TestCase
      */
     public function testCyberExpertiseDestroyRecursive()
     {
-        $expertise = factory(Expertise::class)->create();
-        $user = factory(User::class)->create();
+        $expertise = Expertise::factory()->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)

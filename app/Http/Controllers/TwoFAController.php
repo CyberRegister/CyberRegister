@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Disable2FaRequest;
 use App\Http\Requests\Enable2FaRequest;
-use App\TwoFAKey;
+use App\Models\TwoFAKey;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

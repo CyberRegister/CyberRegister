@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\CyberExpertise;
-use App\Expertise;
-use App\PcePoint;
+use App\Models\CyberExpertise;
+use App\Models\Expertise;
+use App\Models\PcePoint;
 use App\Policies\CyberExpertisePolicy;
 use App\Policies\ExpertisePolicy;
 use App\Policies\PcePointPolicy;
 use App\Policies\UserPolicy;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;

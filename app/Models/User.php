@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,38 +31,39 @@ use Laravel\Passport\HasApiTokens;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Expertise[] $expertises
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Expertise[] $expertises
  * @property-read array $codes
  * @property-read string $name
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\PcePoint[] $pcePoints
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PcePoint[] $pcePoints
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
- * @property-read \App\TwoFAKey $twoFAKey
+ * @property-read \App\Models\TwoFAKey $twoFAKey
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereControllerCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereCyberCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereDateOfBirth($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereInitials($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereIsController($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereLastName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereMiddleName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePhoto($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePlaceOfBirth($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereVerificationCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereControllerCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCyberCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDateOfBirth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereInitials($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereIsController($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereMiddleName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePlaceOfBirth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereVerificationCode($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
+    use HasFactory;
     use HasApiTokens;
     use Notifiable;
     /**

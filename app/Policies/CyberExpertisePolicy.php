@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\CyberExpertise;
-use App\User;
+use App\Models\CyberExpertise;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CyberExpertisePolicy

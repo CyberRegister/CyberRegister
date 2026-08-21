@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserSearchRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;

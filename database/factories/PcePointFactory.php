@@ -1,24 +1,33 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+use App\Models\PcePoint;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(
-    App\PcePoint::class,
-    function (Faker $faker) {
+/**
+ * @extends Factory<PcePoint>
+ */
+class PcePointFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<PcePoint>
+     */
+    protected $model = PcePoint::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
         return [
-            'user_id' => factory(\App\User::class)->create()->id,
-            'points'  => $faker->randomDigit(3),
+            'user_id' => User::factory(),
+            'points'  => $this->faker->numberBetween(1, 999),
         ];
     }
-);
+}

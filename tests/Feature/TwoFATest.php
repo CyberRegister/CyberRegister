@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\TwoFAKey;
-use App\User;
+use App\Models\TwoFAKey;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -86,7 +86,7 @@ class TwoFATest extends TestCase
      */
     public function test2FAEnable()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/2fa');
@@ -178,7 +178,7 @@ class TwoFATest extends TestCase
      */
     private function get2FAUser($secret = 'secret'): User
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         TwoFAKey::create(
             [
                 'user_id'          => $user->id,

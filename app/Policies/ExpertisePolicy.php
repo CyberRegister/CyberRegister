@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Expertise;
-use App\User;
+use App\Models\Expertise;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ExpertisePolicy
@@ -39,7 +39,7 @@ class ExpertisePolicy
     /**
      * Determine whether the user can see a Expertise.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @param Expertise $expertise
      *
      * @return bool

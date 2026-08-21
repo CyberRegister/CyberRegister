@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -17,27 +18,28 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $controller_code
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\CyberExpertise $cyberExpertise
+ * @property-read \App\Models\CyberExpertise $cyberExpertise
  * @property-read string $code
  * @property-read null|string $description
- * @property-read \App\User $user
+ * @property-read \App\Models\User $user
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereCertificationCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereControllerCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereCyberExpertiseId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereDateOfCertification($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereDateOfExpiration($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Expertise whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereCertificationCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereControllerCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereCyberExpertiseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereDateOfCertification($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereDateOfExpiration($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Expertise whereUserId($value)
  * @mixin \Eloquent
  */
 class Expertise extends Model
 {
+    use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
@@ -48,9 +50,14 @@ class Expertise extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
      * @var array
      */
-    protected $dates = ['date_of_certification', 'date_of_expiration'];
+    protected $casts = [
+        'date_of_certification' => 'datetime',
+        'date_of_expiration'    => 'datetime',
+    ];
 
     /**
      * Get the user that owns this expertise.

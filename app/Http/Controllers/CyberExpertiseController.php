@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CyberExpertise;
+use App\Models\CyberExpertise;
 use App\Http\Requests\CyberExpertiseStoreRequest;
 use App\Http\Requests\CyberExpertiseUpdateRequest;
 use Illuminate\Auth\Access\AuthorizationException;

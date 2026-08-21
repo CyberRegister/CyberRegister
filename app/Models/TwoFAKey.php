@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -17,19 +18,20 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read User $user
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereGoogle2faEnable($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereGoogle2faSecret($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TwoFAKey whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey whereGoogle2faEnable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey whereGoogle2faSecret($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\TwoFAKey whereUserId($value)
  * @mixin \Eloquent
  */
 class TwoFAKey extends Model
 {
+    use HasFactory;
     /**
      * @var string
      */

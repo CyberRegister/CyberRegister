@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\PcePoint;
-use App\User;
+use App\Models\PcePoint;
+use App\Models\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -39,7 +39,7 @@ class PcePointTest extends TestCase
      */
     public function testPcePointIndex()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/pcePoint');
@@ -51,7 +51,7 @@ class PcePointTest extends TestCase
      */
     public function testPcePointIndexIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)
@@ -64,7 +64,7 @@ class PcePointTest extends TestCase
      */
     public function testPcePointCreate()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/pcePoint/create');
@@ -76,7 +76,7 @@ class PcePointTest extends TestCase
      */
     public function testPcePointCreateIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)
@@ -90,7 +90,7 @@ class PcePointTest extends TestCase
     public function testPcePointStore()
     {
         $faker = Factory::create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
@@ -112,7 +112,7 @@ class PcePointTest extends TestCase
     public function testPcePointStoreIsController()
     {
         $faker = Factory::create();
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
         $response = $this
             ->actingAs($user)
@@ -135,8 +135,8 @@ class PcePointTest extends TestCase
      */
     public function testPcePointEditError()
     {
-        $user = factory(User::class)->create();
-        $pcePoint = factory(PcePoint::class)->create();
+        $user = User::factory()->create();
+        $pcePoint = PcePoint::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/pcePoint/'.$pcePoint->id.'/edit');
@@ -148,9 +148,9 @@ class PcePointTest extends TestCase
      */
     public function testPcePointEditIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $pcePoint = factory(PcePoint::class)->create();
+        $pcePoint = PcePoint::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/pcePoint/'.$pcePoint->id.'/edit');
@@ -162,8 +162,8 @@ class PcePointTest extends TestCase
      */
     public function testPcePointUpdateDenied()
     {
-        $user = factory(User::class)->create();
-        $pcePoint = factory(PcePoint::class)->create();
+        $user = User::factory()->create();
+        $pcePoint = PcePoint::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -185,9 +185,9 @@ class PcePointTest extends TestCase
      */
     public function testPcePointUpdateIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $pcePoint = factory(PcePoint::class)->create();
+        $pcePoint = PcePoint::factory()->create();
         $faker = Factory::create();
         $response = $this
             ->actingAs($user)
@@ -209,8 +209,8 @@ class PcePointTest extends TestCase
      */
     public function testPcePointDestroyDenied()
     {
-        $user = factory(User::class)->create();
-        $pcePoint = factory(PcePoint::class)->create();
+        $user = User::factory()->create();
+        $pcePoint = PcePoint::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/pcePoint/'.$pcePoint->id);
@@ -222,9 +222,9 @@ class PcePointTest extends TestCase
      */
     public function testPcePointDestroyIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $pcePoint = factory(PcePoint::class)->create();
+        $pcePoint = PcePoint::factory()->create();
         $response = $this
             ->actingAs($user)
             ->delete('/pcePoint/'.$pcePoint->id);
@@ -237,8 +237,8 @@ class PcePointTest extends TestCase
      */
     public function testPcePointShow()
     {
-        $user = factory(User::class)->create();
-        $pcePoint = factory(PcePoint::class)->create();
+        $user = User::factory()->create();
+        $pcePoint = PcePoint::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/pcePoint/'.$pcePoint->id);
@@ -250,7 +250,7 @@ class PcePointTest extends TestCase
      */
     public function testExpertiseShowOwn()
     {
-        $pcePoint = factory(PcePoint::class)->create();
+        $pcePoint = PcePoint::factory()->create();
         $response = $this
             ->actingAs($pcePoint->user)
             ->get('/pcePoint/'.$pcePoint->id);
@@ -262,9 +262,9 @@ class PcePointTest extends TestCase
      */
     public function testExpertiseShowIsController()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->is_controller = true;
-        $pcePoint = factory(PcePoint::class)->create();
+        $pcePoint = PcePoint::factory()->create();
         $response = $this
             ->actingAs($user)
             ->get('/pcePoint/'.$pcePoint->id);
