@@ -6,6 +6,7 @@ use App\Http\Requests\Disable2FaRequest;
 use App\Http\Requests\Enable2FaRequest;
 use App\Models\TwoFAKey;
 use App\Models\User;
+use App\Support\RecoveryCodes;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -22,18 +23,20 @@ class TwoFAController extends Controller
         $user = Auth::user();
 
         $google2fa_url = '';
+        $twoFAKey = $user->twoFAKey;
 
-        if ($user->twoFAKey()->exists()) {
+        if ($twoFAKey !== null) {
             $google2fa = app('pragmarx.google2fa');
             $google2fa_url = $google2fa->getQRCodeInline(
                 'Cyber Register 2FA',
                 $user->email,
-                $user->twoFAKey->google2fa_secret
+                $twoFAKey->google2fa_secret
             );
         }
         $data = [
-            'user'          => $user,
-            'google2fa_url' => $google2fa_url,
+            'user'                => $user,
+            'google2fa_url'       => $google2fa_url,
+            'recovery_remaining'  => app(RecoveryCodes::class)->remaining($user),
         ];
 
         return view('auth.2fa')->with('data', $data);
@@ -70,17 +73,51 @@ class TwoFAController extends Controller
     {
         /** @var User $user */
         $user = Auth::user();
+        $twoFAKey = $user->twoFAKey;
+
+        if ($twoFAKey === null) {
+            return redirect('/2fa')
+                ->with('error', 'Genereer eerst een geheime sleutel.');
+        }
+
         $google2fa = app('pragmarx.google2fa');
         $secret = $request->input('verify-code');
-        $valid = $google2fa->verifyKey($user->twoFAKey->google2fa_secret, $secret);
+        $valid = $google2fa->verifyKey($twoFAKey->google2fa_secret, $secret);
         if ($valid) {
-            $user->twoFAKey->google2fa_enable = true;
-            $user->twoFAKey->save();
+            $twoFAKey->google2fa_enable = true;
+            $twoFAKey->save();
 
-            return redirect('/2fa')->with('success', '2FA is geactiveerd.');
+            // Shown once, on the next render, and never retrievable again.
+            $codes = app(RecoveryCodes::class)->generate($user);
+
+            return redirect('/2fa')
+                ->with('success', '2FA is geactiveerd.')
+                ->with('recovery_codes', $codes);
         } else {
             return redirect('/2fa')->with('error', 'OTP code verkeerd, probeer nogmaals.');
         }
+    }
+
+    /**
+     * Issue a fresh set of recovery codes, discarding the previous one.
+     *
+     * @return RedirectResponse
+     */
+    public function regenerateRecoveryCodes(): RedirectResponse
+    {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($user->twoFAKey === null || !$user->twoFAKey->google2fa_enable) {
+            return redirect('/2fa')
+                ->with('error', 'Herstelcodes zijn er pas zodra 2FA is ingeschakeld.');
+        }
+
+        $codes = app(RecoveryCodes::class)->generate($user);
+
+        return redirect('/2fa')
+            ->with('success', 'Er is een nieuwe set herstelcodes gegenereerd. De vorige set werkt niet meer.')
+            ->with('recovery_codes', $codes);
     }
 
     /**
@@ -97,8 +134,15 @@ class TwoFAController extends Controller
             return redirect()->back()
                 ->with('error', 'Je wachtwoord klopt niet, probeer nogmaals.');
         }
-        $user->twoFAKey->google2fa_enable = false;
-        $user->twoFAKey->save();
+
+        $twoFAKey = $user->twoFAKey;
+
+        if ($twoFAKey === null) {
+            return redirect('/2fa')->with('error', '2FA staat niet ingesteld.');
+        }
+
+        $twoFAKey->google2fa_enable = false;
+        $twoFAKey->save();
 
         return redirect('/2fa')->with('success', '2FA is uitgeschakeld.');
     }

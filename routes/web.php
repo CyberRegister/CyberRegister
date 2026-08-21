@@ -60,6 +60,8 @@ Route::group(
         Route::post('/generate2faSecret', [TwoFAController::class, 'generate2faSecret'])->name('generate2faSecret');
         Route::post('/2fa', [TwoFAController::class, 'enable2fa'])->name('enable2fa');
         Route::post('/disable2fa', [TwoFAController::class, 'disable2fa'])->name('disable2fa');
+        Route::post('/2fa/herstelcodes', [TwoFAController::class, 'regenerateRecoveryCodes'])
+            ->name('regenerateRecoveryCodes');
         Route::post(
             '/2faVerify',
             function () {

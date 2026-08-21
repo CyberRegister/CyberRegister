@@ -19,6 +19,21 @@
                         @if (session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
                         @endif
+                        @if (session('recovery_codes'))
+                            <div class="alert alert-warning">
+                                <strong>Bewaar deze herstelcodes nu.</strong>
+                                <p>
+                                    Ze worden hierna niet meer getoond. Met een herstelcode komt u
+                                    binnen wanneer u niet bij uw authenticator kunt. Elke code werkt
+                                    &eacute;&eacute;n keer.
+                                </p>
+                                <ul class="list-unstyled">
+                                    @foreach (session('recovery_codes') as $code)
+                                        <li><code>{{ $code }}</code></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         @if(is_null($data['user']->twoFAKey))
                             <p>Als u twee-factorenauthenticatie voor uw account wilt inschakelen, dient
                                 u de volgende stappen uit te voeren</p>
@@ -65,6 +80,31 @@
                             </form>
                         @elseif($data['user']->twoFAKey->google2fa_enable)
                             <div class="alert alert-success">2FA is momenteel <strong>ingeschakeld</strong> voor uw account.</div>
+
+                            <h4>Herstelcodes</h4>
+                            <p>
+                                U heeft nog <strong>{{ $data['recovery_remaining'] }}</strong>
+                                {{ $data['recovery_remaining'] === 1 ? 'ongebruikte herstelcode' : 'ongebruikte herstelcodes' }}.
+                                Met een herstelcode komt u binnen wanneer u niet bij uw authenticator
+                                kunt. Vul de code in op het scherm waar normaal de OTP code wordt
+                                gevraagd. Elke code werkt &eacute;&eacute;n keer.
+                            </p>
+                            @if($data['recovery_remaining'] === 0)
+                                <div class="alert alert-danger">
+                                    U heeft geen herstelcodes meer. Raakt u uw authenticator kwijt,
+                                    dan komt u niet meer bij uw account.
+                                </div>
+                            @endif
+                            <form class="" method="POST" action="{{ route('regenerateRecoveryCodes') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <div class="col-lg-6 offset-md-">
+                                        <button type="submit" class="btn btn-secondary">Nieuwe herstelcodes genereren</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="text-muted">Een nieuwe set maakt de vorige set ongeldig.</p>
+
                             <p>Wanneer u twee-factorenauthenticatie uit wenst te schakelen. Bevestig
                                 uw wachtwoord en klik op de 2FA uitschakelen knop.</p>
                             <form class="" method="POST" action="{{ route('disable2fa') }}">

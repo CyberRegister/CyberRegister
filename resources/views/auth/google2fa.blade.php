@@ -19,6 +19,8 @@
                     @endif
                         <strong>Voer de OTP code vanuit uw app in</strong>
                     <br>
+                    <span class="text-muted">Geen toegang tot uw app? Vul hier een van uw herstelcodes in.</span>
+                    <br>
                     <br>
                     <form class="" action="{{ route('2faVerify') }}" method="POST">{{ csrf_field() }}
                         <div class="form-group{{ $errors->has('one_time_password-code') ? ' has-error' : '' }}">
