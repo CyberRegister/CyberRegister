@@ -30,11 +30,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class CyberExpertise extends Model
 {
+    /** @use HasFactory<\Database\Factories\CyberExpertiseFactory> */
     use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'description', 'required_points', 'expertise_code',
@@ -68,7 +69,7 @@ class CyberExpertise extends Model
     /**
      * Get the actual user expertises for this.
      *
-     * @return HasMany
+     * @return HasMany<Expertise, $this>
      */
     public function expertises(): HasMany
     {

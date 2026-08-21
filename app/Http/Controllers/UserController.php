@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Laravel\Facades\Image;
 
 class UserController extends Controller
 {
@@ -128,7 +128,9 @@ class UserController extends Controller
         try {
             $user->update($request->all());
             if ($request->hasFile('file') && $request->file('file')->isValid()) {
-                $user->photo = Image::make($request->file('file')->getRealPath())->encode('data-url');
+                $user->photo = (string) Image::decodePath($request->file('file')->getRealPath())
+                    ->encode()
+                    ->toDataUri();
                 $user->save();
             }
         } catch (\Exception $e) {

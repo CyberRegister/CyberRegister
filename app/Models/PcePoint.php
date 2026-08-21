@@ -32,11 +32,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class PcePoint extends Model
 {
+    /** @use HasFactory<\Database\Factories\PcePointFactory> */
     use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'location_code', 'points', 'user_id',
@@ -45,7 +46,7 @@ class PcePoint extends Model
     /**
      * Get the user that owns the points.
      *
-     * @return BelongsTo
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

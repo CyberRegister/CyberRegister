@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -31,18 +30,22 @@ use Illuminate\Support\Carbon;
  */
 class TwoFAKey extends Model
 {
-    use HasFactory;
     /**
      * @var string
      */
     protected $table = '2fa_key';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
     protected $fillable = ['google2fa_secret', 'google2fa_enable', 'user_id'];
 
     /**
      * Get the user that owns this expertise.
      *
-     * @return BelongsTo
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

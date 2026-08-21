@@ -1,14 +1,20 @@
 {
     "name": "annejan/cyber-register",
     "description": "Cyberregister",
-    "keywords": ["cyber", "register", "framework", "laravel"],
+    "keywords": [
+        "cyber",
+        "register",
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": "^8.3",
-        "ext-imagick": "*",
         "bacon/bacon-qr-code": "^3.0",
-        "intervention/image": "^3.11",
+        "ext-imagick": "*",
+        "intervention/image": "^4.2",
+        "intervention/image-laravel": "^4.1",
         "laravel/framework": "^13.0",
         "laravel/passport": "^13.0",
         "laravel/tinker": "^3.0",

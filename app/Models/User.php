@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\Contracts\OAuthenticatable;
 use Laravel\Passport\HasApiTokens;
 
 /**
@@ -32,9 +33,9 @@ use Laravel\Passport\HasApiTokens;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Expertise[] $expertises
- * @property-read array $codes
+ * @property-read list<string|null> $codes
  * @property-read string $name
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PcePoint[] $pcePoints
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @property-read \App\Models\TwoFAKey $twoFAKey
@@ -61,15 +62,16 @@ use Laravel\Passport\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereVerificationCode($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements OAuthenticatable
 {
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
     use HasApiTokens;
     use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'first_name', 'middle_name', 'last_name', 'email',
@@ -79,7 +81,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var list<string>
      */
     protected $hidden = [
         'password', 'remember_token', 'google2fa_secret',
@@ -133,7 +135,7 @@ class User extends Authenticatable
     /**
      * Get the users expertises.
      *
-     * @return HasMany
+     * @return HasMany<Expertise, $this>
      */
     public function expertises(): HasMany
     {
@@ -141,7 +143,11 @@ class User extends Authenticatable
     }
 
     /**
-     * @return array
+     * NOTE: the sort() call below re-indexes the array, discarding the
+     * expertise codes used as keys, so this returns a plain list of
+     * descriptions rather than a code => description map.
+     *
+     * @return list<string|null>
      */
     public function getCodesAttribute()
     {
@@ -158,7 +164,7 @@ class User extends Authenticatable
     /**
      * Get the users PCE points.
      *
-     * @return HasMany
+     * @return HasMany<PcePoint, $this>
      */
     public function pcePoints(): HasMany
     {
@@ -181,7 +187,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return HasOne
+     * @return HasOne<TwoFAKey, $this>
      */
     public function twoFAKey(): HasOne
     {

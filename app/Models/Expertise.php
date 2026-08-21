@@ -39,11 +39,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Expertise extends Model
 {
+    /** @use HasFactory<\Database\Factories\ExpertiseFactory> */
     use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'certification_code', 'date_of_certification', 'date_of_expiration', 'user_id', 'cyber_expertise_id',
@@ -52,7 +53,7 @@ class Expertise extends Model
     /**
      * The attributes that should be cast.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'date_of_certification' => 'datetime',
@@ -61,6 +62,8 @@ class Expertise extends Model
 
     /**
      * Get the user that owns this expertise.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -69,6 +72,8 @@ class Expertise extends Model
 
     /**
      * Get the actual CyberExpertise for this expertise.
+     *
+     * @return BelongsTo<CyberExpertise, $this>
      */
     public function cyberExpertise(): BelongsTo
     {
