@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Disable2FaRequest;
 use App\Http\Requests\Enable2FaRequest;
 use App\Models\TwoFAKey;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +18,7 @@ class TwoFAController extends Controller
      */
     public function show2faForm()
     {
+        /** @var User $user */
         $user = Auth::user();
 
         $google2fa_url = '';
@@ -42,6 +44,7 @@ class TwoFAController extends Controller
      */
     public function generate2faSecret()
     {
+        /** @var User $user */
         $user = Auth::user();
         // Initialise the 2FA class
         $google2fa = app('pragmarx.google2fa');
@@ -65,6 +68,7 @@ class TwoFAController extends Controller
      */
     public function enable2fa(Enable2FaRequest $request)
     {
+        /** @var User $user */
         $user = Auth::user();
         $google2fa = app('pragmarx.google2fa');
         $secret = $request->input('verify-code');
@@ -86,12 +90,13 @@ class TwoFAController extends Controller
      */
     public function disable2fa(Disable2FaRequest $request)
     {
-        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+        /** @var User $user */
+        $user = Auth::user();
+        if (!(Hash::check($request->get('current-password'), $user->password))) {
             // The passwords matches
             return redirect()->back()
                 ->with('error', 'Je wachtwoord klopt niet, probeer nogmaals.');
         }
-        $user = Auth::user();
         $user->twoFAKey->google2fa_enable = false;
         $user->twoFAKey->save();
 

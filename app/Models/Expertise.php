@@ -83,9 +83,9 @@ class Expertise extends Model
     /**
      * The expertise code (3 chars).
      *
-     * @return string
+     * @return string|null
      */
-    public function getCodeAttribute(): string
+    public function getCodeAttribute(): ?string
     {
         return $this->cyberExpertise->expertise_code;
     }

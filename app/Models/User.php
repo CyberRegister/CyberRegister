@@ -153,6 +153,9 @@ class User extends Authenticatable implements OAuthenticatable
     {
         $codes = [];
         foreach ($this->expertises as $expertise) {
+            if ($expertise->code === null) {
+                continue;
+            }
             $codes[$expertise->code] = $expertise->description;
         }
 
