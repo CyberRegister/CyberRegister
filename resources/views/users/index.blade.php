@@ -46,7 +46,7 @@
                         @endif
                     @endforelse
                     </ul>
-                    @if(Auth::user() && Auth::user()->can('create', \App\User::class))
+                    @if(Auth::user() && Auth::user()->can('create', \App\Models\User::class))
                     <a href="{{ route('users.create') }}" class="btn btn-primary">Toevoegen</a>
                     @endif
                 </div>

@@ -33,7 +33,7 @@
                         <li>Niets gevonden</li>
                     @endforelse
                     </ul>
-                    @if(Auth::user()->can('create', \App\CyberExpertise::class))
+                    @if(Auth::user()->can('create', \App\Models\CyberExpertise::class))
                     <a href="{{ route('cyberExpertise.create') }}" class="btn btn-primary">Toevoegen</a>
                     @endif
                 </div>

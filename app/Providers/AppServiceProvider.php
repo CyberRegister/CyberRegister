@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -14,9 +15,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        //
+        // Laravel used to fall back to the login route when an unauthenticated
+        // request had no redirect target. That fallback is gone, and without a
+        // target the handler answers with an empty 401 instead of redirecting.
+        Authenticate::redirectUsing(fn () => route('login'));
     }
 
     /**
@@ -24,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
