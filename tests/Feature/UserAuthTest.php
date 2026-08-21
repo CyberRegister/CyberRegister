@@ -48,7 +48,7 @@ class UserAuthTest extends TestCase
     public function testLogin()
     {
         $faker = Factory::create();
-        $password = $faker->password;
+        $password = $faker->password(12, 20);
         $user = User::factory()->create(['password' => bcrypt($password)]);
         $response = $this
             ->withSession(['_token'=>'test'])
@@ -139,7 +139,7 @@ class UserAuthTest extends TestCase
         $response->assertStatus(200);
 
         $faker = Factory::create();
-        $password = $faker->password;
+        $password = $faker->password(12, 20);
 
         $response = $this
             ->withSession(['_token'=>'test'])
@@ -184,7 +184,7 @@ class UserAuthTest extends TestCase
     public function testRegister()
     {
         $faker = Factory::create();
-        $password = $faker->password;
+        $password = $faker->password(12, 20);
         $email = $faker->email;
         $response = $this
             ->withSession(['_token'=>'test'])
@@ -214,7 +214,7 @@ class UserAuthTest extends TestCase
     public function testRegisterDateFormat()
     {
         $faker = Factory::create();
-        $password = $faker->password;
+        $password = $faker->password(12, 20);
         $email = $faker->email;
         $response = $this
             ->withSession(['_token'=>'test'])
@@ -243,7 +243,7 @@ class UserAuthTest extends TestCase
     public function testRegisterReserved()
     {
         $faker = Factory::create();
-        $password = $faker->password;
+        $password = $faker->password(12, 20);
         $email = $faker->email;
         $response = $this
             ->withSession(['_token'=>'test'])

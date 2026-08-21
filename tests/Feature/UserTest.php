@@ -122,7 +122,7 @@ class UserTest extends TestCase
     {
         $faker = Factory::create();
         $user = User::factory()->create();
-        $password = $faker->password;
+        $password = $faker->password(12, 20);
         $response = $this
             ->actingAs($user)
             ->withSession(['_token' => 'test'])
