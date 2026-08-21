@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\CyberExpertise;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends Factory<CyberExpertise>
@@ -26,7 +25,11 @@ class CyberExpertiseFactory extends Factory
     public function definition(): array
     {
         return [
-            'expertise_code'  => Str::random(3),
+            // expertise_code is unique in the schema, on a case insensitive
+            // collation, so 'abc' and 'ABC' collide in the database even
+            // though Faker considers them distinct. Restricting the alphabet
+            // to a single case makes uniqueness here mean uniqueness there.
+            'expertise_code'  => $this->faker->unique()->regexify('[A-Z0-9]{3}'),
             'required_points' => $this->faker->numberBetween(1, 999),
             'description'     => $this->faker->paragraph(),
         ];
