@@ -65,6 +65,17 @@ jobs:
       - name: Directory permissions
         run: chmod -R 777 storage bootstrap/cache
 
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24.x
+          cache: yarn
+
+      - name: Build front-end assets
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
+
       - name: Run migrations
         run: php artisan migrate --force
 
@@ -72,7 +83,7 @@ jobs:
         run: vendor/bin/pest --coverage --coverage-clover=coverage.xml
 
       - name: Static analysis (PHPStan)
-        run: vendor/bin/phpstan analyse --no-progress
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=1G
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5

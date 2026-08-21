@@ -8,7 +8,7 @@
     <title>{{ config('app.name') }} - Authorization</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    @vite(['resources/assets/sass/app.scss'])
 
     <style>
         .passport-authorize .container {

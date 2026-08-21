@@ -1,19 +1,19 @@
 
 /**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
+ * First we will load all of this project's JavaScript dependencies, then
+ * wire up the behaviour the Blade templates rely on.
  */
 
-require('./bootstrap');
+import './bootstrap';
+import Dropzone from 'dropzone';
 
-window.Dropzone = require('dropzone');
-window.Dropzone.prototype.defaultOptions.maxFiles = 1;
-window.Dropzone.prototype.defaultOptions.acceptedFiles = '.png,.jpg,.gif,.bmp,.jpeg';
-window.Dropzone.prototype.defaultOptions.autoProcessQueue = false;
-window.Dropzone.prototype.defaultOptions.uploadMultiple = false;
-window.Dropzone.prototype.defaultOptions.previewsContainer = '.dz-default';
-window.Dropzone.prototype.defaultOptions.init = function () {
+window.Dropzone = Dropzone;
+Dropzone.prototype.defaultOptions.maxFiles = 1;
+Dropzone.prototype.defaultOptions.acceptedFiles = '.png,.jpg,.gif,.bmp,.jpeg';
+Dropzone.prototype.defaultOptions.autoProcessQueue = false;
+Dropzone.prototype.defaultOptions.uploadMultiple = false;
+Dropzone.prototype.defaultOptions.previewsContainer = '.dz-default';
+Dropzone.prototype.defaultOptions.init = function () {
 	var myDropzone = this;
 	// First change the button to actually tell Dropzone to process the queue.
 	this.element.querySelector('button[type=submit]').addEventListener(
@@ -58,25 +58,3 @@ $(document).ready(
 		);
 	}
 );
-
-window.Vue = require('vue');
-
-window.Vue.component(
-	'passport-clients',
-	require('./components/passport/Clients.vue')
-);
-
-window.Vue.component(
-	'passport-authorized-clients',
-	require('./components/passport/AuthorizedClients.vue')
-);
-
-window.Vue.component(
-	'passport-personal-access-tokens',
-	require('./components/passport/PersonalAccessTokens.vue')
-);
-
-new window.Vue({
-	el: '#app'
-});
-

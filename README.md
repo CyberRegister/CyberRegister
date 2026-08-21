@@ -35,13 +35,13 @@ Running the development server:
 ```bash
 php artisan serve
 ```
-Frontend development:
+Frontend development server (with hot module replacement):
 ```bash
 yarn dev
 ```
-With live-reload:
+Production build:
 ```bash
-yarn watch
+yarn build
 ```
 ## Running tests
  

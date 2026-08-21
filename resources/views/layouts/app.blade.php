@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Cyberregister') }}</title>
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('static/icons/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('static/icons/apple-icon-60x60.png') }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('static/icons/apple-icon-72x72.png') }}">
@@ -106,7 +106,6 @@
         </div>
     </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
 </body>
 </html>
